@@ -1,21 +1,86 @@
-:root { color-scheme: dark; --bg: #07060B; --card: #111018; --line: #26243a; --text: #F7F7FA; --muted: #B6B5C4; --dim: #85849A; --accent: #A78BFA; }
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.65 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-main { max-width: 760px; margin: 0 auto; padding: 32px 20px 64px; }
-header { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
-.logo { width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #8B5CF6, #EC4899); display: grid; place-items: center; font-weight: 800; }
-.brand { font-size: 26px; font-weight: 800; letter-spacing: -1px; text-decoration: none; color: var(--text); }
-h1 { font-size: 30px; line-height: 1.2; letter-spacing: -0.5px; margin: 0 0 6px; }
-h2 { font-size: 20px; margin: 32px 0 8px; }
-p, li { color: var(--muted); }
-strong { color: var(--text); }
-a { color: var(--accent); }
-.meta { color: var(--dim); font-size: 14px; margin-bottom: 24px; }
-.card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; margin: 16px 0; }
-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 15px; }
-th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
-th { color: var(--text); font-weight: 600; }
-td { color: var(--muted); }
-nav.links { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
-nav.links a { padding: 10px 16px; border: 1px solid var(--line); border-radius: 999px; text-decoration: none; background: var(--card); }
-footer { margin-top: 48px; color: var(--dim); font-size: 14px; border-top: 1px solid var(--line); padding-top: 16px; }
+/* DUOS yasal sayfaları (gizlilik, kullanım şartları, hesap silme): ana sayfayla aynı görünüm, sade okuma düzeni. */
+
+@font-face { font-family: "Archivo"; src: url("assets/fonts/archivo.woff2") format("woff2"); font-weight: 500 800; font-stretch: 108% 125%; font-display: swap; }
+@font-face { font-family: "Geist"; src: url("assets/fonts/geist.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Geist Mono"; src: url("assets/fonts/geist-mono.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+
+:root {
+  color-scheme: dark;
+  --bg: #07060B; --ink: #F4F2FA; --ink-2: #B9B6C9; --ink-3: #7F7C93;
+  --line: rgba(255, 255, 255, .08); --line-2: rgba(255, 255, 255, .14);
+  --glass: rgba(255, 255, 255, .035); --glass-2: rgba(255, 255, 255, .06);
+  --violet: #8B5CF6; --violet-2: #A78BFA; --pink: #EC4899; --cyan: #5AF0FF;
+  --f-d: "Archivo", "Geist", system-ui, sans-serif;
+  --f-b: "Geist", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --f-m: "Geist Mono", ui-monospace, Menlo, monospace;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0; min-height: 100vh; background: var(--bg); color: var(--ink);
+  font: 400 16.5px/1.7 var(--f-b); -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(60vmax 50vmax at 0% -10%, rgba(124, 58, 237, .32), transparent 60%),
+    radial-gradient(50vmax 40vmax at 110% 10%, rgba(219, 39, 119, .18), transparent 60%),
+    radial-gradient(50vmax 40vmax at 50% 120%, rgba(8, 145, 178, .12), transparent 60%);
+}
+::selection { background: rgba(236, 72, 153, .35); }
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 6px; }
+
+main { max-width: 780px; margin: 0 auto; padding: 28px 22px 72px; }
+
+/* Üst bar: logo ve ana sayfaya dönüş */
+header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: clamp(48px, 9vw, 88px); }
+.brand { display: inline-flex; align-items: center; gap: 9px; color: var(--ink); text-decoration: none; font: 800 22px/1 var(--f-d); font-stretch: 112%; letter-spacing: -.045em; }
+.brand svg { width: 30px; height: 30px; display: block; }
+.back { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--glass); color: var(--ink-2); font: 500 14px/1 var(--f-b); text-decoration: none; transition: color .25s, background .25s; }
+.back:hover { color: var(--ink); background: var(--glass-2); }
+.back svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+h1 { margin: 0 0 14px; font: 760 clamp(38px, 7vw, 64px)/1 var(--f-d); font-stretch: 118%; letter-spacing: -.035em; }
+.meta { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 40px; font: 500 12px/1.4 var(--f-m); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.meta::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); flex: none; }
+h2 { margin: 56px 0 14px; padding-top: 28px; border-top: 1px solid var(--line); font: 600 22px/1.3 var(--f-b); letter-spacing: -.02em; }
+p, li { color: var(--ink-2); }
+p { margin: 0 0 16px; }
+strong { color: var(--ink); font-weight: 600; }
+a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--pink); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--cyan); }
+ul, ol { margin: 0 0 16px; padding-left: 22px; }
+li { margin: 8px 0; }
+li::marker { color: var(--violet-2); }
+
+.card { margin: 16px 0; padding: 20px 22px; border-radius: 22px; background: linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .02)); border: 1px solid var(--line-2); }
+.card ol, .card ul { margin-bottom: 12px; }
+.card p:last-child { margin-bottom: 0; }
+
+table { width: 100%; margin: 18px 0 22px; border-collapse: separate; border-spacing: 0; font-size: 14.5px; line-height: 1.55; border: 1px solid var(--line-2); border-radius: 18px; overflow: hidden; background: var(--glass); }
+th, td { text-align: left; vertical-align: top; padding: 13px 14px; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: 0; }
+th { color: var(--ink); font: 500 11.5px/1.3 var(--f-m); letter-spacing: .1em; text-transform: uppercase; background: rgba(255, 255, 255, .04); }
+td { color: var(--ink-2); }
+td:first-child { color: var(--ink); }
+
+footer { margin-top: 64px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 14.5px; }
+footer a { color: var(--ink-2); text-decoration: none; }
+footer a:hover { color: var(--ink); }
+
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  /* Tablolar telefonda satır satır kart olur; sütun adı her hücrenin üstünde yazar */
+  table, tbody, tr, td { display: block; }
+  table { border-radius: 18px; }
+  tr:first-child { display: none; }
+  tr { padding: 14px 16px; border-bottom: 1px solid var(--line); }
+  tr:last-child { border-bottom: 0; }
+  td { padding: 3px 0; border: 0; }
+  td:first-child { font-weight: 600; margin-bottom: 4px; }
+  td + td::before { display: block; margin-bottom: 1px; font: 500 10.5px/1.4 var(--f-m); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+  table:nth-of-type(1) td:nth-child(2)::before { content: "Ne zaman"; }
+  table:nth-of-type(1) td:nth-child(3)::before { content: "Kimler görür"; }
+  table:nth-of-type(2) td:nth-child(2)::before { content: "Ne için"; }
+  table:nth-of-type(2) td:nth-child(3)::before { content: "Konum"; }
+}

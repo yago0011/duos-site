@@ -1,584 +1,590 @@
 <!doctype html>
-<html lang="tr">
+<html lang="tr" class="no-js">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DUOS · Oyuncular için eşleşme platformu</title>
-<meta name="description" content="DUOS, oyuncuları ortak oyunları, oyun tarzları ve iletişim tercihlerine göre uyumlu takım arkadaşlarıyla buluşturan mobil uygulamadır.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DUOS · Oyuncular için takım arkadaşı bulma uygulaması</title>
+<meta name="description" content="DUOS, oyuncuları ortak oyunlara, oyun tarzına ve iletişim tercihine göre uyumlu takım arkadaşlarıyla buluşturan mobil uygulamadır.">
 <meta name="theme-color" content="#07060B">
-<meta property="og:title" content="DUOS · Oyuncular için eşleşme platformu">
-<meta property="og:description" content="Uyumlu takım arkadaşları bulmanın en kolay yolu.">
+<meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:site_name" content="DUOS">
+<meta property="og:title" content="DUOS · Doğru takım arkadaşı, tek kaydırma uzakta">
+<meta property="og:description" content="Ortak oyunlara, oyun tarzına ve iletişim tercihine göre eşleşin. Karşılıklı beğeniyle sohbet açılır, oyun birlikte devam eder.">
+<meta property="og:url" content="https://yago0011.github.io/duos-site/">
+<meta property="og:image" content="https://yago0011.github.io/duos-site/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DUOS: Doğru takım arkadaşı, tek kaydırma uzakta.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yago0011.github.io/duos-site/assets/img/og.jpg">
+<link rel="canonical" href="https://yago0011.github.io/duos-site/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Crect width='1024' height='1024' rx='280' fill='%2314102A'/%3E%3Crect x='238' y='232' width='176' height='560' rx='44' fill='%238B5CF6'/%3E%3Cpath fill-rule='evenodd' fill='%23EC4899' d='M462 232 H540 C707 232 824 350 824 512 C824 674 707 792 540 792 H462 Z M462 400 H536 C604 400 652 448 652 512 C652 576 604 624 536 624 H462 Z'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg: #07060B; --bg2: #0C0B12; --card: #13121A; --card2: #1A1924; --line: rgba(255,255,255,.08); --line2: rgba(255,255,255,.14);
-  --text: #F7F7FA; --muted: #C3C2D0; --dim: #908FA4;
-  --violet: #8B5CF6; --violet2: #A78BFA; --pink: #EC4899; --cyan: #22D3EE; --amber: #F59E0B; --green: #34D399;
-  --grad: linear-gradient(135deg, #8B5CF6, #EC4899);
-  --r: 22px; --max: 1160px;
-  color-scheme: dark;
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-a { color: inherit; text-decoration: none; }
-img, svg { display: block; }
-.wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
-h1, h2, h3 { font-family: Sora, Inter, sans-serif; letter-spacing: -.03em; margin: 0; }
-.grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.eyebrow { display: inline-flex; align-items: center; gap: 8px; font: 600 12px/1 Inter, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--violet2); }
-.eyebrow::before { content: ""; width: 18px; height: 2px; border-radius: 2px; background: var(--grad); }
-section { position: relative; padding: 110px 0; }
-.sec-head { max-width: 640px; margin-bottom: 56px; }
-.sec-head h2 { font-size: clamp(30px, 4.4vw, 46px); line-height: 1.08; margin: 14px 0 14px; }
-.sec-head p { color: var(--muted); font-size: 18px; margin: 0; }
-.center { text-align: center; margin-left: auto; margin-right: auto; }
-
-/* Düğmeler */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 54px; padding: 0 24px; border-radius: 16px; font: 600 16px/1 Inter, sans-serif; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; cursor: pointer; border: 0; }
-.btn:active { transform: scale(.98); }
-.btn-primary { background: var(--grad); color: #fff; box-shadow: 0 10px 30px rgba(139,92,246,.35); }
-.btn-primary:hover { box-shadow: 0 14px 40px rgba(236,72,153,.4); transform: translateY(-2px); }
-.btn-ghost { background: rgba(255,255,255,.06); border: 1px solid var(--line2); color: var(--text); }
-.btn-ghost:hover { background: rgba(255,255,255,.1); }
-.play { display: inline-flex; align-items: center; gap: 12px; height: 54px; padding: 0 20px 0 16px; border-radius: 16px; background: #000; border: 1px solid var(--line2); }
-.play small { display: block; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); line-height: 1.2; }
-.play b { display: block; font: 600 17px/1.2 Inter, sans-serif; }
-
-/* Üst menü */
-.nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .3s ease, border-color .3s ease, backdrop-filter .3s ease; border-bottom: 1px solid transparent; }
-.nav.scrolled { background: rgba(7,6,11,.72); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); border-color: var(--line); }
-.nav .wrap { display: flex; align-items: center; height: 72px; gap: 28px; }
-.brand { display: flex; align-items: center; gap: 10px; font: 800 24px/1 Sora, sans-serif; letter-spacing: -.04em; }
-.brand .mark { width: 36px; height: 36px; border-radius: 11px; box-shadow: 0 6px 20px rgba(139,92,246,.35); }
-.nav nav { display: flex; gap: 26px; margin-left: auto; }
-.nav nav a { color: var(--muted); font-weight: 500; font-size: 15px; transition: color .2s; }
-.nav nav a:hover { color: var(--text); }
-.nav .btn { height: 42px; padding: 0 18px; font-size: 14px; border-radius: 12px; }
-@media (max-width: 860px) { .nav nav { display: none; } .nav .btn { margin-left: auto; } }
-
-/* Kahraman */
-.hero { padding: 150px 0 90px; min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
-.hero .glow { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .55; pointer-events: none; }
-.hero .g1 { width: 620px; height: 620px; background: #6D28D9; top: -180px; left: -160px; animation: drift 18s ease-in-out infinite; }
-.hero .g2 { width: 520px; height: 520px; background: #BE185D; top: 120px; right: -180px; opacity: .4; animation: drift 22s ease-in-out infinite reverse; }
-.hero .g3 { width: 420px; height: 420px; background: #0E7490; bottom: -220px; left: 30%; opacity: .25; animation: drift 26s ease-in-out infinite; }
-@keyframes drift { 50% { transform: translate(60px, 40px) scale(1.08); } }
-.hero .grid-bg { position: absolute; inset: 0; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 56px 56px; mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%); opacity: .5; pointer-events: none; }
-.hero .wrap { position: relative; display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; width: 100%; }
-.pill { display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px 7px 8px; border-radius: 999px; background: rgba(255,255,255,.05); border: 1px solid var(--line2); font-size: 14px; color: var(--muted); }
-.pill .dot { width: 22px; height: 22px; border-radius: 50%; background: var(--grad); display: grid; place-items: center; font-size: 12px; }
-.hero h1 { font-size: clamp(44px, 7vw, 84px); line-height: .98; margin: 22px 0 22px; font-weight: 800; }
-.hero .lead { font-size: clamp(17px, 2vw, 20px); color: var(--muted); max-width: 540px; margin: 0 0 34px; }
-.hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
-.hero .proof { display: flex; gap: 28px; margin-top: 44px; flex-wrap: wrap; }
-.hero .proof div { display: flex; flex-direction: column; }
-.hero .proof b { font: 700 26px/1.1 Sora, sans-serif; }
-.hero .proof span { color: var(--dim); font-size: 14px; }
-@media (max-width: 960px) { .hero .wrap { grid-template-columns: 1fr; } .hero { padding-top: 120px; } .stage { margin-top: 20px; } }
-
-/* Telefon */
-.stage { position: relative; display: flex; justify-content: center; perspective: 1400px; }
-.phone { position: relative; width: 320px; height: 650px; border-radius: 48px; padding: 12px; background: linear-gradient(160deg, #2A2838, #111018 40%, #1B1A25); box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 40px 100px rgba(0,0,0,.6), 0 0 120px rgba(139,92,246,.25); transform: rotateY(-8deg) rotateX(4deg); transition: transform .6s ease; }
-.stage:hover .phone { transform: rotateY(0) rotateX(0); }
-.screen { position: relative; width: 100%; height: 100%; border-radius: 38px; overflow: hidden; background: #0A0A0F; }
-.screen::before { content: ""; position: absolute; inset: 0 0 auto; height: 260px; background: linear-gradient(rgba(124,92,250,.16), transparent); }
-.notch { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 92px; height: 26px; border-radius: 20px; background: #000; z-index: 5; }
-.app-top { position: relative; display: flex; align-items: center; gap: 8px; padding: 46px 16px 10px; }
-.app-top .logo-s { width: 26px; height: 26px; border-radius: 8px; }
-.app-top b { font: 800 19px/1 Sora, sans-serif; letter-spacing: -.04em; }
-.chip { display: inline-flex; align-items: center; gap: 4px; padding: 4px 9px; border-radius: 999px; font: 600 12px/1 Inter, sans-serif; background: rgba(255,255,255,.06); border: 1px solid var(--line); }
-.chip.fire { background: rgba(245,158,11,.14); border-color: rgba(245,158,11,.35); color: #FBBF24; }
-.app-top .right { margin-left: auto; display: flex; gap: 6px; }
-.deck { position: relative; height: 430px; margin: 4px 14px 0; }
-.pcard { position: absolute; inset: 0; border-radius: 26px; overflow: hidden; background: #13121A; border: 1px solid rgba(167,139,250,.25); box-shadow: 0 20px 40px rgba(0,0,0,.45); transition: transform .7s cubic-bezier(.2,.8,.2,1), opacity .7s ease; will-change: transform; }
-.pcard .photo { position: absolute; inset: 0; }
-.pcard .photo svg { width: 100%; height: 100%; }
-.pcard .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,15,0) 35%, rgba(10,10,15,.85) 68%, #0F0E15 100%); }
-.pcard .top { position: absolute; top: 12px; left: 12px; right: 12px; display: flex; justify-content: space-between; }
-.pcard .top .chip { background: rgba(0,0,0,.45); backdrop-filter: blur(8px); }
-.pcard .plus { padding: 4px 8px; border-radius: 999px; background: var(--grad); font: 700 10px/1 Sora, sans-serif; letter-spacing: .06em; }
-.pcard .info { position: absolute; left: 16px; right: 16px; bottom: 16px; }
-.pcard h4 { font: 700 26px/1.1 Sora, sans-serif; margin: 0 0 6px; letter-spacing: -.02em; }
-.pcard h4 span { font-weight: 600; color: var(--muted); font-size: 22px; }
-.pcard .meta { color: var(--muted); font-size: 12.5px; display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
-.pcard .tags { display: flex; gap: 6px; flex-wrap: wrap; }
-.pcard .tags .chip { font-size: 11.5px; }
-.pcard .tags .chip.hot { background: rgba(236,72,153,.14); border-color: rgba(236,72,153,.35); color: #F9A8D4; }
-.pcard .stamp { position: absolute; top: 60px; padding: 6px 14px; border: 3px solid; border-radius: 12px; font: 800 26px/1 Sora, sans-serif; letter-spacing: .06em; opacity: 0; transition: opacity .3s; }
-.pcard .stamp.like { left: 18px; color: var(--green); border-color: var(--green); transform: rotate(-14deg); }
-.pcard.out-right { transform: translateX(140%) rotate(22deg); }
-.pcard.out-right .stamp.like { opacity: 1; }
-.pcard.back1 { transform: scale(.94) translateY(16px); opacity: .7; }
-.pcard.back2 { transform: scale(.88) translateY(32px); opacity: 0; }
-.actions { position: relative; display: flex; justify-content: center; align-items: center; gap: 14px; margin-top: 18px; }
-.actions i { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: #17161F; border: 1px solid var(--line2); font-style: normal; }
-.actions i.big { width: 64px; height: 64px; background: var(--grad); border: 0; box-shadow: 0 10px 30px rgba(236,72,153,.45); }
-.actions i.sm { width: 42px; height: 42px; }
-.match { position: absolute; inset: 0; z-index: 8; display: grid; place-items: center; background: rgba(7,6,11,.7); backdrop-filter: blur(6px); opacity: 0; pointer-events: none; transition: opacity .4s ease; }
-.match.show { opacity: 1; }
-.match .box { text-align: center; transform: scale(.85); transition: transform .5s cubic-bezier(.2,1.4,.3,1); }
-.match.show .box { transform: scale(1); }
-.match .avs { display: flex; justify-content: center; margin-bottom: 14px; }
-.match .avs span { width: 74px; height: 74px; border-radius: 50%; border: 3px solid #0A0A0F; overflow: hidden; }
-.match .avs span + span { margin-left: -18px; }
-.match h5 { font: 800 30px/1 Sora, sans-serif; margin: 0 0 6px; }
-.match p { margin: 0; color: var(--muted); font-size: 13px; }
-.float { position: absolute; z-index: 6; padding: 12px 14px; border-radius: 16px; background: rgba(20,19,28,.82); border: 1px solid var(--line2); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 20px 40px rgba(0,0,0,.4); display: flex; align-items: center; gap: 10px; font-size: 13px; animation: bob 6s ease-in-out infinite; }
-.float b { display: block; font-size: 14px; }
-.float small { color: var(--dim); }
-.float .ic { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font-size: 17px; }
-.f1 { left: max(0px, calc(50% - 300px)); top: 90px; }
-.f2 { right: max(0px, calc(50% - 330px)); top: 150px; animation-delay: -2s; }
-.f3 { left: max(0px, calc(50% - 280px)); bottom: 70px; animation-delay: -4s; }
-@keyframes bob { 50% { transform: translateY(-10px); } }
-@media (max-width: 520px) { .float { display: none; } .phone { width: 300px; height: 610px; } .deck { height: 400px; } }
-
-/* Oyun şeridi */
-.marquee { padding: 34px 0; border-block: 1px solid var(--line); background: var(--bg2); overflow: hidden; }
-.marquee p { text-align: center; color: var(--dim); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 20px; }
-.track { display: flex; gap: 14px; width: max-content; animation: scroll 38s linear infinite; }
-.marquee:hover .track { animation-play-state: paused; }
-.track span { flex: none; padding: 12px 22px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); font: 600 16px/1 Sora, sans-serif; color: var(--muted); white-space: nowrap; }
-@keyframes scroll { to { transform: translateX(-50%); } }
-
-/* Adımlar */
-.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; counter-reset: s; }
-.step { position: relative; padding: 30px; border-radius: var(--r); background: var(--card); border: 1px solid var(--line); overflow: hidden; }
-.step::after { counter-increment: s; content: "0" counter(s); position: absolute; right: 20px; top: 12px; font: 800 64px/1 Sora, sans-serif; color: rgba(255,255,255,.04); }
-.step .ic { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: rgba(139,92,246,.14); border: 1px solid rgba(139,92,246,.3); margin-bottom: 22px; }
-.step h3 { font-size: 22px; margin-bottom: 10px; }
-.step p { color: var(--muted); margin: 0; }
-@media (max-width: 860px) { .steps { grid-template-columns: 1fr; } }
-
-/* Özellik ızgarası */
-.bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; }
-.tile { position: relative; grid-column: span 2; padding: 28px; border-radius: var(--r); background: var(--card); border: 1px solid var(--line); overflow: hidden; transition: border-color .3s, transform .3s; }
-.tile:hover { border-color: rgba(167,139,250,.35); transform: translateY(-3px); }
-.tile.wide { grid-column: span 3; }
-.tile.xl { grid-column: span 4; }
-.tile h3 { font-size: 21px; margin: 18px 0 8px; }
-.tile p { color: var(--muted); margin: 0; font-size: 15.5px; }
-.tile .ic { width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; }
-.tile .viz { margin-top: 22px; }
-@media (max-width: 960px) { .tile, .tile.wide, .tile.xl { grid-column: span 3; } }
-@media (max-width: 640px) { .bento { grid-template-columns: 1fr; } .tile, .tile.wide, .tile.xl { grid-column: auto; } }
-.meter { height: 10px; border-radius: 10px; background: rgba(255,255,255,.06); overflow: hidden; }
-.meter i { display: block; height: 100%; width: 0; border-radius: 10px; background: var(--grad); transition: width 1.4s cubic-bezier(.2,.8,.2,1); }
-.in .meter i { width: var(--w); }
-.week { display: flex; gap: 8px; }
-.week span { flex: 1; aspect-ratio: 1; max-width: 44px; border-radius: 50%; display: grid; place-items: center; font: 700 13px/1 Inter; background: rgba(255,255,255,.05); border: 1px solid var(--line); color: var(--dim); }
-.week span.on { background: linear-gradient(135deg, #F59E0B, #EF4444); border: 0; color: #fff; }
-.week span.gift { border: 1.5px dashed rgba(236,72,153,.6); color: #F9A8D4; }
-.ring { position: relative; width: 92px; height: 92px; }
-.ring svg { width: 92px; height: 92px; transform: rotate(-90deg); }
-.ring b { position: absolute; inset: 0; display: grid; place-items: center; font: 800 26px/1 Sora; }
-.ring circle.v { stroke-dasharray: 264; stroke-dashoffset: 264; transition: stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1); }
-.in .ring circle.v { stroke-dashoffset: 18; }
-.lfg { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px; background: rgba(52,211,153,.12); border: 1px solid rgba(52,211,153,.35); color: #6EE7B7; font-weight: 600; font-size: 14px; }
-.lfg .pulse { width: 10px; height: 10px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(52,211,153,.6); animation: pulse 1.8s infinite; }
-@keyframes pulse { 70% { box-shadow: 0 0 0 12px rgba(52,211,153,0); } 100% { box-shadow: 0 0 0 0 rgba(52,211,153,0); } }
-.frames { display: flex; gap: 14px; align-items: center; }
-.frames span { width: 58px; height: 58px; border-radius: 50%; padding: 3px; }
-.frames span i { display: block; width: 100%; height: 100%; border-radius: 50%; background: #1A1924; }
-.frames .a { background: conic-gradient(from 0deg, #22D3EE, #8B5CF6, #EC4899, #F59E0B, #22D3EE); animation: spin 5s linear infinite; }
-.frames .b { background: conic-gradient(#FEF3C7, #F59E0B, #B45309, #FDE68A, #F59E0B, #FEF3C7); animation: spin 7s linear infinite; }
-.frames .c { background: conic-gradient(#22D3EE, #0EA5E9, #A5F3FC, #22D3EE); animation: spin 3s linear infinite; box-shadow: 0 0 20px rgba(34,211,238,.5); }
-@keyframes spin { to { transform: rotate(360deg); } }
-.code { display: flex; gap: 6px; }
-.code span { width: 36px; height: 44px; border-radius: 10px; display: grid; place-items: center; background: var(--card2); border: 1px solid var(--line2); font: 700 20px/1 Sora; }
-
-/* Güven bölümü */
-.trust { background: radial-gradient(ellipse 60% 70% at 80% 40%, rgba(52,211,153,.08), transparent 70%), var(--bg2); border-block: 1px solid var(--line); }
-.trust .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-.checks { display: grid; gap: 14px; }
-.check { display: flex; gap: 16px; padding: 20px; border-radius: 18px; background: var(--card); border: 1px solid var(--line); }
-.check .ic { flex: none; width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: rgba(52,211,153,.12); color: var(--green); }
-.check b { display: block; margin-bottom: 3px; }
-.check p { margin: 0; color: var(--muted); font-size: 15px; }
-.notdating { margin-top: 28px; padding: 18px 20px; border-radius: 16px; border: 1px dashed rgba(236,72,153,.45); background: rgba(236,72,153,.06); color: var(--muted); }
-.notdating b { color: var(--text); }
-@media (max-width: 860px) { .trust .wrap { grid-template-columns: 1fr; gap: 36px; } }
-
-/* Duos+ */
-.plus-card { position: relative; border-radius: 30px; padding: 56px; overflow: hidden; background: #120E20; border: 1px solid rgba(167,139,250,.3); display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-.plus-card::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 0% 0%, rgba(139,92,246,.35), transparent 60%), radial-gradient(ellipse 50% 70% at 100% 100%, rgba(236,72,153,.28), transparent 60%); pointer-events: none; }
-.plus-card > * { position: relative; }
-.plus-card h2 { font-size: clamp(30px, 4vw, 44px); margin: 14px 0; line-height: 1.08; }
-.plus-card p { color: var(--muted); margin: 0; font-size: 17px; }
-.plus-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-.plus-list li { display: flex; gap: 12px; align-items: center; padding: 14px 16px; border-radius: 14px; background: rgba(255,255,255,.04); border: 1px solid var(--line); }
-.plus-list li::before { content: "✦"; color: var(--pink); }
-@media (max-width: 860px) { .plus-card { grid-template-columns: 1fr; padding: 34px 24px; } }
-
-/* SSS */
-.faq { max-width: 780px; margin: 0 auto; display: grid; gap: 12px; }
-details { border-radius: 18px; background: var(--card); border: 1px solid var(--line); overflow: hidden; transition: border-color .3s; }
-details[open] { border-color: rgba(167,139,250,.3); }
-summary { list-style: none; cursor: pointer; padding: 22px 24px; font-weight: 600; font-size: 17px; display: flex; justify-content: space-between; gap: 16px; }
-summary::-webkit-details-marker { display: none; }
-summary::after { content: "+"; font: 400 26px/1 Inter; color: var(--violet2); transition: transform .3s; }
-details[open] summary::after { transform: rotate(45deg); }
-details p { margin: 0; padding: 0 24px 22px; color: var(--muted); }
-
-/* Son çağrı */
-.final { text-align: center; overflow: hidden; }
-.final .glow { position: absolute; left: 50%; top: 50%; width: 700px; height: 400px; transform: translate(-50%, -50%); background: radial-gradient(closest-side, rgba(139,92,246,.35), transparent); filter: blur(30px); pointer-events: none; }
-.final h2 { position: relative; font-size: clamp(36px, 6vw, 68px); line-height: 1.02; margin: 18px auto 18px; max-width: 820px; }
-.final p { position: relative; color: var(--muted); font-size: 18px; max-width: 560px; margin: 0 auto 34px; }
-.final .ctas { position: relative; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-
-footer { border-top: 1px solid var(--line); padding: 44px 0 56px; color: var(--dim); font-size: 14px; }
-footer .wrap { display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: center; justify-content: space-between; }
-footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
-footer nav a:hover { color: var(--text); }
-
-/* Kaydırınca beliren öğeler */
-.reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
-.reveal.in { opacity: 1; transform: none; }
-.d1 { transition-delay: .08s; } .d2 { transition-delay: .16s; } .d3 { transition-delay: .24s; } .d4 { transition-delay: .32s; }
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; }
-  .reveal { opacity: 1; transform: none; }
-}
-</style>
+<link rel="preload" href="assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+<script>
+  (function (d) {
+    d.className = 'js';
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('rm');
+  })(document.documentElement);
+</script>
+<script defer src="assets/vendor/gsap.min.js"></script>
+<script defer src="assets/vendor/ScrollTrigger.min.js"></script>
+<script defer src="assets/vendor/SplitText.min.js"></script>
+<script defer src="assets/vendor/lenis.min.js"></script>
+<script defer src="assets/js/site.js"></script>
 </head>
 <body>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<!-- Simgeler (tek yerde; <use> ile çağrılır) -->
+<svg class="sprite" aria-hidden="true" focusable="false">
   <defs>
-    <linearGradient id="lg-s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A78BFA"/><stop offset="1" stop-color="#6D28D9"/></linearGradient>
-    <linearGradient id="lg-b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F472B6"/><stop offset="1" stop-color="#BE185D"/></linearGradient>
-    <linearGradient id="lg-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1E1236"/><stop offset="1" stop-color="#07060B"/></linearGradient>
-    <symbol id="logo" viewBox="0 0 1024 1024">
-      <rect width="1024" height="1024" fill="url(#lg-bg)"/>
-      <g transform="translate(512 512) scale(.86) translate(-512 -512)">
-        <rect x="238" y="232" width="176" height="560" rx="44" fill="url(#lg-s)"/>
-        <path fill-rule="evenodd" fill="url(#lg-b)" d="M462 232 H540 C707 232 824 350 824 512 C824 674 707 792 540 792 H462 Z M462 400 H536 C604 400 652 448 652 512 C652 576 604 624 536 624 H462 Z"/>
-      </g>
-    </symbol>
+    <linearGradient id="g-bar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A78BFA"/><stop offset="1" stop-color="#6D28D9"/></linearGradient>
+    <linearGradient id="g-bowl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F472B6"/><stop offset="1" stop-color="#BE185D"/></linearGradient>
+    <linearGradient id="g-brand" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8B5CF6"/><stop offset="1" stop-color="#EC4899"/></linearGradient>
+    <linearGradient id="g-flame" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#FF5A1F"/><stop offset=".6" stop-color="#FF9A3C"/><stop offset="1" stop-color="#FFD66B"/></linearGradient>
   </defs>
+  <symbol id="logo" viewBox="0 0 1024 1024"><rect x="238" y="232" width="176" height="560" rx="44" fill="url(#g-bar)"/><path fill-rule="evenodd" fill="url(#g-bowl)" d="M462 232 H540 C707 232 824 350 824 512 C824 674 707 792 540 792 H462 Z M462 400 H536 C604 400 652 448 652 512 C652 576 604 624 536 624 H462 Z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 9h16M4 15h16"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+  <symbol id="i-undo" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M11.5 2.3a.53.53 0 0 1 .95 0l2.31 4.68a2.12 2.12 0 0 0 1.6 1.16l5.16.76a.53.53 0 0 1 .3.9l-3.74 3.64a2.12 2.12 0 0 0-.61 1.88l.88 5.14a.53.53 0 0 1-.77.56l-4.62-2.43a2.12 2.12 0 0 0-1.97 0L6.4 21.01a.53.53 0 0 1-.77-.56l.88-5.14a2.12 2.12 0 0 0-.61-1.88L2.16 9.8a.53.53 0 0 1 .3-.91l5.16-.75a2.12 2.12 0 0 0 1.6-1.16z"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6M15.5 7.5l3 3L22 7l-3-3"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-inf" viewBox="0 0 24 24"><path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z"/></symbol>
+  <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 22a10 10 0 1 1 10-10c0 2.2-1.8 3-3.5 3H16a2 2 0 0 0-1.4 3.4A2 2 0 0 1 12 22Z"/><circle cx="7.5" cy="10.5" r="1"/><circle cx="12" cy="7" r="1"/><circle cx="16.5" cy="10.5" r="1"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.43 2.43 0 0 0 3.42 0l6.58-6.58a2.43 2.43 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r="1"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-ban" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m5.7 5.7 12.6 12.6"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></symbol>
+  <symbol id="i-hash" viewBox="0 0 24 24"><path d="M4 9h16M4 15h16M10 3 8 21M16 3l-2 18"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/></symbol>
+  <symbol id="i-pad" viewBox="0 0 24 24"><path d="M6 11h4M8 9v4M15 12h.01M18 10h.01"/><path d="M17.32 5H6.68a4 4 0 0 0-3.98 3.59l-.9 7.2A3 3 0 0 0 4.78 19c1.1 0 1.99-.6 2.5-1.5L8 16h8l.72 1.5c.51.9 1.4 1.5 2.5 1.5a3 3 0 0 0 2.98-3.21l-.9-7.2A4 4 0 0 0 17.32 5z"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+  <symbol id="i-aim" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M22 12h-4M6 12H2M12 6V2M12 22v-4"/></symbol>
+  <symbol id="i-smile" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22M18 2H6v7a6 6 0 0 0 12 0V2Z"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m22 7-10 6L2 7"/></symbol>
 </svg>
 
+<a class="skip" href="#icerik">İçeriğe geç</a>
+
+<!-- Arka plan: aurora, imleç ışığı, film greni -->
+<div class="atmos" aria-hidden="true">
+  <div class="aurora a1"></div><div class="aurora a2"></div><div class="aurora a3"></div>
+  <div class="cursor-light"></div>
+  <div class="grain"></div>
+</div>
+
 <header class="nav" id="nav">
-  <div class="wrap">
-    <a class="brand" href="#top" aria-label="DUOS ana sayfa"><svg class="mark"><use href="#logo"/></svg>duos</a>
-    <nav aria-label="Bölümler">
+  <div class="nav__in">
+    <a class="brand" href="#top" aria-label="DUOS ana sayfa">
+      <svg class="brand__mark" viewBox="0 0 1024 1024" aria-hidden="true"><use href="#logo"/></svg>
+      <span class="brand__word">duos</span>
+    </a>
+    <nav class="nav__links" aria-label="Bölümler">
       <a href="#nasil">Nasıl çalışır</a>
       <a href="#ozellikler">Özellikler</a>
-      <a href="#guven">Güvenlik</a>
+      <a href="#magaza">Mağaza</a>
+      <a href="#guvenlik">Güvenlik</a>
       <a href="#sss">SSS</a>
     </nav>
-    <a class="btn btn-primary" href="#katil">Teste katıl</a>
+    <div class="nav__end">
+      <span class="nav__status"><i class="live"></i>Kapalı test</span>
+      <a class="btn btn--light btn--sm" href="#katil" data-magnetic><span>Teste katıl</span></a>
+      <button class="nav__burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menüyü aç"><svg class="i-open"><use href="#i-menu"/></svg><svg class="i-close"><use href="#i-x"/></svg></button>
+    </div>
   </div>
 </header>
 
-<main id="top">
-  <!-- Kahraman -->
-  <section class="hero">
-    <div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div>
-    <div class="grid-bg"></div>
-    <div class="wrap">
-      <div>
-        <span class="pill reveal"><span class="dot">🎮</span> Çok yakında Google Play'de</span>
-        <h1 class="reveal d1">Doğru takım arkadaşı,<br><span class="grad-text">tek dokunuş uzakta.</span></h1>
-        <p class="lead reveal d2">DUOS, oyuncuları ortak oyunları, oyun tarzları ve iletişim tercihlerine göre eşleştirir. Karşılıklı beğeniyle sohbet başlar, oyun birlikte devam eder.</p>
-        <div class="ctas reveal d3">
-          <a class="play" href="#katil" aria-label="Google Play'de yakında">
-            <svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true"><path d="M1.5 1.2 14.3 14 1.5 26.8c-.4-.3-.6-.8-.6-1.4V2.6c0-.6.2-1.1.6-1.4Z" fill="#22D3EE"/><path d="m18.6 9.7-4.3 4.3-12.8-12.8c.5-.4 1.3-.5 2-.1l15.1 8.6Z" fill="#34D399"/><path d="m18.6 18.3-15.1 8.6c-.7.4-1.5.3-2-.1L14.3 14l4.3 4.3Z" fill="#F43F5E"/><path d="m23.9 12.7-5.3-3-4.3 4.3 4.3 4.3 5.3-3c1.1-.6 1.1-2 0-2.6Z" fill="#FBBF24"/></svg>
-            <span><small>Çok yakında</small><b>Google Play</b></span>
-          </a>
-          <a class="btn btn-ghost" href="#nasil">Nasıl çalışır?</a>
+<div class="menu" id="menu" hidden>
+  <nav aria-label="Mobil menü">
+    <a href="#nasil"><span>01</span>Nasıl çalışır</a>
+    <a href="#ozellikler"><span>02</span>Özellikler</a>
+    <a href="#magaza"><span>03</span>Mağaza</a>
+    <a href="#guvenlik"><span>04</span>Güvenlik</a>
+    <a href="#sss"><span>05</span>SSS</a>
+  </nav>
+  <a class="btn btn--light" href="#katil"><span>Kapalı teste katıl</span><svg><use href="#i-arrow"/></svg></a>
+</div>
+
+<main id="icerik">
+
+  <!-- ============ HERO ============ -->
+  <section data-zone class="hero" id="top">
+    <div class="hero__dots" aria-hidden="true"></div>
+    <div class="wrap hero__in">
+      <div class="hero__copy">
+        <p class="status" data-intro style="--d:0"><i class="live"></i>Kapalı test açık <span>/</span> <b lang="en">Android</b></p>
+        <h1 class="display hero__title">
+          <span class="w" style="--i:0"><span>Doğru</span></span> <span class="w" style="--i:1"><span>takım</span></span> <span class="w" style="--i:2"><span>arkadaşı,</span></span> <span class="w" style="--i:3" aria-hidden="true"><span class="hero__pill"><img src="assets/img/oyuncu/deniz.webp" alt="" width="44" height="44"><img src="assets/img/oyuncu/zeynep.webp" alt="" width="44" height="44"><b>%87</b></span></span> <span class="w" style="--i:4"><span>tek</span></span> <span class="w w--swipe" style="--i:5"><span>kaydırma</span><svg class="swipe-line" viewBox="0 0 300 40" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 30 C 70 8, 170 6, 262 20" /><path pathLength="1" d="M248 8 L 264 20 L 246 30" /></svg></span> <span class="w" style="--i:6"><span>uzakta.</span></span>
+        </h1>
+        <p class="lead" data-intro="soft" style="--d:.25s">DUOS, oyuncuları ortak oyunlara, oyun tarzına ve iletişim tercihine göre eşleştirir. Karşılıklı beğeniyle sohbet açılır, oyun birlikte devam eder.</p>
+        <div class="hero__ctas" data-intro style="--d:.4s">
+          <a class="btn btn--light" href="#katil" data-magnetic><span>Kapalı teste katıl</span><svg><use href="#i-arrow"/></svg></a>
+          <a class="link-arrow" href="#nasil">Nasıl çalışır <svg><use href="#i-arrow"/></svg></a>
         </div>
-        <div class="proof reveal d4">
-          <div><b class="grad-text">20+</b><span>desteklenen oyun</span></div>
-          <div><b>Ücretsiz</b><span>temel kullanım</span></div>
-          <div><b>Otomatik</b><span>içerik denetimi</span></div>
-        </div>
+        <dl class="hero__stats" data-intro style="--d:.55s">
+          <div><dt>Desteklenen oyun</dt><dd><span class="sr-only">24</span><span class="cnt" style="--to:24" aria-hidden="true"></span></dd></div>
+          <div><dt>Süs, ünvan ve pet</dt><dd><span class="sr-only">90+</span><span class="cnt" style="--to:90" aria-hidden="true"></span><span aria-hidden="true">+</span></dd></div>
+          <div><dt>Koleksiyon</dt><dd><span class="sr-only">17</span><span class="cnt" style="--to:17" aria-hidden="true"></span></dd></div>
+        </dl>
       </div>
 
-      <div class="stage reveal d2" aria-hidden="true">
-        <div class="float f1"><span class="ic" style="background:rgba(139,92,246,.18)">✨</span><span><b>%87 uyum</b><small>3 ortak nokta</small></span></div>
-        <div class="float f2"><span class="ic" style="background:rgba(52,211,153,.15)">⚡</span><span><b>Hazırım</b><small>Şimdi oynamak istiyor</small></span></div>
-        <div class="float f3"><span class="ic" style="background:rgba(245,158,11,.15)">🔥</span><span><b>7 günlük seri</b><small>1 gün Duos+ kazandın</small></span></div>
-        <div class="phone">
-          <div class="screen">
-            <div class="notch"></div>
-            <div class="app-top">
-              <svg class="logo-s"><use href="#logo"/></svg><b>duos</b>
-              <span class="chip fire">🔥 4</span>
-              <span class="right"><span class="chip">⚡ 20</span></span>
+      <figure class="stage" role="img" aria-label="DUOS uygulamasının Keşfet ekranı: oyuncu kartları kaydırılıyor">
+        <div class="stage__tilt" aria-hidden="true">
+          <div class="hud hud--a" data-depth="1.4"><small>Uyum</small><b>%87</b><span>3 ortak nokta</span></div>
+          <div class="hud hud--b" data-depth="2"><small>Hazırım</small><b><i class="live live--green"></i>Şimdi oynamak istiyor</b></div>
+          <div class="hud hud--c" data-depth="1.1"><small>Günlük seri</small><b><svg class="ic-flame"><use href="#i-flame"/></svg>12 gün</b></div>
+
+          <div class="phone" data-depth=".6">
+            <img class="phone__cat" src="assets/img/sus/kedi-telefon-ilk.webp" data-anim="assets/img/sus/kedi-telefon.webp" alt="" width="252" height="175">
+            <div class="phone__frame">
+              <div class="phone__screen">
+                <div class="app-status"><span>21:04</span><span class="app-status__ic"><i></i><i></i><i></i></span></div>
+                <div class="app-bar">
+                  <span class="app-bar__brand"><svg viewBox="0 0 1024 1024"><use href="#logo"/></svg>duos</span>
+                  <span class="app-chip app-chip--fire"><svg><use href="#i-flame"/></svg>12</span>
+                  <span class="app-chip"><svg><use href="#i-zap"/></svg>20</span>
+                </div>
+                <div class="deck" id="deck">
+                  <!-- İlk kart HTML'de: betik açılmasa da ekran boş kalmaz -->
+                  <article class="pc" data-player="0">
+                    <div class="pc__banner"><img src="assets/img/banner/arena.webp" alt="" width="640" height="478"></div>
+                    <div class="pc__top"><span class="pill-glass"><svg><use href="#i-spark"/></svg>%87 uyum</span><span class="pill-lfg"><i></i>Şimdi oynamak istiyor · Valorant</span></div>
+                    <div class="pc__body">
+                      <div class="pc__id">
+                        <span class="ava"><img src="assets/img/oyuncu/deniz.webp" alt="" width="480" height="480"><img class="ava__deco" src="assets/img/sus/gold-crown-anim.webp" alt="" width="180" height="180"></span>
+                        <span class="pc__name"><span class="pc__nm"><b>Deniz</b><i class="online"></i></span><span class="title t-fire"><svg><use href="#i-zap"/></svg>Clutch Kralı</span></span>
+                      </div>
+                      <p class="pc__meta">Türkiye<i></i>Discord<i></i>Rekabetçi<i></i><svg><use href="#i-star"/></svg>4,9</p>
+                      <p class="pc__bio">Akşamları dereceli oynuyorum. Sakin iletişim, net bilgi.</p>
+                      <div class="pc__common"><small>Ortak noktanız</small><span>İkinizin de favorisi Valorant</span><span>2 ortak oyun</span><span>İkiniz de Discord</span></div>
+                      <div class="pc__game" style="--gc:#E4474D"><span class="gt">VA</span><span><small>Favori oyunu</small><b>Valorant</b></span><em>FPS</em></div>
+                    </div>
+                    <span class="stamp stamp--like">DUO</span><span class="stamp stamp--pass">GEÇ</span>
+                  </article>
+                </div>
+                <div class="app-actions">
+                  <span class="aa aa--sm"><svg><use href="#i-undo"/></svg></span>
+                  <span class="aa aa--pass"><svg><use href="#i-x"/></svg></span>
+                  <span class="aa aa--like"><svg><use href="#i-heart"/></svg></span>
+                  <span class="aa aa--sm"><svg><use href="#i-zap"/></svg></span>
+                </div>
+                <div class="app-tabs"><span class="on"><svg><use href="#i-compass"/></svg></span><span><svg><use href="#i-chat"/></svg></span><span><svg><use href="#i-bag"/></svg></span><span><svg><use href="#i-user"/></svg></span></div>
+              </div>
             </div>
-            <div class="deck" id="deck"></div>
-            <div class="actions">
-              <i class="sm">↩︎</i><i>✕</i><i class="big">♥</i><i class="sm">👤</i>
-            </div>
-            <div class="match" id="match">
-              <div class="box">
-                <div class="avs" id="matchAvs"></div>
-                <h5 class="grad-text">Eşleştiniz!</h5>
-                <p id="matchText">Sohbeti başlatın</p>
+          </div>
+          <p class="stage__hint">Kartı sürükleyip deneyin</p>
+        </div>
+      </figure>
+    </div>
+    <a class="scroll-cue" href="#oyunlar" aria-label="Aşağı kaydır"><span></span></a>
+  </section>
+
+  <!-- ============ OYUNLAR ============ -->
+  <section data-zone class="games" id="oyunlar" aria-label="Desteklenen oyunlar">
+    <div class="wrap games__head">
+      <p class="label"><span>00</span>Desteklenen oyunlar</p>
+      <p class="label label--dim">24 oyun, liste büyüyor</p>
+    </div>
+    <div class="marquee marquee--games" data-marquee data-speed="0.6">
+      <div class="marquee__track">
+        <span>Valorant</span><i></i><span>Counter-Strike 2</span><i></i><span>League of Legends</span><i></i><span>Fortnite</span><i></i><span>Minecraft</span><i></i><span>Apex Legends</span><i></i><span>Rocket League</span><i></i><span>Overwatch 2</span><i></i><span>PUBG Mobile</span><i></i><span>Brawl Stars</span><i></i><span>Mobile Legends</span><i></i><span>Rainbow Six Siege</span><i></i><span>EA SPORTS FC</span><i></i><span>Marvel Rivals</span><i></i><span>Genshin Impact</span><i></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KAYDIR, EŞLEŞ, OYNA (sabitlenen bölüm) ============ -->
+  <section class="story" id="nasil" data-zone aria-labelledby="nasil-baslik">
+    <div class="story__pin">
+      <div class="wrap story__in">
+        <div class="story__left">
+          <p class="label"><span>01</span>Nasıl çalışır</p>
+          <h2 class="sr-only" id="nasil-baslik">Kaydır, eşleş, oyna: üç adımda takım arkadaşı</h2>
+          <div class="story__words" aria-hidden="true">
+            <span class="sw" style="--i:0"><span class="sw__o">Kaydır.</span><span class="sw__f">Kaydır.</span></span>
+            <span class="sw" style="--i:1"><span class="sw__o">Eşleş.</span><span class="sw__f">Eşleş.</span></span>
+            <span class="sw" style="--i:2"><span class="sw__o">Oyna.</span><span class="sw__f">Oyna.</span></span>
+          </div>
+          <ol class="story__steps">
+            <li class="st"><h3><span>01</span>Kaydırın</h3><p>Size uygun oyuncular kartlar hâlinde gelir. Oyun, oyun tarzı, iletişim tercihi ve ortak noktalarınız tek bakışta görünür.</p></li>
+            <li class="st"><h3><span>02</span>Eşleşin</h3><p>İkiniz de duo isterseniz eşleşirsiniz. Hazır ilk mesaj önerileriyle sohbete hemen başlarsınız.</p></li>
+            <li class="st"><h3><span>03</span>Oynayın</h3><p>Anlık sohbette buluşun, oyuna girin. Oyundan sonra birbirinizi değerlendirerek topluluğu birlikte güçlendirin.</p></li>
+          </ol>
+        </div>
+
+        <div class="story__right" aria-hidden="true">
+          <div class="phone phone--story">
+            <div class="phone__frame">
+              <div class="phone__screen">
+                <div class="app-status"><span>21:06</span><span class="app-status__ic"><i></i><i></i><i></i></span></div>
+
+                <!-- 1: Keşfet -->
+                <div class="scr scr--deck">
+                  <div class="app-bar"><span class="app-bar__brand"><svg viewBox="0 0 1024 1024"><use href="#logo"/></svg>duos</span><span class="app-chip app-chip--fire"><svg><use href="#i-flame"/></svg>12</span></div>
+                  <div class="deck deck--story">
+                    <article class="pc pc--back"><div class="pc__banner"><img src="assets/img/banner/sehir.webp" alt="" loading="lazy"></div></article>
+                    <article class="pc pc--story">
+                      <div class="pc__banner"><img src="assets/img/banner/aurora.webp" alt="" loading="lazy"></div>
+                      <div class="pc__top"><span class="pill-glass"><svg><use href="#i-spark"/></svg>%91 uyum</span></div>
+                      <div class="pc__body">
+                        <div class="pc__id">
+                          <span class="ava"><img src="assets/img/oyuncu/zeynep.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/fairy-wing.webp" alt="" loading="lazy"></span>
+                          <span class="pc__name"><span class="pc__nm"><b>Zeynep</b><i class="online"></i></span><span class="title t-rainbow"><svg><use href="#i-star"/></svg>Yaşayan Efsane</span></span>
+                        </div>
+                        <p class="pc__meta">Türkiye<i></i>Discord<i></i>Rekabetçi</p>
+                        <p class="pc__bio">Hafta sonu turnuva provası yapıyoruz. İletişimi iyi bir duo arıyorum.</p>
+                        <div class="pc__common"><small>Ortak noktanız</small><span>İkinizin de favorisi Valorant</span><span>3 ortak ilgi alanı</span></div>
+                        <div class="pc__game" style="--gc:#E4474D"><span class="gt">VA</span><span><small>Favori oyunu</small><b>Valorant</b></span><em>FPS</em></div>
+                      </div>
+                      <span class="stamp stamp--like">DUO</span>
+                    </article>
+                    <span class="finger"></span>
+                  </div>
+                  <div class="app-actions"><span class="aa aa--pass"><svg><use href="#i-x"/></svg></span><span class="aa aa--like"><svg><use href="#i-heart"/></svg></span></div>
+                </div>
+
+                <!-- 2: Eşleştiniz -->
+                <div class="scr scr--match">
+                  <div class="match__rings"><i></i><i></i><i></i></div>
+                  <div class="match__avs">
+                    <span class="mav mav--l"><img src="assets/img/oyuncu/deniz.webp" alt="" loading="lazy"></span>
+                    <span class="mav mav--r"><img src="assets/img/oyuncu/zeynep.webp" alt="" loading="lazy"></span>
+                  </div>
+                  <p class="match__title">Eşleştiniz</p>
+                  <p class="match__sub">Zeynep ile ikiniz de duo istediniz.</p>
+                  <div class="match__sugs">
+                    <small>İlk mesaj önerileri</small>
+                    <span>Bu akşam dereceli atalım mı?</span>
+                    <span>Hangi ajanları oynuyorsun?</span>
+                    <span>Discord'dan konuşalım mı?</span>
+                  </div>
+                </div>
+
+                <!-- 3: Sohbet -->
+                <div class="scr scr--chat">
+                  <div class="chat__head"><span class="ava ava--xs"><img src="assets/img/oyuncu/zeynep.webp" alt="" loading="lazy"></span><span><b>Zeynep</b><small><i class="live live--green"></i>Çevrimiçi</small></span></div>
+                  <div class="chat__body">
+                    <p class="msg msg--me">Bu akşam dereceli atalım mı?</p>
+                    <p class="msg">Olur, 21.30 gibi girerim. Discord adın ne?</p>
+                    <p class="msg msg--me">Gönderdim, sunucuda görüşürüz.</p>
+                    <p class="msg msg--typing"><i></i><i></i><i></i></p>
+                    <div class="chat__card"><svg><use href="#i-star"/></svg><span><b>Birlikte oynadınız mı?</b><small>Zeynep'i değerlendirin</small></span></div>
+                  </div>
+                  <div class="chat__input"><span>Mesaj yazın</span><svg><use href="#i-send"/></svg></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Oyunlar -->
-  <div class="marquee" aria-label="Desteklenen oyunlardan bazıları">
-    <p>Desteklenen oyunlardan bazıları</p>
-    <div class="track" id="track"></div>
-  </div>
-
-  <!-- Nasıl çalışır -->
-  <section id="nasil">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <span class="eyebrow">Nasıl çalışır</span>
-        <h2>Üç adımda <span class="grad-text">eşleşme.</span></h2>
-        <p>Sade bir akış: profil oluşturulur, uygun oyuncular listelenir, karşılıklı beğeniyle iletişim başlar.</p>
-      </div>
-      <div class="steps">
-        <div class="step reveal d1">
-          <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></div>
-          <h3>Profilini kur</h3>
-          <p>Favori oyununuzu, oyun tarzınızı (rekabetçi ya da eğlence) ve iletişim tercihinizi belirleyin. Kurulum yalnızca birkaç dakika sürer.</p>
-        </div>
-        <div class="step reveal d2">
-          <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F472B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="11" height="16" rx="3" transform="rotate(-8 10 11)"/><path d="M19 8.5c1.5 1 1.5 3 0 4l-3 2"/></svg></div>
-          <h3>Keşfedin</h3>
-          <p>Size uygun oyuncular kartlar hâlinde listelenir. Her kartta uyum oranı ve ortak noktalar yer alır.</p>
-        </div>
-        <div class="step reveal d3">
-          <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/></svg></div>
-          <h3>Eşleşin ve oynayın</h3>
-          <p>Karşılıklı beğeniyle sohbet açılır. Oyunun ardından birbirinizi puanlayarak güvenilir bir topluluğa katkı sağlarsınız.</p>
-        </div>
+      <div class="wrap story__bar" aria-hidden="true">
+        <span>01 Kaydır</span><span>02 Eşleş</span><span>03 Oyna</span>
+        <i class="story__progress"><b></b></i>
       </div>
     </div>
   </section>
 
-  <!-- Özellikler -->
-  <section id="ozellikler" style="padding-top:40px">
+  <!-- ============ ÖZELLİKLER ============ -->
+  <section data-zone class="features" id="ozellikler">
     <div class="wrap">
-      <div class="sec-head reveal">
-        <span class="eyebrow">Özellikler</span>
-        <h2>Oyuncular için <span class="grad-text">tasarlandı.</span></h2>
-        <p>Her özellik, doğru takım arkadaşını daha hızlı ve güvenli şekilde bulmanız için geliştirildi.</p>
+      <header class="sec-head">
+        <p class="label" data-reveal><span>02</span>Özellikler</p>
+        <h2 class="display h2" data-split>Eşleşmeden oyuna, her adım düşünüldü.</h2>
+      </header>
+
+      <div class="bento" data-spotlight>
+        <!-- Uyum -->
+        <article class="tile tile--fit" data-reveal>
+          <div class="tile__viz fit">
+            <div class="gauge">
+              <svg viewBox="0 0 120 120"><circle class="gauge__bg" cx="60" cy="60" r="52"/><circle class="gauge__fg" cx="60" cy="60" r="52" pathLength="100"/></svg>
+              <b><span>%</span><span data-count="87">87</span></b>
+              <small>uyum</small>
+            </div>
+            <ul class="fit__list">
+              <li><svg><use href="#i-check"/></svg><span>Ortak oyun</span><em>Valorant, CS2</em></li>
+              <li><svg><use href="#i-check"/></svg><span>Oyun tarzı</span><em>Rekabetçi</em></li>
+              <li><svg><use href="#i-check"/></svg><span>İletişim</span><em>Discord</em></li>
+              <li><svg><use href="#i-check"/></svg><span>İlgi alanı</span><em>Anime, Müzik</em></li>
+            </ul>
+          </div>
+          <div class="tile__txt"><h3>Uyum yüzdesi</h3><p>Ortak oyunlar, oyun tarzı, iletişim tercihi ve ilgi alanları birlikte değerlendirilir. Oyuna girmeden önce ne kadar uyumlu olduğunuzu görürsünüz.</p></div>
+        </article>
+
+        <!-- Hazırım -->
+        <article class="tile tile--ready" data-reveal>
+          <div class="tile__viz ready">
+            <div class="ready__avs"><span style="--x:-86px"><img src="assets/img/oyuncu/kira.webp" alt="" loading="lazy"></span><span class="me" style="--x:0px"><img src="assets/img/oyuncu/deniz.webp" alt="" loading="lazy"></span><span style="--x:86px"><img src="assets/img/oyuncu/emre.webp" alt="" loading="lazy"></span></div>
+            <button class="switch" type="button" role="switch" aria-checked="false" id="readySwitch"><span class="switch__knob"></span><span class="switch__off">Hazır değilim</span><span class="switch__on">Hazırım</span></button>
+          </div>
+          <div class="tile__txt"><h3>Hazırım modu</h3><p>Şimdi oynamak istediğinizi bildirin. Profiliniz Keşfet'te öne çıkar, eşleşmeleriniz haberdar olur.</p></div>
+        </article>
+
+        <!-- Seri -->
+        <article class="tile tile--streak" data-reveal>
+          <div class="tile__viz streak">
+            <div class="streak__flame"><svg viewBox="0 0 24 24"><use href="#i-flame"/></svg><b data-count="12" data-count-from="1">12</b></div>
+            <ol class="streak__week"><li>Pt</li><li>Sa</li><li>Ça</li><li>Pe</li><li>Cu</li><li>Ct</li><li>Pz</li></ol>
+          </div>
+          <div class="tile__txt"><h3>Günlük seri</h3><p>Her gün giriş yaptıkça seriniz büyür, belirli günlerde ödüller açılır.</p></div>
+        </article>
+
+        <!-- Sohbet -->
+        <article class="tile tile--chat" data-reveal>
+          <div class="tile__viz chatdemo">
+            <div class="chatdemo__sugs"><span>Bu akşam dereceli atalım mı?</span><span>Hangi rolü oynuyorsun?</span></div>
+            <p class="msg msg--me">Bu akşam dereceli atalım mı?</p>
+            <p class="msg">Olur, ben hazırım. Sesli mi yazılı mı?</p>
+            <p class="msg msg--typing"><i></i><i></i><i></i></p>
+            <div class="chatdemo__in"><span>Mesaj yazın</span><svg><use href="#i-send"/></svg></div>
+          </div>
+          <div class="tile__txt"><h3>Anlık sohbet</h3><p>Hazır ilk mesaj önerileri, yazıyor göstergesi ve anlık mesajlaşma. Yalnızca eşleştiğiniz oyuncular size yazabilir.</p></div>
+        </article>
+
+        <!-- Yorumlar -->
+        <article class="tile tile--review" data-reveal>
+          <div class="tile__viz review">
+            <div class="review__score"><b>4,9</b><span class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+            <blockquote>"Takım oyununu biliyor, iletişimi çok iyi."</blockquote>
+            <span class="badge-respect"><svg><use href="#i-shield"/></svg>Saygılı Oyuncu</span>
+          </div>
+          <div class="tile__txt"><h3>Yorumlar ve davranış puanı</h3><p>Birlikte oynadığınız oyuncuyu değerlendirin. Saygılı oyuncular öne çıkar.</p></div>
+        </article>
+
+        <!-- Discord -->
+        <article class="tile tile--discord" data-reveal>
+          <div class="tile__viz discord">
+            <div class="discord__bar"><svg><use href="#i-hash"/></svg>duo-bul</div>
+            <div class="discord__post">
+              <span class="ava ava--xs ava--brand"><svg viewBox="0 0 1024 1024"><use href="#logo"/></svg></span>
+              <div>
+                <p class="discord__who"><b>DUOS</b><em>BOT</em><small>bugün 20:41</small></p>
+                <p class="discord__txt"><span class="mention">@deniz</span> takım arkadaşı arıyor</p>
+                <div class="embed">
+                  <b><svg><use href="#i-pad"/></svg>Valorant</b>
+                  <dl><div><dt>Rütbe</dt><dd>Elmas 2</dd></div><div><dt>Zaman</dt><dd>Bu akşam 21.00</dd></div><div><dt>İletişim</dt><dd>Sesli</dd></div></dl>
+                  <span class="embed__btn">Katıl</span>
+                </div>
+              </div>
+            </div>
+            <div class="discord__input"><span class="discord__cmd" data-type="/duo oyun: Valorant rütbe: Elmas 2">/duo oyun: Valorant rütbe: Elmas 2</span><i class="caret"></i></div>
+          </div>
+          <div class="tile__txt"><h3>Discord ile bağlı</h3><p>Hesabınızı DUOS Discord sunucusuna bağlayın, oyun rollerinizi alın. Sunucuda <code>/duo</code> komutuyla takım arkadaşı ilanı verin.</p></div>
+        </article>
       </div>
-      <div class="bento">
-        <div class="tile xl reveal">
-          <div class="ic" style="background:rgba(139,92,246,.16)">✨</div>
-          <h3>Uyum puanı</h3>
-          <p>Ortak oyunlar, oyun tarzı, iletişim tercihi ve ilgi alanları birlikte değerlendirilir. Oyuna başlamadan önce ne kadar uyumlu olduğunuzu görürsünüz.</p>
-          <div class="viz" style="display:grid;gap:14px;max-width:460px">
-            <div><div style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px"><span>Deniz · Valorant</span><b class="grad-text">%87</b></div><div class="meter"><i style="--w:87%"></i></div></div>
-            <div><div style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px"><span>Emre · CS2</span><b style="color:var(--muted)">%64</b></div><div class="meter"><i style="--w:64%"></i></div></div>
+    </div>
+  </section>
+
+  <!-- ============ MAĞAZA VE KASALAR ============ -->
+  <section data-zone class="store" id="magaza">
+    <div class="wrap">
+      <header class="sec-head sec-head--split">
+        <div>
+          <p class="label" data-reveal><span>03</span>Mağaza ve kasalar</p>
+          <h2 class="display h2" data-split>Profiliniz, sizin imzanız.</h2>
+        </div>
+        <p class="sec-head__p" data-reveal>Hareketli avatar süsleri, profil çerçeveleri, banner efektleri, animasyonlu ünvanlar ve bannerınızın kenarına oturan petler. Hepsi DUOS için elle çizildi.</p>
+      </header>
+
+      <!-- Profil kurucu -->
+      <div class="builder" data-builder>
+        <div class="builder__card" aria-hidden="true">
+          <div class="bc">
+            <div class="bc__banner"><img src="assets/img/banner/bahce.webp" width="1200" height="480" alt="" loading="lazy"><div class="bc__fx"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+            <img class="bc__pet" src="assets/img/pet/tekir.webp" data-anim="assets/img/pet/tekir-anim.webp" alt="" loading="lazy" width="301" height="106">
+            <div class="bc__body">
+              <span class="ava ava--lg"><img src="assets/img/oyuncu/kira.webp" alt="" loading="lazy"><img class="ava__deco bc__deco" src="assets/img/sus/night-wings.webp" alt="" loading="lazy"></span>
+              <div class="bc__id"><b>Kira</b><span class="title t-rainbow bc__title"><svg><use href="#i-star"/></svg>Yaşayan Efsane</span></div>
+              <p class="bc__meta">Türkiye<i></i>Oyun içi sesli<i></i>Eğlencesine</p>
+            </div>
           </div>
         </div>
-        <div class="tile reveal d1">
-          <div class="ic" style="background:rgba(52,211,153,.14)">⚡</div>
-          <h3>Hazırım modu</h3>
-          <p>Hemen oynamak istediğinizi bildirin. Profiliniz öne çıkar, eşleşmeleriniz bilgilendirilir.</p>
-          <div class="viz"><span class="lfg"><span class="pulse"></span>Şimdi oynamaya hazır</span></div>
+        <ol class="builder__list">
+          <li><button class="bl" type="button" data-step="0" aria-pressed="false"><span class="bl__thumb"><img src="assets/img/sus/night-wings.webp" alt="" loading="lazy"></span><span><small>Avatar süsü</small><b>Gece Kanatları</b></span><svg class="bl__ok"><use href="#i-check"/></svg></button></li>
+          <li><button class="bl" type="button" data-step="1" aria-pressed="false"><span class="bl__thumb bl__thumb--title"><span class="title t-rainbow">Efsane</span></span><span><small>Ünvan</small><b>Yaşayan Efsane</b></span><svg class="bl__ok"><use href="#i-check"/></svg></button></li>
+          <li><button class="bl" type="button" data-step="2" aria-pressed="false"><span class="bl__thumb"><img src="assets/img/pet/tekir.webp" alt="" loading="lazy"></span><span><small>Pet</small><b>Uykucu Tekir</b></span><svg class="bl__ok"><use href="#i-check"/></svg></button></li>
+          <li><button class="bl" type="button" data-step="3" aria-pressed="false"><span class="bl__thumb bl__thumb--fx"><i></i><i></i><i></i></span><span><small>Banner efekti</small><b>Altın Toz</b></span><svg class="bl__ok"><use href="#i-check"/></svg></button></li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Süs şeridi -->
+    <div class="marquee marquee--decos" data-marquee data-speed="0.45" aria-label="Avatar süslerinden örnekler">
+      <div class="marquee__track">
+        <figure class="deco"><span class="ava ava--xl"><img src="assets/img/oyuncu/deniz.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/gold-crown.webp" alt="" loading="lazy"></span><figcaption>Altın Taç<small>Taht ve Taç</small></figcaption></figure>
+        <figure class="deco"><span class="ava ava--xl"><img src="assets/img/oyuncu/kira.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/rune-ring.webp" alt="" loading="lazy"></span><figcaption>Rün Çemberi<small>Taşların Fısıltısı</small></figcaption></figure>
+        <figure class="deco"><span class="ava ava--xl"><img src="assets/img/oyuncu/emre.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/flame-sword.webp" alt="" loading="lazy"></span><figcaption>Alev Kılıcı<small>Kordan Dövülmüş</small></figcaption></figure>
+        <figure class="deco"><span class="ava ava--xl"><img src="assets/img/oyuncu/zeynep.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/sleepy-cat.webp" alt="" loading="lazy"></span><figcaption>Uykucu Kedi<small>Mırıltılı Rüyalar</small></figcaption></figure>
+        <figure class="deco"><span class="ava ava--xl"><img src="assets/img/oyuncu/deniz.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/wolf-hood.webp" alt="" loading="lazy"></span><figcaption>Bozkurt Başlığı<small>Aya Uluyan</small></figcaption></figure>
+        <figure class="deco"><span class="ava ava--xl"><img src="assets/img/oyuncu/kira.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/grimoire.webp" alt="" loading="lazy"></span><figcaption>Kadim Büyü Kitabı<small>Yasak Sayfalar</small></figcaption></figure>
+        <figure class="deco"><span class="ava ava--xl"><img src="assets/img/oyuncu/zeynep.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/frost-tiara.webp" alt="" loading="lazy"></span><figcaption>Buz Tacı<small>Ayaz Sarayı</small></figcaption></figure>
+        <figure class="deco"><span class="ava ava--xl"><img src="assets/img/oyuncu/emre.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/phoenix-plume.webp" alt="" loading="lazy"></span><figcaption>Anka Tüyü<small>Küllerden Doğan</small></figcaption></figure>
+        <figure class="deco"><span class="ava ava--xl"><img src="assets/img/oyuncu/deniz.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/treasure-dragon.webp" alt="" loading="lazy"></span><figcaption>Hazine Ejderi<small>Hazine Bekçileri</small></figcaption></figure>
+        <figure class="deco"><span class="ava ava--xl"><img src="assets/img/oyuncu/kira.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/moon-rose.webp" alt="" loading="lazy"></span><figcaption>Ay Gülü<small>Ay Işığında Güller</small></figcaption></figure>
+      </div>
+    </div>
+
+    <!-- Ünvan şeridi -->
+    <div class="marquee marquee--titles" data-marquee data-speed="-0.5" aria-label="Animasyonlu ünvanlardan örnekler">
+      <div class="marquee__track">
+        <span class="title title--lg t-rainbow"><svg><use href="#i-star"/></svg>Yaşayan Efsane</span>
+        <span class="title title--lg t-fire"><svg><use href="#i-zap"/></svg>Clutch Kralı</span>
+        <span class="title title--lg t-glitch" data-text="Carry Makinesi"><svg><use href="#i-rocket"/></svg>Carry Makinesi</span>
+        <span class="title title--lg t-neon"><svg><use href="#i-moon"/></svg>Gece Kuşu</span>
+        <span class="title title--lg t-ice"><svg><use href="#i-aim"/></svg>Sessiz Nişancı</span>
+        <span class="title title--lg t-mint"><svg><use href="#i-smile"/></svg>Herkesin Kankası</span>
+        <span class="title title--lg t-gold"><svg><use href="#i-trophy"/></svg>Emektar</span>
+        <span class="title title--lg t-silver"><svg><use href="#i-star"/></svg>Müdavim</span>
+        <span class="title title--lg t-royal"><svg><use href="#i-spark"/></svg>Duos+</span>
+        <span class="title title--lg t-fire"><svg><use href="#i-flame"/></svg>Ateş Bekçisi</span>
+      </div>
+    </div>
+
+    <!-- Kasa -->
+    <div class="wrap">
+      <div class="crate" data-crate>
+        <div class="crate__info">
+          <p class="label"><span>03.1</span>Kasalar</p>
+          <h3 class="display h3">Çırak Sandığı</h3>
+          <p>Anahtarlar günlük görevlerle kazanılır. Aynı eşya tekrar çıkarsa nadirliğine göre Kasa Puanı'na döner; puanlarla anahtar ya da Duos+ günleri alınır.</p>
+          <ul class="rarity" aria-label="Çıkma oranları">
+            <li style="--rc:#A7B0C0">Sıradan<em>%60</em></li>
+            <li style="--rc:#4FA3FF">Nadir<em>%25</em></li>
+            <li style="--rc:#B36BFF">Destansı<em>%11</em></li>
+            <li style="--rc:#FFC23D">Efsanevi<em>%4</em></li>
+          </ul>
+          <button class="btn btn--light crate__btn" type="button" data-magnetic><svg><use href="#i-key"/></svg><span>Kasayı aç</span></button>
         </div>
-        <div class="tile reveal">
-          <div class="ic" style="background:rgba(52,211,153,.14)">🛡️</div>
-          <h3>Davranış puanı</h3>
-          <p>Saygılı oyuncular öne çıkar. Kural ihlalleri puana ve profile yansır.</p>
-          <div class="viz ring"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="9"/><circle class="v" cx="50" cy="50" r="42" fill="none" stroke="#34D399" stroke-width="9" stroke-linecap="round"/></svg><b>96</b></div>
-        </div>
-        <div class="tile reveal d1">
-          <div class="ic" style="background:rgba(245,158,11,.15)">🔥</div>
-          <h3>Günlük seri</h3>
-          <p>Düzenli kullanım ödüllendirilir: 3. gün ek kaydırma hakkı, 7. gün Duos+ hediye.</p>
-          <div class="viz week"><span class="on">1</span><span class="on">2</span><span class="on">3</span><span class="on">4</span><span>5</span><span>6</span><span class="gift">🎁</span></div>
-        </div>
-        <div class="tile reveal d2">
-          <div class="ic" style="background:rgba(236,72,153,.15)">🎁</div>
-          <h3>Arkadaşını davet et</h3>
-          <p>Davet kodunuzla katılan her arkadaşınızla birlikte 3 gün Duos+ kazanırsınız.</p>
-          <div class="viz code"><span>G</span><span>A</span><span>M</span><span>E</span><span>R</span><span>7</span></div>
-        </div>
-        <div class="tile wide reveal">
-          <div class="ic" style="background:rgba(34,211,238,.14)">🎨</div>
-          <h3>Profilini kişiselleştir</h3>
-          <p>Hareketli çerçeveler, profil efektleri, GIF kapak görselleri, isim stilleri ve kart renkleriyle profilinizi size özel hâle getirin.</p>
-          <div class="viz frames"><span class="a"><i></i></span><span class="b"><i></i></span><span class="c"><i></i></span></div>
-        </div>
-        <div class="tile wide reveal d1">
-          <div class="ic" style="background:rgba(139,92,246,.16)">⭐</div>
-          <h3>Gerçek yorumlar</h3>
-          <p>Yalnızca eşleşilen oyuncular değerlendirme yapabilir. Profillerde ortalama puan ve birlikte oynanan oyuncu sayısı görünür.</p>
-          <div class="viz" style="display:flex;gap:10px;align-items:center;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--line)"><span style="color:#FBBF24">★★★★★</span><span style="color:var(--muted);font-size:14px">“Sürekli girmelik, kafa dengi biri.”</span></div>
+        <div class="crate__reel" aria-live="polite">
+          <div class="reel" aria-hidden="true"><div class="reel__track"></div><i class="reel__marker"></i></div>
+          <p class="crate__result"><small>Kasadan çıkan</small><b>Kasayı açmak için düğmeye basın</b></p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Güven -->
-  <section class="trust" id="guven">
-    <div class="wrap">
-      <div class="reveal">
-        <span class="eyebrow">Güvenlik</span>
-        <h2 style="font-size:clamp(30px,4.4vw,46px);line-height:1.08;margin:14px 0">Güvenli bir topluluk,<br><span class="grad-text">önceliğimiz.</span></h2>
-        <p style="color:var(--muted);font-size:18px;margin:0">Otomatik içerik denetimi ve moderasyon ekibimiz, topluluğun saygılı kalması için birlikte çalışır.</p>
-        <div class="notdating"><b>DUOS bir tanışma uygulaması değildir.</b> Platform yalnızca oyun ve arkadaşlık amacıyla kullanılır. 13 yaş ve üzeri kullanıcılar içindir.</div>
+  <!-- ============ GÜVENLİK ============ -->
+  <section class="safety" id="guvenlik">
+    <div class="wrap safety__in">
+      <div class="safety__head">
+        <p class="label" data-reveal><span>04</span>Güvenlik</p>
+        <h2 class="display h2" data-split>Saygılı bir topluluk, tasarımın parçası.</h2>
+        <p class="safety__note" data-reveal><b>DUOS bir tanışma uygulaması değildir.</b> Platform yalnızca oyun ve oyun arkadaşlığı içindir; 13 yaş ve üzeri kullanıcılar içindir.</p>
       </div>
-      <div class="checks">
-        <div class="check reveal d1"><span class="ic">✓</span><div><b>Küfür ve hakaret filtresi</b><p>Harf değiştirilerek yazılan ifadeler dahil uygunsuz mesajlar, gönderilmeden engellenir.</p></div></div>
-        <div class="check reveal d2"><span class="ic">✓</span><div><b>Görsel denetimi</b><p>Profil fotoğrafları ve kapak görselleri uygunsuz içeriğe karşı otomatik olarak incelenir.</p></div></div>
-        <div class="check reveal d3"><span class="ic">✓</span><div><b>Kişisel bilgi koruması</b><p>Telefon numarası ve adres gibi kişisel bilgilerin sohbette paylaşılması engellenir.</p></div></div>
-        <div class="check reveal d4"><span class="ic">✓</span><div><b>Şikâyet ve moderasyon</b><p>Kullanıcılar tek dokunuşla şikâyet ve engelleme yapabilir. Şikâyetler ekibimizce incelenir, gerekli durumlarda hesaplar askıya alınır.</p></div></div>
-      </div>
+      <ol class="spec">
+        <li data-reveal><span class="spec__n">01</span><svg><use href="#i-hand"/></svg><h3>DUOS Sözü</h3><p>Her oyuncu başlamadan önce üç söz verir: sınırlara saygı, küfürsüz iletişim ve topluluğu birlikte güzel tutmak.</p></li>
+        <li data-reveal><span class="spec__n">02</span><svg><use href="#i-ban"/></svg><h3>Küfür ve kişisel bilgi filtresi</h3><p>Harf değiştirilerek yazılanlar dahil hakaret içeren mesajlar gönderilmeden engellenir. Telefon numarası ve adres paylaşımı da engellenir.</p></li>
+        <li data-reveal><span class="spec__n">03</span><svg><use href="#i-image"/></svg><h3>Fotoğraf denetimi</h3><p>Profil fotoğrafları ve banner görselleri yapay zekâ ile otomatik olarak incelenir.</p></li>
+        <li data-reveal><span class="spec__n">04</span><svg><use href="#i-flag"/></svg><h3>Şikâyet ve engelleme</h3><p>Tek dokunuşla şikâyet edebilir ya da engelleyebilirsiniz. Şikâyetler moderasyon ekibince incelenir.</p></li>
+        <li data-reveal><span class="spec__n">05</span><svg><use href="#i-gauge"/></svg><h3>Davranış puanı</h3><p>Saygılı oyuncular öne çıkar. Kural ihlalleri puana ve profile yansır.</p></li>
+        <li data-reveal><span class="spec__n">06</span><svg><use href="#i-star"/></svg><h3>Gerçek yorumlar</h3><p>Yalnızca eşleştiğiniz oyuncuları değerlendirebilirsiniz; profillerde ortalama puan görünür.</p></li>
+      </ol>
     </div>
   </section>
 
-  <!-- Duos+ -->
-  <section>
-    <div class="wrap">
-      <div class="plus-card reveal">
-        <div>
-          <span class="eyebrow">Duos+</span>
-          <h2>Duos+ ile <span class="grad-text">daha fazlası.</span></h2>
-          <p>DUOS'un temel özellikleri ücretsizdir. Duos+ üyeliği ek avantajlar sunar; günlük seri ve davet ödülleriyle ücretsiz olarak da kazanılabilir.</p>
+  <!-- ============ DUOS+ ============ -->
+  <section class="plus" id="plus">
+    <div class="wrap plus__in">
+      <div class="plus__stage" aria-hidden="true">
+        <div class="holo" data-holo>
+          <div class="holo__card">
+            <div class="holo__foil"></div>
+            <div class="holo__glare"></div>
+            <div class="holo__content">
+              <div class="holo__top"><svg viewBox="0 0 1024 1024"><use href="#logo"/></svg><span>Üyelik</span></div>
+              <p class="holo__name">duos<b>+</b></p>
+              <div class="holo__bottom"><span>Sınırsız kaydırma</span><span>Özel temalar</span></div>
+            </div>
+          </div>
         </div>
-        <ul class="plus-list">
-          <li>Sınırsız kaydırma</li>
-          <li>Sizi beğenenleri ve profilinizi ziyaret edenleri görme</li>
-          <li>Keşfet'te öne çıkan profil</li>
-          <li>Son kararı geri alma</li>
-          <li>Özel çerçeveler, temalar ve isim stilleri</li>
+      </div>
+      <div class="plus__copy">
+        <p class="label" data-reveal><span>05</span>Duos+</p>
+        <h2 class="display h2" data-split>Daha fazlası, isteyene.</h2>
+        <p class="plus__lead" data-reveal>Temel özellikler ücretsizdir. Duos+ üyeliği ek ayrıcalıklar sunar; günlük seri, davet ödülleri ve Kasa Puanı ile ücretsiz olarak da kazanılabilir.</p>
+        <ul class="perks">
+          <li data-reveal><svg><use href="#i-heart"/></svg>Sizi beğenenleri görün</li>
+          <li data-reveal><svg><use href="#i-eye"/></svg>Profilinize bakanları görün</li>
+          <li data-reveal><svg><use href="#i-inf"/></svg>Sınırsız kaydırma</li>
+          <li data-reveal><svg><use href="#i-palette"/></svg>Özel uygulama temaları</li>
+          <li data-reveal><svg><use href="#i-tag"/></svg>Süslerde indirim</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- SSS -->
-  <section id="sss" style="padding-top:30px">
-    <div class="wrap">
-      <div class="sec-head center reveal" style="text-align:center">
-        <span class="eyebrow">SSS</span>
-        <h2>Sık sorulanlar</h2>
+  <!-- ============ SSS ============ -->
+  <section class="faq" id="sss">
+    <div class="wrap faq__in">
+      <div class="faq__head">
+        <p class="label" data-reveal><span>06</span>SSS</p>
+        <h2 class="display h2" data-split>Sık sorulanlar</h2>
+        <p data-reveal>Başka bir sorunuz varsa <a href="mailto:kayabasiyagiz@gmail.com">bize yazın</a>.</p>
       </div>
-      <div class="faq">
-        <details class="reveal"><summary>DUOS ücretsiz mi?</summary><p>Evet. Temel özellikler ücretsizdir; her gün 20 kaydırma hakkı tanımlanır ve gece yarısı yenilenir. Duos+ isteğe bağlıdır.</p></details>
-        <details class="reveal"><summary>Hangi oyunlar var?</summary><p>Valorant, Counter-Strike 2, League of Legends, Fortnite, Minecraft, PUBG Mobile, Apex Legends, Rocket League ve daha fazlası. Oyun listesi düzenli olarak genişletilmektedir.</p></details>
-        <details class="reveal"><summary>Eşleşmediğim biri bana yazabilir mi?</summary><p>Hayır. Sohbet yalnızca karşılıklı beğeni sonrasında açılır. Eşleşmeler dilediğiniz zaman kaldırılabilir veya kullanıcı engellenebilir.</p></details>
-        <details class="reveal"><summary>Uyum yüzdesi nasıl hesaplanıyor?</summary><p>Ortak oyunlar, oyun tarzı (rekabetçi veya eğlence), iletişim tercihi ve ilgi alanları birlikte değerlendirilerek hesaplanır.</p></details>
-        <details class="reveal"><summary>Hangi telefonlarda çalışıyor?</summary><p>DUOS ilk olarak Android için Google Play'de yayınlanacaktır. iOS sürümü yol haritamızda yer almaktadır.</p></details>
-        <details class="reveal"><summary>Hesabımı nasıl silerim?</summary><p>Uygulama içinde Ayarlar &gt; Hesabı sil adımından ya da <a href="hesap-silme.html" style="color:var(--violet2)">bu sayfa</a> üzerinden talepte bulunabilirsiniz. Tüm verileriniz kalıcı olarak silinir.</p></details>
+      <div class="faq__list">
+        <details class="qa" data-reveal><summary>DUOS ücretsiz mi?<i></i></summary><div class="qa__a"><p>Evet. Temel özellikler ücretsizdir; her gün 20 kaydırma hakkı tanımlanır ve gece yarısı yenilenir. Duos+ isteğe bağlıdır.</p></div></details>
+        <details class="qa" data-reveal><summary>Hangi oyunlar var?<i></i></summary><div class="qa__a"><p>Valorant, Counter-Strike 2, League of Legends, Fortnite, Minecraft, PUBG Mobile, Apex Legends, Rocket League ve daha fazlası. Oyun listesi düzenli olarak genişletilmektedir.</p></div></details>
+        <details class="qa" data-reveal><summary>Eşleşmediğim biri bana yazabilir mi?<i></i></summary><div class="qa__a"><p>Hayır. Sohbet yalnızca karşılıklı beğeni sonrasında açılır. Eşleşmeler dilediğiniz zaman kaldırılabilir veya kullanıcı engellenebilir.</p></div></details>
+        <details class="qa" data-reveal><summary>Uyum yüzdesi nasıl hesaplanıyor?<i></i></summary><div class="qa__a"><p>Ortak oyunlar, oyun tarzı (rekabetçi veya eğlencesine), iletişim tercihi ve ilgi alanları birlikte değerlendirilerek hesaplanır.</p></div></details>
+        <details class="qa" data-reveal><summary>Yaşım diğer oyunculara görünür mü?<i></i></summary><div class="qa__a"><p>Yaşınız profilinizde varsayılan olarak görünür; dilerseniz Ayarlar'dan gizleyebilirsiniz. Doğum tarihiniz yalnızca sizde kalır. Discord hesabınızı bağlasanız bile yaşınız orada hiçbir zaman paylaşılmaz.</p></div></details>
+        <details class="qa" data-reveal><summary>Discord hesabımı bağlamak zorunda mıyım?<i></i></summary><div class="qa__a"><p>Hayır, isteğe bağlıdır. Bağlarsanız DUOS Discord sunucusunda oyun rollerinizi alabilir ve <code>/duo</code> komutunu kullanabilirsiniz.</p></div></details>
+        <details class="qa" data-reveal><summary>Hangi telefonlarda çalışıyor?<i></i></summary><div class="qa__a"><p>DUOS ilk olarak Android için Google Play'de yayınlanacaktır. iOS sürümü yol haritamızda yer almaktadır.</p></div></details>
+        <details class="qa" data-reveal><summary>Hesabımı nasıl silerim?<i></i></summary><div class="qa__a"><p>Uygulama içinde Ayarlar &gt; Hesabı sil adımından ya da <a href="hesap-silme.html">bu sayfa</a> üzerinden talepte bulunabilirsiniz. Tüm verileriniz kalıcı olarak silinir.</p></div></details>
       </div>
     </div>
   </section>
 
-  <!-- Son çağrı -->
-  <section class="final" id="katil">
-    <div class="glow"></div>
-    <div class="wrap">
-      <span class="eyebrow reveal">Kapalı test</span>
-      <h2 class="reveal d1">İlk kullanıcılardan<br><span class="grad-text">biri olun.</span></h2>
-      <p class="reveal d2">DUOS, Google Play yayını öncesinde kapalı test sürecindedir. Katılmak için Google Play hesabınıza ait e-posta adresini bize iletin, davetinizi gönderelim.</p>
-      <div class="ctas reveal d3">
-        <a class="btn btn-primary" href="mailto:kayabasiyagiz@gmail.com?subject=DUOS%20kapal%C4%B1%20test&body=Merhaba%2C%20DUOS%20kapal%C4%B1%20testine%20kat%C4%B1lmak%20istiyorum.%20Google%20Play%20e-postam%3A%20">Kapalı teste katıl</a>
-        <a class="btn btn-ghost" href="#ozellikler">Özellikleri incele</a>
-      </div>
+  <!-- ============ SON ÇAĞRI ============ -->
+  <section data-zone class="final" id="katil">
+    <div class="final__glow" aria-hidden="true"></div>
+    <div class="wrap final__in">
+      <p class="label" data-reveal><span>07</span>Kapalı test</p>
+      <h2 class="display final__title" data-split>İlk oyuncular arasında yerinizi alın.</h2>
+      <p class="final__p" data-reveal>DUOS, Google Play yayını öncesinde kapalı test sürecinde. Katılmak için Google Play hesabınıza ait e-posta adresini bize iletin, davetinizi gönderelim.</p>
+      <a class="orb" href="mailto:kayabasiyagiz@gmail.com?subject=DUOS%20kapal%C4%B1%20test&amp;body=Merhaba%2C%20DUOS%20kapal%C4%B1%20testine%20kat%C4%B1lmak%20istiyorum.%20Google%20Play%20e-postam%3A%20" data-magnetic data-strength="0.5">
+        <svg class="orb__ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="orbPath" d="M100,100 m-82,0 a82,82 0 1,1 164,0 a82,82 0 1,1 -164,0"/></defs><text><textPath href="#orbPath" textLength="512" lengthAdjust="spacing">KAPALI TEST · ANDROID · İLK OYUNCULAR · </textPath></text></svg>
+        <span class="orb__core"><svg><use href="#i-mail"/></svg><b>Kapalı teste katıl</b></span>
+      </a>
     </div>
   </section>
 </main>
 
-<footer>
+<footer class="foot">
   <div class="wrap">
-    <a class="brand" href="#top" style="font-size:20px"><svg class="mark" style="width:30px;height:30px;border-radius:9px"><use href="#logo"/></svg>duos</a>
-    <nav aria-label="Yasal">
-      <a href="gizlilik.html">Gizlilik Politikası</a>
-      <a href="kullanim-sartlari.html">Kullanım Şartları</a>
-      <a href="hesap-silme.html">Hesabını sil</a>
-      <a href="mailto:kayabasiyagiz@gmail.com">İletişim</a>
-    </nav>
-    <span>© <span id="yr">2026</span> DUOS</span>
+    <div class="foot__grid">
+      <div class="foot__brand">
+        <a class="brand" href="#top" aria-label="DUOS ana sayfa"><svg class="brand__mark" viewBox="0 0 1024 1024" aria-hidden="true"><use href="#logo"/></svg><span class="brand__word">duos</span></a>
+        <p>Oyuncular için takım arkadaşı bulma uygulaması.</p>
+      </div>
+      <nav aria-label="Ürün"><p class="label">Ürün</p><a href="#nasil">Nasıl çalışır</a><a href="#ozellikler">Özellikler</a><a href="#magaza">Mağaza</a><a href="#guvenlik">Güvenlik</a></nav>
+      <nav aria-label="Yasal"><p class="label">Yasal</p><a href="gizlilik.html">Gizlilik Politikası</a><a href="kullanim-sartlari.html">Kullanım Şartları</a><a href="hesap-silme.html">Hesabını sil</a></nav>
+      <nav aria-label="İletişim"><p class="label">İletişim</p><a href="mailto:kayabasiyagiz@gmail.com">kayabasiyagiz@gmail.com</a></nav>
+    </div>
+    <div class="foot__base"><span>© <span id="yr">2026</span> DUOS</span><span>Oyun adları ve logoları sahiplerinin ticari markalarıdır.</span></div>
   </div>
+  <p class="foot__word" aria-hidden="true">duos</p>
 </footer>
 
-<script>
-(() => {
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.getElementById('yr').textContent = new Date().getFullYear();
-
-  // Menü: kaydırınca cam arka plan
-  const nav = document.getElementById('nav');
-  const onScroll = () => nav.classList.toggle('scrolled', scrollY > 20);
-  addEventListener('scroll', onScroll, { passive: true }); onScroll();
-
-  // Kaydırınca belirme
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal, .tile').forEach(el => io.observe(el));
-
-  // Oyun şeridi (iki kez: kesintisiz döngü)
-  const games = ['Valorant', 'Counter-Strike 2', 'League of Legends', 'Fortnite', 'Minecraft', 'PUBG Mobile', 'Apex Legends', 'Rocket League', 'Overwatch 2', 'Mobile Legends', 'Rainbow Six Siege', 'EA FC', 'Dota 2', 'Brawl Stars'];
-  document.getElementById('track').innerHTML = [...games, ...games].map(g => `<span>${g}</span>`).join('');
-
-  // Örnek oyuncular: fotoğraf yerine kodla çizilmiş soyut avatarlar (gerçek kişi yok)
-  const players = [
-    { name: 'Deniz', age: 23, game: 'Valorant', meta: ['Almanya', 'Sesli', 'Rekabetçi'], tags: ['2 ortak oyun', 'İkiniz de sesli'], fit: 87, c: ['#7C3AED', '#EC4899', '#22D3EE'] },
-    { name: 'Kira', age: 21, game: 'League of Legends', meta: ['Türkiye', 'Discord', 'Günlük'], tags: ['Anime', 'Aynı saatler'], fit: 81, c: ['#DB2777', '#F59E0B', '#8B5CF6'] },
-    { name: 'Emre', age: 24, game: 'CS2', meta: ['Türkiye', 'Oyun içi', 'Eğlence'], tags: ['3 ortak ilgi', 'Aynı rütbe'], fit: 74, c: ['#0891B2', '#6366F1', '#34D399'] },
-    { name: 'Ada', age: 22, game: 'Fortnite', meta: ['Hollanda', 'Discord', 'Rekabetçi'], tags: ['Battle Royale', 'Hafta sonu'], fit: 79, c: ['#F97316', '#E11D48', '#7C3AED'] },
-  ];
-  const art = (p, id) => `<svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
-    <defs>
-      <radialGradient id="a${id}" cx="30%" cy="20%" r="80%"><stop offset="0" stop-color="${p.c[0]}"/><stop offset="1" stop-color="#0A0A0F"/></radialGradient>
-      <radialGradient id="b${id}" cx="85%" cy="60%" r="55%"><stop offset="0" stop-color="${p.c[1]}" stop-opacity=".8"/><stop offset="1" stop-color="${p.c[1]}" stop-opacity="0"/></radialGradient>
-      <linearGradient id="h${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.c[2]}"/><stop offset="1" stop-color="${p.c[0]}"/></linearGradient>
-    </defs>
-    <rect width="300" height="400" fill="url(#a${id})"/><rect width="300" height="400" fill="url(#b${id})"/>
-    <g opacity=".92">
-      <circle cx="150" cy="150" r="58" fill="#15131F"/>
-      <path d="M50 330c10-70 50-110 100-110s90 40 100 110z" fill="#15131F"/>
-      <path d="M86 150a64 64 0 0 1 128 0" fill="none" stroke="url(#h${id})" stroke-width="14" stroke-linecap="round"/>
-      <rect x="74" y="140" width="26" height="46" rx="12" fill="url(#h${id})"/><rect x="200" y="140" width="26" height="46" rx="12" fill="url(#h${id})"/>
-      <path d="M87 180q-4 30 30 36" fill="none" stroke="url(#h${id})" stroke-width="5" stroke-linecap="round"/>
-    </g></svg>`;
-  const cardHtml = (p, i) => `<div class="photo">${art(p, i)}</div><div class="shade"></div>
-    <div class="top"><span class="chip">✨ %${p.fit} uyum</span>${i % 2 ? '' : '<span class="plus">DUOS+</span>'}</div>
-    <span class="stamp like">DUO</span>
-    <div class="info"><h4>${p.name} <span>${p.age}</span></h4>
-      <div class="meta"><span>🎮 ${p.game}</span><span>${p.meta.join(' · ')}</span></div>
-      <div class="tags">${p.tags.map((t, k) => `<span class="chip${k === 0 ? ' hot' : ''}">${t}</span>`).join('')}</div></div>`;
-
-  const deck = document.getElementById('deck');
-  const match = document.getElementById('match');
-  let idx = 0;
-  const cards = [0, 1, 2].map(k => { const el = document.createElement('div'); el.className = 'pcard'; deck.prepend(el); return el; });
-  const paint = () => cards.forEach((el, k) => { const p = players[(idx + k) % players.length]; el.innerHTML = cardHtml(p, (idx + k) % players.length); el.className = 'pcard' + (k === 1 ? ' back1' : k === 2 ? ' back2' : ''); el.style.zIndex = 3 - k; });
-  paint();
-  if (reduce) return;
-
-  const avatar = p => `<span>${art(p, 'm' + p.name).replace('<svg ', '<svg width="74" height="74" ')}</span>`;
-  const me = { name: 'Sen', c: ['#8B5CF6', '#EC4899', '#A78BFA'] };
-  const step = () => {
-    const top = cards[0];
-    top.classList.add('out-right');
-    cards[1].className = 'pcard'; cards[2].className = 'pcard back1';
-    const p = players[idx % players.length];
-    const isMatch = idx % 2 === 0;
-    if (isMatch) setTimeout(() => {
-      document.getElementById('matchAvs').innerHTML = avatar(me) + avatar(p);
-      document.getElementById('matchText').textContent = `${p.name} ile eşleştiniz`;
-      match.classList.add('show');
-      setTimeout(() => match.classList.remove('show'), 1900);
-    }, 450);
-    setTimeout(() => { idx++; cards.push(cards.shift()); paint(); }, 800);
-  };
-  let timer = setInterval(step, 3400);
-  document.addEventListener('visibilitychange', () => { clearInterval(timer); if (!document.hidden) timer = setInterval(step, 3400); });
-})();
-</script>
 </body>
 </html>

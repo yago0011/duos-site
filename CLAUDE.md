@@ -35,7 +35,8 @@ Uygulamanın özellikleri (sitede anlatılacak olanlar):
 - **Eşleşme ve sohbet:** karşılıklı beğenide "Eşleştiniz" ekranı, hazır ilk mesaj önerileri, anlık sohbet, yazıyor göstergesi.
 - **Hazırım modu:** şimdi oynamak isteyenleri öne çıkarır.
 - **Güvenlik:** topluluk sözü, küfür ve kişisel bilgi filtresi, fotoğraf denetimi (yapay zeka), şikâyet ve engelleme,
-  davranış puanı, yorumlar (birlikte oynadığın oyuncuyu değerlendirme). Yaş hiçbir yerde gösterilmez.
+  davranış puanı, yorumlar (birlikte oynadığın oyuncuyu değerlendirme). Yaş: uygulamada varsayılan olarak
+  görünür, kullanıcı Ayarlar'dan gizleyebilir (`show_age`); Discord'da yaş hiç paylaşılmaz, isteğe bağlı yalnızca 18+ rolü var.
 - **Seri:** her gün girişte artan günlük seri, Duolingo tarzı kutlama.
 - **Görünüm ve mağaza:** hareketli avatar süsleri, profil çerçeveleri, banner efektleri (koleksiyonlar: Yasak Sayfalar,
   Mırıltılı Rüyalar, Taşların Fısıltısı, Bozkurt setleri vb.), animasyonlu ünvanlar (Yaşayan Efsane, Clutch Kralı...),
@@ -54,3 +55,16 @@ gerekirse betiklerle yeniden çekilir ya da kullanıcı yükler.
 
 - `index.html`: ana tanıtım sayfası (hero, üç adımda eşleşme, özellikler, güvenlik, Duos+, SSS, kayıt çağrısı).
 - `gizlilik.html`, `kullanim-sartlari.html`, `hesap-silme.html`: yasal sayfalar; içerik korunmalı, yalnızca görünüm yenilenebilir.
+
+## Yapı (Eylül 2026 yenilemesi, "Aurora Noir")
+
+- `assets/css/site.css`, `assets/js/site.js`: ana sayfa. Yasal sayfalar kökteki `style.css`'i kullanır.
+- Yazı tipleri `assets/fonts/` (Archivo başlık, Geist metin, Geist Mono etiket), Türkçe alt kümeye indirildi (`pyftsubset`).
+- Kütüphaneler `assets/vendor/` (GSAP 3.15 + ScrollTrigger + SplitText, Lenis). CDN yok, derleme yok.
+- Hero giriş animasyonu saf CSS (Lighthouse LCP için); diğer animasyonlar sayfa yüklendikten sonra parça parça kurulur.
+  Başlıklar (`data-split`) ekrana yaklaşınca bölünür. Ekran dışındaki bölümlerde (`data-zone`) CSS animasyonları durur.
+- Görseller `assets/img/`: `oyuncu/` (Nano Banana portreleri, 256 px), `banner/` (kart bannerları 640 px, `bahce` 1200 px),
+  `sus/` ve `pet/` (uygulama deposundaki süs ve pet çizimlerinden küçültüldü), `og.jpg` (paylaşım görseli, logo ve yazı kodla eklendi).
+- Kasa oranları uygulamadaki `src/data/crates.ts` ile aynı; değişirse `site.js` içindeki `DROPS` da güncellenmeli.
+- Ölçüm: yerelde gzip'li sunucuyla Lighthouse telefon 92-94, masaüstü 100 (erişilebilirlik, en iyi uygulamalar, SEO 100).
+- Hareket azaltma: `.rm` sınıfı ve `prefers-reduced-motion` ile tüm animasyonlar kapanır, içerik doğrudan görünür.
