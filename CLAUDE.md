@@ -68,9 +68,6 @@ gerekirse betiklerle yeniden çekilir ya da kullanıcı yükler.
 - Kasa oranları uygulamadaki `src/data/crates.ts` ile aynı; değişirse `site.js` içindeki `DROPS` da güncellenmeli.
 - Ölçüm: yerelde gzip'li sunucuyla Lighthouse telefon 92-94, masaüstü 100 (erişilebilirlik, en iyi uygulamalar, SEO 100).
 - Hareket azaltma: `.rm` sınıfı ve `prefers-reduced-motion` ile tüm animasyonlar kapanır, içerik doğrudan görünür.
-- **3B parçacık sahnesi** `assets/js/evren.js` (kütüphanesiz WebGL2, ~10 KB): sayfanın arkasında sabit tuval; kaydırdıkça
-  galaksi → iki oyuncu küresi → çarpışma (Eşleş) → "%87" → kasa → kabuk → halka (Duos+) → küre. Duraklar `layout()` içinde.
-  İlk etkileşimde ya da 6 sn sonra yüklenir (Lighthouse için). GPU yoksa (SwiftShader) ve hareket azaltılmışsa açılmaz;
-  testte zorlamak için adrese `?gl=force` ekle, Chromium'u `--use-angle=swiftshader --enable-unsafe-swiftshader` ile başlat.
-- **Yedek:** 3B sahneden önceki hâl `tasarim-2d` dalında. Geri dönmek için: `git checkout main && git reset --hard origin/tasarim-2d`
-  yerine güvenlisi `git revert` ile 3B commit'ini geri almak ya da `tasarim-2d`'yi main'e birleştirmek (kullanıcıya sor).
+- CSS ve betik adreslerinde `?v=` sürümü var: dosya değişince sürümü artır (GitHub Pages 10 dk önbellekte tutar).
+- 3B parçacık sahnesi denendi, kullanıcı beğenmedi ve geri alındı; kodu `deneme-3b` dalında (`assets/js/evren.js`).
+  3B'den önceki hâlin yedeği `tasarim-2d` dalında.

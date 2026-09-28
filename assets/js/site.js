@@ -61,51 +61,19 @@
       () => marquees(gsap, lenis),
       () => parallax(gsap),
       () => interactions(gsap, lenis),
-      () => scale(),
     ];
     const safety = setTimeout(showAll, 8000);
     const run = () => {
       const t0 = performance.now();
       while (tasks.length && performance.now() - t0 < 25) tasks.shift()();
       if (tasks.length) setTimeout(run, 0);
-      else { clearTimeout(safety); ScrollTrigger.refresh(); loadEvren(); }
+      else { clearTimeout(safety); ScrollTrigger.refresh(); }
     };
     const start = () => {
       const fontsReady = Promise.race([d.fonts ? d.fonts.ready : Promise.resolve(), new Promise(r => setTimeout(r, 1500))]);
       fontsReady.then(() => ('requestIdleCallback' in window ? requestIdleCallback(run, { timeout: 1200 }) : setTimeout(run, 200)));
     };
     if (d.readyState === 'complete') start(); else addEventListener('load', start, { once: true });
-  }
-
-  // 3B parçacık sahnesi (assets/js/evren.js): her şey kurulduktan sonra, boşta kalınca yüklenir
-  function loadEvren() {
-    // İlk etkileşimde (fare, dokunuş, kaydırma) ya da en geç 6 sn sonra: açılış hızını etkilemesin
-    let done = false;
-    const evs = ['pointermove', 'pointerdown', 'wheel', 'touchstart', 'scroll', 'keydown'];
-    const go = () => {
-      if (done) return; done = true;
-      evs.forEach(e => removeEventListener(e, go));
-      const s = d.createElement('script'); s.src = 'assets/js/evren.js?v=20260928b'; s.async = true; d.body.appendChild(s);
-    };
-    evs.forEach(e => addEventListener(e, go, { passive: true, once: true }));
-    setTimeout(go, 6000);
-  }
-
-  // Sağdaki ilerleme ölçeği: hangi bölümdesin, sayfanın neresindesin
-  function scale() {
-    const el = $('.scale');
-    if (!el) return;
-    const secs = [['#top', 'Giriş'], ['#nasil', 'Nasıl çalışır'], ['#ozellikler', 'Özellikler'], ['#magaza', 'Mağaza'], ['#guvenlik', 'Güvenlik'], ['#plus', 'Duos+'], ['#sss', 'SSS'], ['#katil', 'Kapalı test']];
-    const mark = $('.scale__mark', el), label = $('.scale__label', el);
-    const upd = () => {
-      const max = d.documentElement.scrollHeight - innerHeight;
-      const p = max > 0 ? scrollY / max : 0;
-      mark.style.transform = `translateY(${p * 100}%)`;
-      let cur = secs[0][1];
-      secs.forEach(([s, n]) => { const t = $(s); if (t && t.getBoundingClientRect().top < innerHeight * 0.5) cur = n; });
-      if (label.textContent !== cur) label.textContent = cur;
-    };
-    addEventListener('scroll', upd, { passive: true }); upd();
   }
 
   // Ekran dışındaki bölümlerde sonsuz CSS animasyonları durur (pil ve işlemci için)
@@ -315,7 +283,7 @@
         gsap.set(el, { visibility: 'visible' });
         if (!window.SplitText) { gsap.from(el, { y: 40, opacity: 0, duration: 1.2, ease: 'expo.out' }); return; }
         const split = window.SplitText.create(el, { type: 'lines,words', mask: 'lines', linesClass: 'split-line' });
-        gsap.from(split.words, { yPercent: 60, opacity: 0, filter: 'blur(14px)', duration: 1.4, stagger: .05, ease: 'expo.out', clearProps: 'filter', onComplete: () => split.revert() });
+        gsap.from(split.words, { yPercent: 115, duration: 1.3, stagger: .045, ease: 'expo.out', onComplete: () => split.revert() });
       } });
     });
   }
