@@ -54,3 +54,16 @@ gerekirse betiklerle yeniden çekilir ya da kullanıcı yükler.
 
 - `index.html`: ana tanıtım sayfası (hero, üç adımda eşleşme, özellikler, güvenlik, Duos+, SSS, kayıt çağrısı).
 - `gizlilik.html`, `kullanim-sartlari.html`, `hesap-silme.html`: yasal sayfalar; içerik korunmalı, yalnızca görünüm yenilenebilir.
+
+## Yapı (Eylül 2026 yenilemesi, "Aurora Noir")
+
+- `assets/css/site.css`, `assets/js/site.js`: ana sayfa. Yasal sayfalar kökteki `style.css`'i kullanır.
+- Yazı tipleri `assets/fonts/` (Archivo başlık, Geist metin, Geist Mono etiket), Türkçe alt kümeye indirildi (`pyftsubset`).
+- Kütüphaneler `assets/vendor/` (GSAP 3.15 + ScrollTrigger + SplitText, Lenis). CDN yok, derleme yok.
+- Hero giriş animasyonu saf CSS (Lighthouse LCP için); diğer animasyonlar sayfa yüklendikten sonra parça parça kurulur.
+  Başlıklar (`data-split`) ekrana yaklaşınca bölünür. Ekran dışındaki bölümlerde (`data-zone`) CSS animasyonları durur.
+- Görseller `assets/img/`: `oyuncu/` (Nano Banana portreleri, 256 px), `banner/` (kart bannerları 640 px, `bahce` 1200 px),
+  `sus/` ve `pet/` (uygulama deposundaki süs ve pet çizimlerinden küçültüldü), `og.jpg` (paylaşım görseli, logo ve yazı kodla eklendi).
+- Kasa oranları uygulamadaki `src/data/crates.ts` ile aynı; değişirse `site.js` içindeki `DROPS` da güncellenmeli.
+- Ölçüm: yerelde gzip'li sunucuyla Lighthouse telefon 92-94, masaüstü 100 (erişilebilirlik, en iyi uygulamalar, SEO 100).
+- Hareket azaltma: `.rm` sınıfı ve `prefers-reduced-motion` ile tüm animasyonlar kapanır, içerik doğrudan görünür.

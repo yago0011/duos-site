@@ -14,9 +14,6 @@
   const yr = $('#yr');
   if (yr) yr.textContent = new Date().getFullYear();
 
-  if (!window.gsap || !window.ScrollTrigger) { showAll(); basics(null); return; }
-  try { init(); } catch (e) { console.error(e); showAll(); }
-
   function init() {
     const { gsap, ScrollTrigger } = window;
     gsap.registerPlugin(ScrollTrigger);
@@ -50,20 +47,40 @@
       }, { passive: true });
     }
 
-    const fontsReady = Promise.race([d.fonts ? d.fonts.ready : Promise.resolve(), new Promise(r => setTimeout(r, 1500))]);
-    fontsReady.then(() => {
-      heroIntro(gsap);
-      splitHeadings(gsap);
-      reveals(gsap, ScrollTrigger);
-      counters(gsap);
-      marquees(gsap, lenis);
-      story(gsap);
-      features(gsap);
-      builder(gsap);
-      parallax(gsap);
-      interactions(gsap, lenis);
-      ScrollTrigger.refresh();
-    });
+    // Hero hemen (giriş animasyonu zaten CSS ile başladı); geri kalanı sayfa yüklendikten sonra küçük parçalar hâlinde,
+    // böylece açılışta ana iş parçacığı uzun süre kilitlenmez.
+    hero(gsap);
+    zones();
+    const tasks = [
+      () => reveals(gsap, ScrollTrigger),
+      () => splitHeadings(gsap),
+      () => counters(gsap),
+      () => story(gsap),
+      () => features(gsap),
+      () => builder(gsap),
+      () => marquees(gsap, lenis),
+      () => parallax(gsap),
+      () => interactions(gsap, lenis),
+    ];
+    const safety = setTimeout(showAll, 8000);
+    const run = () => {
+      const t0 = performance.now();
+      while (tasks.length && performance.now() - t0 < 25) tasks.shift()();
+      if (tasks.length) setTimeout(run, 0);
+      else { clearTimeout(safety); ScrollTrigger.refresh(); }
+    };
+    const start = () => {
+      const fontsReady = Promise.race([d.fonts ? d.fonts.ready : Promise.resolve(), new Promise(r => setTimeout(r, 1500))]);
+      fontsReady.then(() => ('requestIdleCallback' in window ? requestIdleCallback(run, { timeout: 1200 }) : setTimeout(run, 200)));
+    };
+    if (d.readyState === 'complete') start(); else addEventListener('load', start, { once: true });
+  }
+
+  // Ekran dışındaki bölümlerde sonsuz CSS animasyonları durur (pil ve işlemci için)
+  function zones() {
+    if (!('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('is-paused', !e.isIntersecting)), { rootMargin: '120px 0px' });
+    $$('[data-zone]').forEach(z => io.observe(z));
   }
 
   // ------------------------------------------------------------------------------------------
@@ -123,31 +140,13 @@
   }
 
   // ------------------------------------------------------------------------------------------
-  function heroIntro(gsap) {
-    const title = $('[data-hero-title]');
-    const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
-    gsap.set(title, { visibility: 'visible' });
-    if (window.SplitText) {
-      const split = window.SplitText.create(title, { type: 'lines,words', mask: 'lines', linesClass: 'split-line' });
-      tl.from(split.words, { yPercent: 115, duration: 1.4, stagger: .055 }, .15);
-    } else {
-      tl.from(title, { y: 40, opacity: 0, duration: 1.2 }, .15);
-    }
-    const paths = $$('.swipe-line path');
-    gsap.set(paths, { strokeDasharray: 1, strokeDashoffset: 1 });
-    tl.to('[data-intro]', { opacity: 1, y: 0, duration: 1.3, stagger: .09 }, .35)
-      .from('.stage .phone', { y: 120, rotationX: 22, opacity: 0, duration: 1.8 }, .2)
-      .from('.hud', { scale: .6, opacity: 0, duration: 1.1, stagger: .12, ease: 'back.out(1.6)' }, 1)
-      .to(paths[0], { strokeDashoffset: 0, duration: .9, ease: 'power2.inOut' }, 1.1)
-      .to(paths[1], { strokeDashoffset: 0, duration: .35, ease: 'power2.out' }, 1.9)
-      .from('.phone__cat', { y: -30, opacity: 0, duration: 1, ease: 'bounce.out' }, 1.5)
-      .from('.stage__hint, .scroll-cue', { opacity: 0, duration: 1 }, 2);
-    $$('.hero__stats [data-count]').forEach(el => countTo(gsap, el, 1.8, 1.2));
-
-    // Telefonun üstündeki kedi: tanıtımdan sonra hareketli sürüme geç
+  function hero(gsap) {
+    // Telefonun üstündeki kedi: sayfa yüklendikten sonra hareketli sürüme geçer
     const cat = $('.phone__cat');
-    if (cat) setTimeout(() => swapAnim(cat), 2600);
-
+    if (cat) {
+      const later = () => setTimeout(() => swapAnim(cat), 2500);
+      if (d.readyState === 'complete') later(); else addEventListener('load', later, { once: true });
+    }
     tilt(gsap);
     deck(gsap);
   }
@@ -186,14 +185,14 @@
   // ------------------------------------------------------------------------------------------
   // Keşfet destesi: kendi kendine kayar, sürüklenebilir
   const PLAYERS = [
-    { n: 'Deniz', img: 'deniz', ban: 'kapak0', deco: 'gold-crown-anim', fit: 87, lfg: 'Valorant', t: ['t-fire', 'i-zap', 'Clutch Kralı'], meta: ['Türkiye', 'Discord', 'Rekabetçi'], r: '4,9', bio: 'Akşamları dereceli oynuyorum. Sakin iletişim, net bilgi.', common: ['İkinizin de favorisi Valorant', '2 ortak oyun', 'İkiniz de Discord'], g: ['VA', 'Valorant', 'FPS', '#E4474D'] },
-    { n: 'Kira', img: 'kira', ban: 'kapak1', deco: 'night-wings', fit: 81, t: ['t-neon', 'i-moon', 'Gece Kuşu'], meta: ['Türkiye', 'Oyun içi sesli', 'Eğlencesine'], r: '4,8', bio: 'Gece yarısından sonra normal ve ARAM. Önce eğlence gelir.', common: ['3 ortak ilgi alanı', 'İkiniz de eğlencesine'], g: ['LoL', 'League of Legends', 'MOBA', '#2E7BC4'] },
-    { n: 'Emre', img: 'erkek2', ban: 'kapak2', deco: 'phoenix-plume', fit: 74, lfg: 'CS2', t: ['t-glitch', 'i-rocket', 'Carry Makinesi'], meta: ['Türkiye', 'Discord', 'Rekabetçi'], r: '4,7', bio: 'Premier oynuyorum, giriş rolündeyim. Takım oyununu bilirim.', common: ['2 ortak oyun', 'İkiniz de rekabetçi'], g: ['CS', 'Counter-Strike 2', 'FPS', '#D9912B'] },
-    { n: 'Zeynep', img: 'zeynep', ban: 'kapak3', deco: 'fairy-wing', fit: 78, t: ['t-rainbow', 'i-star', 'Yaşayan Efsane'], meta: ['Almanya', 'Discord', 'Rekabetçi'], r: '5,0', bio: 'Hafta sonu turnuva provası yapıyoruz. İletişimi iyi bir duo arıyorum.', common: ['1 ortak oyun', 'İkiniz de Discord'], g: ['FN', 'Fortnite', 'Battle Royale', '#7B55D6'] },
+    { n: 'Deniz', img: 'deniz', ban: 'arena', deco: 'gold-crown-anim', fit: 87, lfg: 'Valorant', t: ['t-fire', 'i-zap', 'Clutch Kralı'], meta: ['Türkiye', 'Discord', 'Rekabetçi'], r: '4,9', bio: 'Akşamları dereceli oynuyorum. Sakin iletişim, net bilgi.', common: ['İkinizin de favorisi Valorant', '2 ortak oyun', 'İkiniz de Discord'], g: ['VA', 'Valorant', 'FPS', '#E4474D'] },
+    { n: 'Kira', img: 'kira', ban: 'sehir', deco: 'night-wings', fit: 81, t: ['t-neon', 'i-moon', 'Gece Kuşu'], meta: ['Türkiye', 'Oyun içi sesli', 'Eğlencesine'], r: '4,8', bio: 'Gece yarısından sonra normal ve ARAM. Önce eğlence gelir.', common: ['3 ortak ilgi alanı', 'İkiniz de eğlencesine'], g: ['LoL', 'League of Legends', 'MOBA', '#2E7BC4'] },
+    { n: 'Emre', img: 'emre', ban: 'oda', deco: 'phoenix-plume', fit: 74, lfg: 'CS2', t: ['t-glitch', 'i-rocket', 'Carry Makinesi'], meta: ['Türkiye', 'Discord', 'Rekabetçi'], r: '4,7', bio: 'Premier oynuyorum, giriş rolündeyim. Takım oyununu bilirim.', common: ['2 ortak oyun', 'İkiniz de rekabetçi'], g: ['CS', 'Counter-Strike 2', 'FPS', '#D9912B'] },
+    { n: 'Zeynep', img: 'zeynep', ban: 'aurora', deco: 'fairy-wing', fit: 78, t: ['t-rainbow', 'i-star', 'Yaşayan Efsane'], meta: ['Almanya', 'Discord', 'Rekabetçi'], r: '5,0', bio: 'Hafta sonu turnuva provası yapıyoruz. İletişimi iyi bir duo arıyorum.', common: ['1 ortak oyun', 'İkiniz de Discord'], g: ['FN', 'Fortnite', 'Battle Royale', '#7B55D6'] },
   ];
   const ic = id => `<svg><use href="#${id}"/></svg>`;
   const cardHTML = p => `
-    <div class="pc__banner"><img src="assets/img/kapak/${p.ban}.webp" alt=""></div>
+    <div class="pc__banner"><img src="assets/img/banner/${p.ban}.webp" alt=""></div>
     <div class="pc__top"><span class="pill-glass">${ic('i-spark')}%${p.fit} uyum</span>${p.lfg ? `<span class="pill-lfg"><i></i>Şimdi oynamak istiyor · ${p.lfg}</span>` : ''}</div>
     <div class="pc__body">
       <div class="pc__id">
@@ -210,16 +209,19 @@
   function deck(gsap) {
     const el = $('#deck');
     if (!el) return;
-    el.innerHTML = '';
     const POS = [{ y: 0, scale: 1, opacity: 1 }, { y: 12, scale: .95, opacity: .7 }, { y: 24, scale: .9, opacity: .35 }];
     let idx = 0;
+    const first = $('.pc', el);
     const cards = [0, 1, 2].map(k => {
-      const c = d.createElement('article');
-      c.className = 'pc';
-      c.innerHTML = cardHTML(PLAYERS[k]);
+      let c = k === 0 ? first : null;
+      if (!c) {
+        c = d.createElement('article');
+        c.className = 'pc';
+        c.innerHTML = cardHTML(PLAYERS[k]);
+        el.insertBefore(c, el.firstChild);
+      }
       c.style.zIndex = 3 - k;
       gsap.set(c, POS[k]);
-      el.appendChild(c);
       return c;
     });
     let busy = false;
@@ -283,10 +285,12 @@
   // ------------------------------------------------------------------------------------------
   function splitHeadings(gsap) {
     $$('[data-split]').forEach(el => {
-      gsap.set(el, { visibility: 'visible' });
-      if (!window.SplitText) { gsap.from(el, { y: 40, opacity: 0, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 85%', once: true } }); return; }
-      const split = window.SplitText.create(el, { type: 'lines,words', mask: 'lines', linesClass: 'split-line' });
-      gsap.from(split.words, { yPercent: 115, duration: 1.3, stagger: .045, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
+      window.ScrollTrigger.create({ trigger: el, start: 'top 92%', once: true, onEnter: () => {
+        gsap.set(el, { visibility: 'visible' });
+        if (!window.SplitText) { gsap.from(el, { y: 40, opacity: 0, duration: 1.2, ease: 'expo.out' }); return; }
+        const split = window.SplitText.create(el, { type: 'lines,words', mask: 'lines', linesClass: 'split-line' });
+        gsap.from(split.words, { yPercent: 115, duration: 1.3, stagger: .045, ease: 'expo.out', onComplete: () => split.revert() });
+      } });
     });
   }
 
@@ -453,7 +457,7 @@
     const box = $('[data-builder]');
     if (!box) return;
     const parts = [$('.bc__deco', box), $('.bc__title', box), $('.bc__pet', box), $('.bc__fx', box)];
-    const rows = $$('.builder__list li', box);
+    const rows = $$('.bl', box);
     const state = [false, false, false, false];
     const show = (i, on, instant) => {
       state[i] = on;
@@ -469,14 +473,7 @@
     gsap.set(parts[0], { scale: 1.5, opacity: 0 });
     gsap.set(parts[1], { scale: .6, opacity: 0 });
     gsap.set(parts[2], { y: -120, opacity: 0 });
-    rows.forEach((li, i) => {
-      li.tabIndex = 0;
-      li.setAttribute('role', 'button');
-      li.setAttribute('aria-pressed', 'false');
-      const toggle = () => show(i, !state[i]);
-      li.addEventListener('click', toggle);
-      li.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
-    });
+    rows.forEach((b, i) => b.addEventListener('click', () => show(i, !state[i])));
     window.ScrollTrigger.create({ trigger: box, start: 'top 60%', once: true, onEnter: () => {
       [0, 1, 2, 3].forEach(i => setTimeout(() => show(i, true), 300 + i * 900));
     } });
@@ -615,4 +612,8 @@
     // İlk gösterim: bölüm görününce bir kez kendiliğinden açılır
     if (window.ScrollTrigger && !RM) window.ScrollTrigger.create({ trigger: box, start: 'top 65%', once: true, onEnter: () => spin(DROPS[5]) });
   }
+
+  // Başlat: dosyanın sonunda, yukarıdaki tüm tanımlar hazır olduktan sonra
+  if (!window.gsap || !window.ScrollTrigger) { showAll(); basics(null); }
+  else { try { init(); } catch (e) { console.error(e); showAll(); } }
 })();

@@ -12,7 +12,14 @@
 <meta property="og:site_name" content="DUOS">
 <meta property="og:title" content="DUOS · Doğru takım arkadaşı, tek kaydırma uzakta">
 <meta property="og:description" content="Ortak oyunlara, oyun tarzına ve iletişim tercihine göre eşleşin. Karşılıklı beğeniyle sohbet açılır, oyun birlikte devam eder.">
+<meta property="og:url" content="https://yago0011.github.io/duos-site/">
+<meta property="og:image" content="https://yago0011.github.io/duos-site/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DUOS: Doğru takım arkadaşı, tek kaydırma uzakta.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yago0011.github.io/duos-site/assets/img/og.jpg">
+<link rel="canonical" href="https://yago0011.github.io/duos-site/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Crect width='1024' height='1024' rx='280' fill='%2314102A'/%3E%3Crect x='238' y='232' width='176' height='560' rx='44' fill='%238B5CF6'/%3E%3Cpath fill-rule='evenodd' fill='%23EC4899' d='M462 232 H540 C707 232 824 350 824 512 C824 674 707 792 540 792 H462 Z M462 400 H536 C604 400 652 448 652 512 C652 576 604 624 536 624 H462 Z'/%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
@@ -104,7 +111,7 @@
     <div class="nav__end">
       <span class="nav__status"><i class="live"></i>Kapalı test</span>
       <a class="btn btn--light btn--sm" href="#katil" data-magnetic><span>Teste katıl</span></a>
-      <button class="nav__burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menüyü aç"><svg><use href="#i-menu"/></svg></button>
+      <button class="nav__burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menüyü aç"><svg class="i-open"><use href="#i-menu"/></svg><svg class="i-close"><use href="#i-x"/></svg></button>
     </div>
   </div>
 </header>
@@ -123,23 +130,23 @@
 <main id="icerik">
 
   <!-- ============ HERO ============ -->
-  <section class="hero" id="top">
+  <section data-zone class="hero" id="top">
     <div class="hero__dots" aria-hidden="true"></div>
     <div class="wrap hero__in">
       <div class="hero__copy">
-        <p class="status" data-intro><i class="live"></i>Kapalı test açık <span>/</span> <b lang="en">Android</b></p>
-        <h1 class="display hero__title" data-hero-title>
-          Doğru takım arkadaşı, <span class="hero__pill" aria-hidden="true"><img src="assets/img/oyuncu/deniz.webp" alt="" width="44" height="44"><img src="assets/img/oyuncu/zeynep.webp" alt="" width="44" height="44"><b>%87</b></span> tek <span class="swipe-word">kaydırma<svg class="swipe-line" viewBox="0 0 300 40" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 30 C 70 8, 170 6, 262 20" /><path pathLength="1" d="M248 8 L 264 20 L 246 30" /></svg></span> uzakta.
+        <p class="status" data-intro style="--d:0"><i class="live"></i>Kapalı test açık <span>/</span> <b lang="en">Android</b></p>
+        <h1 class="display hero__title">
+          <span class="w" style="--i:0"><span>Doğru</span></span> <span class="w" style="--i:1"><span>takım</span></span> <span class="w" style="--i:2"><span>arkadaşı,</span></span> <span class="w" style="--i:3" aria-hidden="true"><span class="hero__pill"><img src="assets/img/oyuncu/deniz.webp" alt="" width="44" height="44"><img src="assets/img/oyuncu/zeynep.webp" alt="" width="44" height="44"><b>%87</b></span></span> <span class="w" style="--i:4"><span>tek</span></span> <span class="w w--swipe" style="--i:5"><span>kaydırma</span><svg class="swipe-line" viewBox="0 0 300 40" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 30 C 70 8, 170 6, 262 20" /><path pathLength="1" d="M248 8 L 264 20 L 246 30" /></svg></span> <span class="w" style="--i:6"><span>uzakta.</span></span>
         </h1>
-        <p class="lead" data-intro>DUOS, oyuncuları ortak oyunlara, oyun tarzına ve iletişim tercihine göre eşleştirir. Karşılıklı beğeniyle sohbet açılır, oyun birlikte devam eder.</p>
-        <div class="hero__ctas" data-intro>
+        <p class="lead" data-intro="soft" style="--d:.25s">DUOS, oyuncuları ortak oyunlara, oyun tarzına ve iletişim tercihine göre eşleştirir. Karşılıklı beğeniyle sohbet açılır, oyun birlikte devam eder.</p>
+        <div class="hero__ctas" data-intro style="--d:.4s">
           <a class="btn btn--light" href="#katil" data-magnetic><span>Kapalı teste katıl</span><svg><use href="#i-arrow"/></svg></a>
           <a class="link-arrow" href="#nasil">Nasıl çalışır <svg><use href="#i-arrow"/></svg></a>
         </div>
-        <dl class="hero__stats" data-intro>
-          <div><dt>Desteklenen oyun</dt><dd><span data-count="24">24</span></dd></div>
-          <div><dt>Süs, ünvan ve pet</dt><dd><span data-count="90">90</span>+</dd></div>
-          <div><dt>Koleksiyon</dt><dd><span data-count="17">17</span></dd></div>
+        <dl class="hero__stats" data-intro style="--d:.55s">
+          <div><dt>Desteklenen oyun</dt><dd><span class="sr-only">24</span><span class="cnt" style="--to:24" aria-hidden="true"></span></dd></div>
+          <div><dt>Süs, ünvan ve pet</dt><dd><span class="sr-only">90+</span><span class="cnt" style="--to:90" aria-hidden="true"></span><span aria-hidden="true">+</span></dd></div>
+          <div><dt>Koleksiyon</dt><dd><span class="sr-only">17</span><span class="cnt" style="--to:17" aria-hidden="true"></span></dd></div>
         </dl>
       </div>
 
@@ -162,7 +169,7 @@
                 <div class="deck" id="deck">
                   <!-- İlk kart HTML'de: betik açılmasa da ekran boş kalmaz -->
                   <article class="pc" data-player="0">
-                    <div class="pc__banner"><img src="assets/img/kapak/kapak0.webp" alt="" width="900" height="724"></div>
+                    <div class="pc__banner"><img src="assets/img/banner/arena.webp" alt="" width="640" height="478"></div>
                     <div class="pc__top"><span class="pill-glass"><svg><use href="#i-spark"/></svg>%87 uyum</span><span class="pill-lfg"><i></i>Şimdi oynamak istiyor · Valorant</span></div>
                     <div class="pc__body">
                       <div class="pc__id">
@@ -195,7 +202,7 @@
   </section>
 
   <!-- ============ OYUNLAR ============ -->
-  <section class="games" id="oyunlar" aria-label="Desteklenen oyunlar">
+  <section data-zone class="games" id="oyunlar" aria-label="Desteklenen oyunlar">
     <div class="wrap games__head">
       <p class="label"><span>00</span>Desteklenen oyunlar</p>
       <p class="label label--dim">24 oyun, liste büyüyor</p>
@@ -208,11 +215,12 @@
   </section>
 
   <!-- ============ KAYDIR, EŞLEŞ, OYNA (sabitlenen bölüm) ============ -->
-  <section class="story" id="nasil">
+  <section class="story" id="nasil" data-zone aria-labelledby="nasil-baslik">
     <div class="story__pin">
       <div class="wrap story__in">
         <div class="story__left">
           <p class="label"><span>01</span>Nasıl çalışır</p>
+          <h2 class="sr-only" id="nasil-baslik">Kaydır, eşleş, oyna: üç adımda takım arkadaşı</h2>
           <div class="story__words" aria-hidden="true">
             <span class="sw" style="--i:0"><span class="sw__o">Kaydır.</span><span class="sw__f">Kaydır.</span></span>
             <span class="sw" style="--i:1"><span class="sw__o">Eşleş.</span><span class="sw__f">Eşleş.</span></span>
@@ -235,9 +243,9 @@
                 <div class="scr scr--deck">
                   <div class="app-bar"><span class="app-bar__brand"><svg viewBox="0 0 1024 1024"><use href="#logo"/></svg>duos</span><span class="app-chip app-chip--fire"><svg><use href="#i-flame"/></svg>12</span></div>
                   <div class="deck deck--story">
-                    <article class="pc pc--back"><div class="pc__banner"><img src="assets/img/kapak/kapak1.webp" alt="" loading="lazy"></div></article>
+                    <article class="pc pc--back"><div class="pc__banner"><img src="assets/img/banner/sehir.webp" alt="" loading="lazy"></div></article>
                     <article class="pc pc--story">
-                      <div class="pc__banner"><img src="assets/img/kapak/kapak3.webp" alt="" loading="lazy"></div>
+                      <div class="pc__banner"><img src="assets/img/banner/aurora.webp" alt="" loading="lazy"></div>
                       <div class="pc__top"><span class="pill-glass"><svg><use href="#i-spark"/></svg>%91 uyum</span></div>
                       <div class="pc__body">
                         <div class="pc__id">
@@ -298,7 +306,7 @@
   </section>
 
   <!-- ============ ÖZELLİKLER ============ -->
-  <section class="features" id="ozellikler">
+  <section data-zone class="features" id="ozellikler">
     <div class="wrap">
       <header class="sec-head">
         <p class="label" data-reveal><span>02</span>Özellikler</p>
@@ -327,7 +335,7 @@
         <!-- Hazırım -->
         <article class="tile tile--ready" data-reveal>
           <div class="tile__viz ready">
-            <div class="ready__avs"><span style="--x:-86px"><img src="assets/img/oyuncu/kira.webp" alt="" loading="lazy"></span><span class="me" style="--x:0px"><img src="assets/img/oyuncu/deniz.webp" alt="" loading="lazy"></span><span style="--x:86px"><img src="assets/img/oyuncu/erkek2.webp" alt="" loading="lazy"></span></div>
+            <div class="ready__avs"><span style="--x:-86px"><img src="assets/img/oyuncu/kira.webp" alt="" loading="lazy"></span><span class="me" style="--x:0px"><img src="assets/img/oyuncu/deniz.webp" alt="" loading="lazy"></span><span style="--x:86px"><img src="assets/img/oyuncu/emre.webp" alt="" loading="lazy"></span></div>
             <button class="switch" type="button" role="switch" aria-checked="false" id="readySwitch"><span class="switch__knob"></span><span class="switch__off">Hazır değilim</span><span class="switch__on">Hazırım</span></button>
           </div>
           <div class="tile__txt"><h3>Hazırım modu</h3><p>Şimdi oynamak istediğinizi bildirin. Profiliniz Keşfet'te öne çıkar, eşleşmeleriniz haberdar olur.</p></div>
@@ -389,7 +397,7 @@
   </section>
 
   <!-- ============ MAĞAZA VE KASALAR ============ -->
-  <section class="store" id="magaza">
+  <section data-zone class="store" id="magaza">
     <div class="wrap">
       <header class="sec-head sec-head--split">
         <div>
@@ -403,7 +411,7 @@
       <div class="builder" data-builder>
         <div class="builder__card" aria-hidden="true">
           <div class="bc">
-            <div class="bc__banner"><img src="assets/img/kapak/kapak2.webp" alt="" loading="lazy"><div class="bc__fx"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+            <div class="bc__banner"><img src="assets/img/banner/bahce.webp" width="1200" height="480" alt="" loading="lazy"><div class="bc__fx"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
             <img class="bc__pet" src="assets/img/pet/tekir.webp" data-anim="assets/img/pet/tekir-anim.webp" alt="" loading="lazy" width="301" height="106">
             <div class="bc__body">
               <span class="ava ava--lg"><img src="assets/img/oyuncu/kira.webp" alt="" loading="lazy"><img class="ava__deco bc__deco" src="assets/img/sus/night-wings.webp" alt="" loading="lazy"></span>
@@ -413,10 +421,10 @@
           </div>
         </div>
         <ol class="builder__list">
-          <li data-step="0"><span class="bl__thumb"><img src="assets/img/sus/night-wings.webp" alt="" loading="lazy"></span><span><small>Avatar süsü</small><b>Gece Kanatları</b></span><svg class="bl__ok"><use href="#i-check"/></svg></li>
-          <li data-step="1"><span class="bl__thumb bl__thumb--title"><span class="title t-rainbow">Efsane</span></span><span><small>Ünvan</small><b>Yaşayan Efsane</b></span><svg class="bl__ok"><use href="#i-check"/></svg></li>
-          <li data-step="2"><span class="bl__thumb"><img src="assets/img/pet/tekir.webp" alt="" loading="lazy"></span><span><small>Pet</small><b>Uykucu Tekir</b></span><svg class="bl__ok"><use href="#i-check"/></svg></li>
-          <li data-step="3"><span class="bl__thumb bl__thumb--fx"><i></i><i></i><i></i></span><span><small>Banner efekti</small><b>Altın Toz</b></span><svg class="bl__ok"><use href="#i-check"/></svg></li>
+          <li><button class="bl" type="button" data-step="0" aria-pressed="false"><span class="bl__thumb"><img src="assets/img/sus/night-wings.webp" alt="" loading="lazy"></span><span><small>Avatar süsü</small><b>Gece Kanatları</b></span><svg class="bl__ok"><use href="#i-check"/></svg></button></li>
+          <li><button class="bl" type="button" data-step="1" aria-pressed="false"><span class="bl__thumb bl__thumb--title"><span class="title t-rainbow">Efsane</span></span><span><small>Ünvan</small><b>Yaşayan Efsane</b></span><svg class="bl__ok"><use href="#i-check"/></svg></button></li>
+          <li><button class="bl" type="button" data-step="2" aria-pressed="false"><span class="bl__thumb"><img src="assets/img/pet/tekir.webp" alt="" loading="lazy"></span><span><small>Pet</small><b>Uykucu Tekir</b></span><svg class="bl__ok"><use href="#i-check"/></svg></button></li>
+          <li><button class="bl" type="button" data-step="3" aria-pressed="false"><span class="bl__thumb bl__thumb--fx"><i></i><i></i><i></i></span><span><small>Banner efekti</small><b>Altın Toz</b></span><svg class="bl__ok"><use href="#i-check"/></svg></button></li>
         </ol>
       </div>
     </div>
@@ -426,12 +434,12 @@
       <div class="marquee__track">
         <figure class="deco"><span class="ava ava--xl"><img src="assets/img/oyuncu/deniz.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/gold-crown.webp" alt="" loading="lazy"></span><figcaption>Altın Taç<small>Taht ve Taç</small></figcaption></figure>
         <figure class="deco"><span class="ava ava--xl"><img src="assets/img/oyuncu/kira.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/rune-ring.webp" alt="" loading="lazy"></span><figcaption>Rün Çemberi<small>Taşların Fısıltısı</small></figcaption></figure>
-        <figure class="deco"><span class="ava ava--xl"><img src="assets/img/oyuncu/erkek2.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/flame-sword.webp" alt="" loading="lazy"></span><figcaption>Alev Kılıcı<small>Kordan Dövülmüş</small></figcaption></figure>
+        <figure class="deco"><span class="ava ava--xl"><img src="assets/img/oyuncu/emre.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/flame-sword.webp" alt="" loading="lazy"></span><figcaption>Alev Kılıcı<small>Kordan Dövülmüş</small></figcaption></figure>
         <figure class="deco"><span class="ava ava--xl"><img src="assets/img/oyuncu/zeynep.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/sleepy-cat.webp" alt="" loading="lazy"></span><figcaption>Uykucu Kedi<small>Mırıltılı Rüyalar</small></figcaption></figure>
         <figure class="deco"><span class="ava ava--xl"><img src="assets/img/oyuncu/deniz.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/wolf-hood.webp" alt="" loading="lazy"></span><figcaption>Bozkurt Başlığı<small>Aya Uluyan</small></figcaption></figure>
         <figure class="deco"><span class="ava ava--xl"><img src="assets/img/oyuncu/kira.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/grimoire.webp" alt="" loading="lazy"></span><figcaption>Kadim Büyü Kitabı<small>Yasak Sayfalar</small></figcaption></figure>
         <figure class="deco"><span class="ava ava--xl"><img src="assets/img/oyuncu/zeynep.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/frost-tiara.webp" alt="" loading="lazy"></span><figcaption>Buz Tacı<small>Ayaz Sarayı</small></figcaption></figure>
-        <figure class="deco"><span class="ava ava--xl"><img src="assets/img/oyuncu/erkek2.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/phoenix-plume.webp" alt="" loading="lazy"></span><figcaption>Anka Tüyü<small>Küllerden Doğan</small></figcaption></figure>
+        <figure class="deco"><span class="ava ava--xl"><img src="assets/img/oyuncu/emre.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/phoenix-plume.webp" alt="" loading="lazy"></span><figcaption>Anka Tüyü<small>Küllerden Doğan</small></figcaption></figure>
         <figure class="deco"><span class="ava ava--xl"><img src="assets/img/oyuncu/deniz.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/treasure-dragon.webp" alt="" loading="lazy"></span><figcaption>Hazine Ejderi<small>Hazine Bekçileri</small></figcaption></figure>
         <figure class="deco"><span class="ava ava--xl"><img src="assets/img/oyuncu/kira.webp" alt="" loading="lazy"><img class="ava__deco" src="assets/img/sus/moon-rose.webp" alt="" loading="lazy"></span><figcaption>Ay Gülü<small>Ay Işığında Güller</small></figcaption></figure>
       </div>
@@ -547,7 +555,7 @@
   </section>
 
   <!-- ============ SON ÇAĞRI ============ -->
-  <section class="final" id="katil">
+  <section data-zone class="final" id="katil">
     <div class="final__glow" aria-hidden="true"></div>
     <div class="wrap final__in">
       <p class="label" data-reveal><span>07</span>Kapalı test</p>
