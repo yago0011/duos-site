@@ -35,7 +35,8 @@ Uygulamanın özellikleri (sitede anlatılacak olanlar):
 - **Eşleşme ve sohbet:** karşılıklı beğenide "Eşleştiniz" ekranı, hazır ilk mesaj önerileri, anlık sohbet, yazıyor göstergesi.
 - **Hazırım modu:** şimdi oynamak isteyenleri öne çıkarır.
 - **Güvenlik:** topluluk sözü, küfür ve kişisel bilgi filtresi, fotoğraf denetimi (yapay zeka), şikâyet ve engelleme,
-  davranış puanı, yorumlar (birlikte oynadığın oyuncuyu değerlendirme). Yaş hiçbir yerde gösterilmez.
+  davranış puanı, yorumlar (birlikte oynadığın oyuncuyu değerlendirme). Yaş: uygulamada varsayılan olarak
+  görünür, kullanıcı Ayarlar'dan gizleyebilir (`show_age`); Discord'da yaş hiç paylaşılmaz, isteğe bağlı yalnızca 18+ rolü var.
 - **Seri:** her gün girişte artan günlük seri, Duolingo tarzı kutlama.
 - **Görünüm ve mağaza:** hareketli avatar süsleri, profil çerçeveleri, banner efektleri (koleksiyonlar: Yasak Sayfalar,
   Mırıltılı Rüyalar, Taşların Fısıltısı, Bozkurt setleri vb.), animasyonlu ünvanlar (Yaşayan Efsane, Clutch Kralı...),
