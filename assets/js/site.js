@@ -85,7 +85,7 @@
     const go = () => {
       if (done) return; done = true;
       evs.forEach(e => removeEventListener(e, go));
-      const s = d.createElement('script'); s.src = 'assets/js/evren.js'; s.async = true; d.body.appendChild(s);
+      const s = d.createElement('script'); s.src = 'assets/js/evren.js?v=20260928b'; s.async = true; d.body.appendChild(s);
     };
     evs.forEach(e => addEventListener(e, go, { passive: true, once: true }));
     setTimeout(go, 6000);
