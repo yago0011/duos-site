@@ -87,14 +87,8 @@
   // Menü, bağlantılar, SSS (hareket azaltılmış olsa da çalışır)
   function basics(lenis) {
     const nav = $('#nav');
-    let lastY = 0;
-    const onScroll = () => {
-      const y = scrollY;
-      nav.classList.toggle('is-solid', y > 24);
-      nav.classList.toggle('is-hidden', y > 500 && y > lastY + 2 && !root.classList.contains('menu-open'));
-      if (y < lastY - 2) nav.classList.remove('is-hidden');
-      lastY = y;
-    };
+    // Menü hep yerinde kalır; kaydırınca yalnızca cam zemin açılır
+    const onScroll = () => nav.classList.toggle('is-solid', scrollY > 24);
     addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
     const burger = $('.nav__burger');
