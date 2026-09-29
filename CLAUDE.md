@@ -1,4 +1,4 @@
-# DUOS tanıtım sitesi
+# Coopy tanıtım sitesi
 
 GitHub Pages: https://yago0011.github.io/duos-site/ (main dalı, kök klasör; derleme adımı yok, düz HTML/CSS/JS).
 Uygulamanın kendisi ayrı depoda: `yago0011/yago` (Expo / React Native). Uygulama hakkında ayrıntı gerekirse o deponun
@@ -24,10 +24,12 @@ Uygulamanın kendisi ayrı depoda: `yago0011/yago` (Expo / React Native). Uygula
   hazır İngilizce komut (prompt), en-boy oranı ve nereye konacağını yaz. API anahtarı yok, sen doğrudan üretemezsin.
   Gelen görselleri WebP'ye çevir, boyutlandır (hero ≤ 250 KB, diğerleri ≤ 120 KB), `assets/` altına koy.
 
-## DUOS nedir
+## Coopy nedir
 
 Oyuncuların takım arkadaşı (duo) bulduğu mobil uygulama. Tinder mantığında kart kaydırma, ama flört değil oyun odaklı.
-Hedef kitle Türkiye'deki oyuncular, Android öncelikli. Logo "İkili D" (iki parçalı D harfi); logoya dokunma.
+Hedef kitle Türkiye'deki oyuncular, Android öncelikli. Uygulamanın eski adı DUOS idi (Eylül 2026 sonunda Coopy oldu; site adresi `duos-site` olarak kaldı). Logo:
+"oo" harfleri yan yana iki göz halkası (mor ve pembe), göz bebekleri sağ üste bakar; kaynak uygulama deposunda
+`scripts/brand/coopy.py`. Logoya dokunma.
 
 Uygulamanın özellikleri (sitede anlatılacak olanlar):
 - **Keşfet:** oyuncu kartları; favori oyun, rütbe, oyun tarzı (rekabetçi / eğlencesine), ülke, Discord / oyun içi sesli,
@@ -42,8 +44,8 @@ Uygulamanın özellikleri (sitede anlatılacak olanlar):
   Mırıltılı Rüyalar, Taşların Fısıltısı, Bozkurt setleri vb.), animasyonlu ünvanlar (Yaşayan Efsane, Clutch Kralı...),
   bannerın kenarına oturan petler (Uykucu Tekir, Bozkurt Yavrusu).
 - **Kasalar:** CS2 gibi kayan şeritle açılan kasalar; anahtar günlük görevlerle kazanılır; tekrar çıkan eşya Kasa Puanı'na döner.
-- **Duos+:** üyelik; seni beğenenleri ve profiline bakanları görme, sınırsız kaydırma, özel temalar, süslerde indirim.
-- **Discord:** DUOS Discord sunucusu, hesap bağlama, oyun rolleri, `/duo` komutu.
+- **Coopy+:** üyelik; seni beğenenleri ve profiline bakanları görme, sınırsız kaydırma, özel temalar, süslerde indirim.
+- **Discord:** Coopy Discord sunucusu, hesap bağlama, oyun rolleri, `/duo` komutu.
 - Hesap silme, gizlilik ve kullanım şartları sayfaları sitede var (Google Play için gerekli; adresleri değiştirme).
 
 Renkler (uygulamanın Aurora teması): koyu mor-lacivert zemin, mor #8B5CF6 → pembe #EC4899 geçişi, camgöbeği vurgu #5AF0FF.
@@ -53,7 +55,7 @@ gerekirse betiklerle yeniden çekilir ya da kullanıcı yükler.
 
 ## Sayfalar
 
-- `index.html`: ana tanıtım sayfası (hero, üç adımda eşleşme, özellikler, güvenlik, Duos+, SSS, kayıt çağrısı).
+- `index.html`: ana tanıtım sayfası (hero, üç adımda eşleşme, özellikler, güvenlik, Coopy+, SSS, kayıt çağrısı).
 - `gizlilik.html`, `kullanim-sartlari.html`, `hesap-silme.html`: yasal sayfalar; içerik korunmalı, yalnızca görünüm yenilenebilir.
 
 ## Yapı (Eylül 2026 yenilemesi, "Aurora Noir")

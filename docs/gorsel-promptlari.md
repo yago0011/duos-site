@@ -16,7 +16,7 @@ sinematik, premium, temiz, yazısız.
 | 5 | `adim-oyna.webp` | 1:1 | "Oyna" adımı |
 | 6 | `guvenlik.webp` | 4:3 | Güvenli topluluk bölümü |
 | 7 | `kasa.webp` | 1:1 | Mağaza ve kasa bölümü |
-| 8 | `duos-plus.webp` | 4:3 | Duos+ bölümü |
+| 8 | `duos-plus.webp` | 4:3 | Coopy+ bölümü |
 | 9 | `cta-bg.webp` | 21:9 | En alttaki "İlk kullanıcılardan biri olun" bölümü |
 | 10 | `og-image.webp` | 1200x630 (≈1.91:1) | Paylaşım önizlemesi (WhatsApp, Discord, X) |
 | 11 | `doku-grain.webp` | 1:1 | Arka plan grain dokusu (isteğe bağlı) |

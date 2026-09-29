@@ -1,4 +1,4 @@
-/* DUOS tanıtım sitesi · Aurora Noir
+/* Coopy tanıtım sitesi · Aurora Noir
    Yazı: Archivo (başlık, geniş kesim), Geist (metin), Geist Mono (etiket, sayı). Hepsi Türkçe alt kümeye indirildi. */
 
 @font-face { font-family: "Archivo"; src: url("../fonts/archivo.woff2") format("woff2"); font-weight: 500 800; font-stretch: 108% 125%; font-display: swap; }
@@ -535,7 +535,7 @@ svg:not([viewBox]) { width: 1em; height: 1em; fill: none; stroke: currentColor; 
 .spec h3 { font: 600 20px/1.3 var(--f-b); letter-spacing: -.015em; }
 .spec p { grid-column: 3; color: var(--ink-2); max-width: 52ch; }
 
-/* ---------- Duos+ ---------- */
+/* ---------- Coopy+ ---------- */
 .plus { padding: clamp(80px, 10vw, 140px) 0; }
 .plus__in { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 100px); align-items: center; }
 .plus__copy { display: grid; gap: 24px; justify-items: start; }

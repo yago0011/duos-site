@@ -5,24 +5,24 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-6OJU37ilB/YJnDutRTLO65r6D01eS1f2QnTBdzjHd3I='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>DUOS · Oyuncular için takım arkadaşı bulma uygulaması</title>
-<meta name="description" content="DUOS, oyuncuları ortak oyunlara, oyun tarzına ve iletişim tercihine göre uyumlu takım arkadaşlarıyla buluşturan mobil uygulamadır.">
+<title>Coopy · Oyuncular için takım arkadaşı bulma uygulaması</title>
+<meta name="description" content="Coopy, oyuncuları ortak oyunlara, oyun tarzına ve iletişim tercihine göre uyumlu takım arkadaşlarıyla buluşturan mobil uygulamadır.">
 <meta name="theme-color" content="#07060B">
 <meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="tr_TR">
-<meta property="og:site_name" content="DUOS">
-<meta property="og:title" content="DUOS · Doğru takım arkadaşı, tek kaydırma uzakta">
+<meta property="og:site_name" content="Coopy">
+<meta property="og:title" content="Coopy · Doğru takım arkadaşı, tek kaydırma uzakta">
 <meta property="og:description" content="Ortak oyunlara, oyun tarzına ve iletişim tercihine göre eşleşin. Karşılıklı beğeniyle sohbet açılır, oyun birlikte devam eder.">
 <meta property="og:url" content="https://yago0011.github.io/duos-site/">
 <meta property="og:image" content="https://yago0011.github.io/duos-site/assets/img/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="DUOS: Doğru takım arkadaşı, tek kaydırma uzakta.">
+<meta property="og:image:alt" content="Coopy: Doğru takım arkadaşı, tek kaydırma uzakta.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://yago0011.github.io/duos-site/assets/img/og.jpg">
 <link rel="canonical" href="https://yago0011.github.io/duos-site/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Crect width='1024' height='1024' rx='280' fill='%2314102A'/%3E%3Crect x='238' y='232' width='176' height='560' rx='44' fill='%238B5CF6'/%3E%3Cpath fill-rule='evenodd' fill='%23EC4899' d='M462 232 H540 C707 232 824 350 824 512 C824 674 707 792 540 792 H462 Z M462 400 H536 C604 400 652 448 652 512 C652 576 604 624 536 624 H462 Z'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Crect width='1024' height='1024' rx='280' fill='%2314102A'/%3E%3Cg transform='translate(512 512) scale(0.86) translate(-512 -512)'%3E%3Cpath fill='%23EC4899' d='M525,512 a206,206 0 1,0 412,0 a206,206 0 1,0 -412,0 Z M619,512 a112,112 0 1,1 224,0 a112,112 0 1,1 -224,0 Z'/%3E%3Cpath fill='%238B5CF6' d='M87,512 a206,206 0 1,0 412,0 a206,206 0 1,0 -412,0 Z M181,512 a112,112 0 1,1 224,0 a112,112 0 1,1 -224,0 Z'/%3E%3Ccircle cx='329' cy='482' r='54' fill='%23fff'/%3E%3Ccircle cx='767' cy='482' r='54' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css?v=20260928c">
@@ -43,12 +43,12 @@
 <!-- Simgeler (tek yerde; <use> ile çağrılır) -->
 <svg class="sprite" aria-hidden="true" focusable="false">
   <defs>
-    <linearGradient id="g-bar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A78BFA"/><stop offset="1" stop-color="#6D28D9"/></linearGradient>
-    <linearGradient id="g-bowl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F472B6"/><stop offset="1" stop-color="#BE185D"/></linearGradient>
+    <linearGradient id="g-bar" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#B69CFF"/><stop offset="1" stop-color="#7C3AED"/></linearGradient>
+    <linearGradient id="g-bowl" x1="0.6" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8FC8"/><stop offset="1" stop-color="#DB2777"/></linearGradient>
     <linearGradient id="g-brand" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8B5CF6"/><stop offset="1" stop-color="#EC4899"/></linearGradient>
     <linearGradient id="g-flame" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#FF5A1F"/><stop offset=".6" stop-color="#FF9A3C"/><stop offset="1" stop-color="#FFD66B"/></linearGradient>
   </defs>
-  <symbol id="logo" viewBox="0 0 1024 1024"><rect x="238" y="232" width="176" height="560" rx="44" fill="url(#g-bar)"/><path fill-rule="evenodd" fill="url(#g-bowl)" d="M462 232 H540 C707 232 824 350 824 512 C824 674 707 792 540 792 H462 Z M462 400 H536 C604 400 652 448 652 512 C652 576 604 624 536 624 H462 Z"/></symbol>
+  <symbol id="logo" viewBox="0 0 1024 1024"><path fill="url(#g-bowl)" d="M525,512 a206,206 0 1,0 412,0 a206,206 0 1,0 -412,0 Z M619,512 a112,112 0 1,1 224,0 a112,112 0 1,1 -224,0 Z"/><path fill="url(#g-bar)" d="M87,512 a206,206 0 1,0 412,0 a206,206 0 1,0 -412,0 Z M181,512 a112,112 0 1,1 224,0 a112,112 0 1,1 -224,0 Z"/><circle cx="329" cy="482" r="54" fill="#fff"/><circle cx="767" cy="482" r="54" fill="#fff"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
@@ -99,9 +99,9 @@
 
 <header class="nav" id="nav">
   <div class="nav__in">
-    <a class="brand" href="#top" aria-label="DUOS ana sayfa">
+    <a class="brand" href="#top" aria-label="Coopy ana sayfa">
       <svg class="brand__mark" viewBox="0 0 1024 1024" aria-hidden="true"><use href="#logo"/></svg>
-      <span class="brand__word">duos</span>
+      <span class="brand__word">coopy</span>
     </a>
     <nav class="nav__links" aria-label="Bölümler">
       <a href="#nasil">Nasıl çalışır</a>
@@ -140,7 +140,7 @@
         <h1 class="display hero__title">
           <span class="w" style="--i:0"><span>Doğru</span></span> <span class="w" style="--i:1"><span>takım</span></span> <span class="w" style="--i:2"><span>arkadaşı,</span></span> <span class="w" style="--i:3" aria-hidden="true"><span class="hero__pill"><img src="assets/img/oyuncu/deniz.webp" alt="" width="44" height="44"><img src="assets/img/oyuncu/zeynep.webp" alt="" width="44" height="44"><b>%87</b></span></span> <span class="w" style="--i:4"><span>tek</span></span> <span class="w w--swipe" style="--i:5"><span>kaydırma</span><svg class="swipe-line" viewBox="0 0 300 24" aria-hidden="true"><path pathLength="1" d="M6 17 C 80 5, 180 4, 284 11" /><path pathLength="1" d="M272 3 L 286 11 L 272 19" /></svg></span> <span class="w" style="--i:6"><span>uzakta.</span></span>
         </h1>
-        <p class="lead" data-intro="soft" style="--d:.25s">DUOS, oyuncuları ortak oyunlara, oyun tarzına ve iletişim tercihine göre eşleştirir. Karşılıklı beğeniyle sohbet açılır, oyun birlikte devam eder.</p>
+        <p class="lead" data-intro="soft" style="--d:.25s">Coopy, oyuncuları ortak oyunlara, oyun tarzına ve iletişim tercihine göre eşleştirir. Karşılıklı beğeniyle sohbet açılır, oyun birlikte devam eder.</p>
         <div class="hero__ctas" data-intro style="--d:.4s">
           <a class="btn btn--light" href="#katil" data-magnetic><span>Kapalı teste katıl</span><svg><use href="#i-arrow"/></svg></a>
           <a class="link-arrow" href="#nasil">Nasıl çalışır <svg><use href="#i-arrow"/></svg></a>
@@ -152,7 +152,7 @@
         </dl>
       </div>
 
-      <figure class="stage" role="img" aria-label="DUOS uygulamasının Keşfet ekranı: oyuncu kartları kaydırılıyor">
+      <figure class="stage" role="img" aria-label="Coopy uygulamasının Keşfet ekranı: oyuncu kartları kaydırılıyor">
         <div class="stage__tilt" aria-hidden="true">
           <div class="hud hud--a" data-depth="1.4"><small>Uyum</small><b>%87</b><span>3 ortak nokta</span></div>
           <div class="hud hud--b" data-depth="2"><small>Hazırım</small><b><i class="live live--green"></i>Şimdi oynamak istiyor</b></div>
@@ -164,7 +164,7 @@
               <div class="phone__screen">
                 <div class="app-status"><span>21:04</span><span class="app-status__ic"><i></i><i></i><i></i></span></div>
                 <div class="app-bar">
-                  <span class="app-bar__brand"><svg viewBox="0 0 1024 1024"><use href="#logo"/></svg>duos</span>
+                  <span class="app-bar__brand"><svg viewBox="0 0 1024 1024"><use href="#logo"/></svg>coopy</span>
                   <span class="app-chip app-chip--fire"><svg><use href="#i-flame"/></svg>12</span>
                   <span class="app-chip"><svg><use href="#i-zap"/></svg>20</span>
                 </div>
@@ -243,7 +243,7 @@
 
                 <!-- 1: Keşfet -->
                 <div class="scr scr--deck">
-                  <div class="app-bar"><span class="app-bar__brand"><svg viewBox="0 0 1024 1024"><use href="#logo"/></svg>duos</span><span class="app-chip app-chip--fire"><svg><use href="#i-flame"/></svg>12</span></div>
+                  <div class="app-bar"><span class="app-bar__brand"><svg viewBox="0 0 1024 1024"><use href="#logo"/></svg>coopy</span><span class="app-chip app-chip--fire"><svg><use href="#i-flame"/></svg>12</span></div>
                   <div class="deck deck--story">
                     <article class="pc pc--back"><div class="pc__banner"><img src="assets/img/banner/sehir.webp" alt="" loading="lazy"></div></article>
                     <article class="pc pc--story">
@@ -381,7 +381,7 @@
             <div class="discord__post">
               <span class="ava ava--xs ava--brand"><svg viewBox="0 0 1024 1024"><use href="#logo"/></svg></span>
               <div>
-                <p class="discord__who"><b>DUOS</b><em>BOT</em><small>bugün 20:41</small></p>
+                <p class="discord__who"><b>Coopy</b><em>BOT</em><small>bugün 20:41</small></p>
                 <p class="discord__txt"><span class="mention">@deniz</span> takım arkadaşı arıyor</p>
                 <div class="embed">
                   <b><svg><use href="#i-pad"/></svg>Valorant</b>
@@ -392,7 +392,7 @@
             </div>
             <div class="discord__input"><span class="discord__cmd" data-type="/duo oyun: Valorant rütbe: Elmas 2">/duo oyun: Valorant rütbe: Elmas 2</span><i class="caret"></i></div>
           </div>
-          <div class="tile__txt"><h3>Discord ile bağlı</h3><p>Hesabınızı DUOS Discord sunucusuna bağlayın, oyun rollerinizi alın. Sunucuda <code>/duo</code> komutuyla takım arkadaşı ilanı verin.</p></div>
+          <div class="tile__txt"><h3>Discord ile bağlı</h3><p>Hesabınızı Coopy Discord sunucusuna bağlayın, oyun rollerinizi alın. Sunucuda <code>/duo</code> komutuyla takım arkadaşı ilanı verin.</p></div>
         </article>
       </div>
     </div>
@@ -406,7 +406,7 @@
           <p class="label" data-reveal><span>03</span>Mağaza ve kasalar</p>
           <h2 class="display h2" data-split>Profiliniz, sizin imzanız.</h2>
         </div>
-        <p class="sec-head__p" data-reveal>Hareketli avatar süsleri, profil çerçeveleri, banner efektleri, animasyonlu ünvanlar ve bannerınızın kenarına oturan petler. Hepsi DUOS için elle çizildi.</p>
+        <p class="sec-head__p" data-reveal>Hareketli avatar süsleri, profil çerçeveleri, banner efektleri, animasyonlu ünvanlar ve bannerınızın kenarına oturan petler. Hepsi Coopy için elle çizildi.</p>
       </header>
 
       <!-- Profil kurucu -->
@@ -458,7 +458,7 @@
         <span class="title title--lg t-mint"><svg><use href="#i-smile"/></svg>Herkesin Kankası</span>
         <span class="title title--lg t-gold"><svg><use href="#i-trophy"/></svg>Emektar</span>
         <span class="title title--lg t-silver"><svg><use href="#i-star"/></svg>Müdavim</span>
-        <span class="title title--lg t-royal"><svg><use href="#i-spark"/></svg>Duos+</span>
+        <span class="title title--lg t-royal"><svg><use href="#i-spark"/></svg>Coopy+</span>
         <span class="title title--lg t-fire"><svg><use href="#i-flame"/></svg>Ateş Bekçisi</span>
       </div>
     </div>
@@ -469,7 +469,7 @@
         <div class="crate__info">
           <p class="label"><span>03.1</span>Kasalar</p>
           <h3 class="display h3">Çırak Sandığı</h3>
-          <p>Anahtarlar günlük görevlerle kazanılır. Aynı eşya tekrar çıkarsa nadirliğine göre Kasa Puanı'na döner; puanlarla anahtar ya da Duos+ günleri alınır.</p>
+          <p>Anahtarlar günlük görevlerle kazanılır. Aynı eşya tekrar çıkarsa nadirliğine göre Kasa Puanı'na döner; puanlarla anahtar ya da Coopy+ günleri alınır.</p>
           <ul class="rarity" aria-label="Çıkma oranları">
             <li style="--rc:#A7B0C0">Sıradan<em>%60</em></li>
             <li style="--rc:#4FA3FF">Nadir<em>%25</em></li>
@@ -492,10 +492,10 @@
       <div class="safety__head">
         <p class="label" data-reveal><span>04</span>Güvenlik</p>
         <h2 class="display h2" data-split>Saygılı bir topluluk, tasarımın parçası.</h2>
-        <p class="safety__note" data-reveal><b>DUOS bir tanışma uygulaması değildir.</b> Platform yalnızca oyun ve oyun arkadaşlığı içindir; 13 yaş ve üzeri kullanıcılar içindir.</p>
+        <p class="safety__note" data-reveal><b>Coopy bir tanışma uygulaması değildir.</b> Platform yalnızca oyun ve oyun arkadaşlığı içindir; 13 yaş ve üzeri kullanıcılar içindir.</p>
       </div>
       <ol class="spec">
-        <li data-reveal><span class="spec__n">01</span><svg><use href="#i-hand"/></svg><h3>DUOS Sözü</h3><p>Her oyuncu başlamadan önce üç söz verir: sınırlara saygı, küfürsüz iletişim ve topluluğu birlikte güzel tutmak.</p></li>
+        <li data-reveal><span class="spec__n">01</span><svg><use href="#i-hand"/></svg><h3>Coopy Sözü</h3><p>Her oyuncu başlamadan önce üç söz verir: sınırlara saygı, küfürsüz iletişim ve topluluğu birlikte güzel tutmak.</p></li>
         <li data-reveal><span class="spec__n">02</span><svg><use href="#i-ban"/></svg><h3>Küfür ve kişisel bilgi filtresi</h3><p>Harf değiştirilerek yazılanlar dahil hakaret içeren mesajlar gönderilmeden engellenir. Telefon numarası ve adres paylaşımı da engellenir.</p></li>
         <li data-reveal><span class="spec__n">03</span><svg><use href="#i-image"/></svg><h3>Fotoğraf denetimi</h3><p>Profil fotoğrafları ve banner görselleri yapay zekâ ile otomatik olarak incelenir.</p></li>
         <li data-reveal><span class="spec__n">04</span><svg><use href="#i-flag"/></svg><h3>Şikâyet ve engelleme</h3><p>Tek dokunuşla şikâyet edebilir ya da engelleyebilirsiniz. Şikâyetler moderasyon ekibince incelenir.</p></li>
@@ -505,7 +505,7 @@
     </div>
   </section>
 
-  <!-- ============ DUOS+ ============ -->
+  <!-- ============ Coopy+ ============ -->
   <section class="plus" id="plus">
     <div class="wrap plus__in">
       <div class="plus__stage" aria-hidden="true">
@@ -515,16 +515,16 @@
             <div class="holo__glare"></div>
             <div class="holo__content">
               <div class="holo__top"><svg viewBox="0 0 1024 1024"><use href="#logo"/></svg><span>Üyelik</span></div>
-              <p class="holo__name">duos<b>+</b></p>
+              <p class="holo__name">coopy<b>+</b></p>
               <div class="holo__bottom"><span>Sınırsız kaydırma</span><span>Özel temalar</span></div>
             </div>
           </div>
         </div>
       </div>
       <div class="plus__copy">
-        <p class="label" data-reveal><span>05</span>Duos+</p>
+        <p class="label" data-reveal><span>05</span>Coopy+</p>
         <h2 class="display h2" data-split>Daha fazlası, isteyene.</h2>
-        <p class="plus__lead" data-reveal>Temel özellikler ücretsizdir. Duos+ üyeliği ek ayrıcalıklar sunar; günlük seri, davet ödülleri ve Kasa Puanı ile ücretsiz olarak da kazanılabilir.</p>
+        <p class="plus__lead" data-reveal>Temel özellikler ücretsizdir. Coopy+ üyeliği ek ayrıcalıklar sunar; günlük seri, davet ödülleri ve Kasa Puanı ile ücretsiz olarak da kazanılabilir.</p>
         <ul class="perks">
           <li data-reveal><svg><use href="#i-heart"/></svg>Sizi beğenenleri görün</li>
           <li data-reveal><svg><use href="#i-eye"/></svg>Profilinize bakanları görün</li>
@@ -545,13 +545,13 @@
         <p data-reveal>Başka bir sorunuz varsa <a href="mailto:kayabasiyagiz@gmail.com">bize yazın</a>.</p>
       </div>
       <div class="faq__list">
-        <details class="qa" data-reveal><summary>DUOS ücretsiz mi?<i></i></summary><div class="qa__a"><p>Evet. Temel özellikler ücretsizdir; her gün 20 kaydırma hakkı tanımlanır ve gece yarısı yenilenir. Duos+ isteğe bağlıdır.</p></div></details>
+        <details class="qa" data-reveal><summary>Coopy ücretsiz mi?<i></i></summary><div class="qa__a"><p>Evet. Temel özellikler ücretsizdir; her gün 20 kaydırma hakkı tanımlanır ve gece yarısı yenilenir. Coopy+ isteğe bağlıdır.</p></div></details>
         <details class="qa" data-reveal><summary>Hangi oyunlar var?<i></i></summary><div class="qa__a"><p>Valorant, Counter-Strike 2, League of Legends, Fortnite, Minecraft, PUBG Mobile, Apex Legends, Rocket League ve daha fazlası. Oyun listesi düzenli olarak genişletilmektedir.</p></div></details>
         <details class="qa" data-reveal><summary>Eşleşmediğim biri bana yazabilir mi?<i></i></summary><div class="qa__a"><p>Hayır. Sohbet yalnızca karşılıklı beğeni sonrasında açılır. Eşleşmeler dilediğiniz zaman kaldırılabilir veya kullanıcı engellenebilir.</p></div></details>
         <details class="qa" data-reveal><summary>Uyum yüzdesi nasıl hesaplanıyor?<i></i></summary><div class="qa__a"><p>Ortak oyunlar, oyun tarzı (rekabetçi veya eğlencesine), iletişim tercihi ve ilgi alanları birlikte değerlendirilerek hesaplanır.</p></div></details>
         <details class="qa" data-reveal><summary>Yaşım diğer oyunculara görünür mü?<i></i></summary><div class="qa__a"><p>Yaşınız profilinizde varsayılan olarak görünür; dilerseniz Ayarlar'dan gizleyebilirsiniz. Doğum tarihiniz yalnızca sizde kalır. Discord hesabınızı bağlasanız bile yaşınız orada hiçbir zaman paylaşılmaz.</p></div></details>
-        <details class="qa" data-reveal><summary>Discord hesabımı bağlamak zorunda mıyım?<i></i></summary><div class="qa__a"><p>Hayır, isteğe bağlıdır. Bağlarsanız DUOS Discord sunucusunda oyun rollerinizi alabilir ve <code>/duo</code> komutunu kullanabilirsiniz.</p></div></details>
-        <details class="qa" data-reveal><summary>Hangi telefonlarda çalışıyor?<i></i></summary><div class="qa__a"><p>DUOS ilk olarak Android için Google Play'de yayınlanacaktır. iOS sürümü yol haritamızda yer almaktadır.</p></div></details>
+        <details class="qa" data-reveal><summary>Discord hesabımı bağlamak zorunda mıyım?<i></i></summary><div class="qa__a"><p>Hayır, isteğe bağlıdır. Bağlarsanız Coopy Discord sunucusunda oyun rollerinizi alabilir ve <code>/duo</code> komutunu kullanabilirsiniz.</p></div></details>
+        <details class="qa" data-reveal><summary>Hangi telefonlarda çalışıyor?<i></i></summary><div class="qa__a"><p>Coopy ilk olarak Android için Google Play'de yayınlanacaktır. iOS sürümü yol haritamızda yer almaktadır.</p></div></details>
         <details class="qa" data-reveal><summary>Hesabımı nasıl silerim?<i></i></summary><div class="qa__a"><p>Uygulama içinde Ayarlar &gt; Hesabı sil adımından ya da <a href="hesap-silme.html">bu sayfa</a> üzerinden talepte bulunabilirsiniz. Tüm verileriniz kalıcı olarak silinir.</p></div></details>
       </div>
     </div>
@@ -563,8 +563,8 @@
     <div class="wrap final__in">
       <p class="label" data-reveal><span>07</span>Kapalı test</p>
       <h2 class="display final__title" data-split>İlk oyuncular arasında yerinizi alın.</h2>
-      <p class="final__p" data-reveal>DUOS, Google Play yayını öncesinde kapalı test sürecinde. Katılmak için Google Play hesabınıza ait e-posta adresini bize iletin, davetinizi gönderelim.</p>
-      <a class="orb" href="mailto:kayabasiyagiz@gmail.com?subject=DUOS%20kapal%C4%B1%20test&amp;body=Merhaba%2C%20DUOS%20kapal%C4%B1%20testine%20kat%C4%B1lmak%20istiyorum.%20Google%20Play%20e-postam%3A%20" data-magnetic data-strength="0.5">
+      <p class="final__p" data-reveal>Coopy, Google Play yayını öncesinde kapalı test sürecinde. Katılmak için Google Play hesabınıza ait e-posta adresini bize iletin, davetinizi gönderelim.</p>
+      <a class="orb" href="mailto:kayabasiyagiz@gmail.com?subject=Coopy%20kapal%C4%B1%20test&amp;body=Merhaba%2C%20Coopy%20kapal%C4%B1%20testine%20kat%C4%B1lmak%20istiyorum.%20Google%20Play%20e-postam%3A%20" data-magnetic data-strength="0.5">
         <svg class="orb__ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="orbPath" d="M100,100 m-82,0 a82,82 0 1,1 164,0 a82,82 0 1,1 -164,0"/></defs><text><textPath href="#orbPath" textLength="512" lengthAdjust="spacing">KAPALI TEST · ANDROID · İLK OYUNCULAR · </textPath></text></svg>
         <span class="orb__core"><svg><use href="#i-mail"/></svg><b>Kapalı teste katıl</b></span>
       </a>
@@ -576,16 +576,16 @@
   <div class="wrap">
     <div class="foot__grid">
       <div class="foot__brand">
-        <a class="brand" href="#top" aria-label="DUOS ana sayfa"><svg class="brand__mark" viewBox="0 0 1024 1024" aria-hidden="true"><use href="#logo"/></svg><span class="brand__word">duos</span></a>
+        <a class="brand" href="#top" aria-label="Coopy ana sayfa"><svg class="brand__mark" viewBox="0 0 1024 1024" aria-hidden="true"><use href="#logo"/></svg><span class="brand__word">coopy</span></a>
         <p>Oyuncular için takım arkadaşı bulma uygulaması.</p>
       </div>
       <nav aria-label="Ürün"><p class="label">Ürün</p><a href="#nasil">Nasıl çalışır</a><a href="#ozellikler">Özellikler</a><a href="#magaza">Mağaza</a><a href="#guvenlik">Güvenlik</a></nav>
       <nav aria-label="Yasal"><p class="label">Yasal</p><a href="gizlilik.html">Gizlilik Politikası</a><a href="kullanim-sartlari.html">Kullanım Şartları</a><a href="hesap-silme.html">Hesabını sil</a></nav>
       <nav aria-label="İletişim"><p class="label">İletişim</p><a href="mailto:kayabasiyagiz@gmail.com">kayabasiyagiz@gmail.com</a></nav>
     </div>
-    <div class="foot__base"><span>© <span id="yr">2026</span> DUOS</span><span>Oyun adları ve logoları sahiplerinin ticari markalarıdır.</span></div>
+    <div class="foot__base"><span>© <span id="yr">2026</span> Coopy</span><span>Oyun adları ve logoları sahiplerinin ticari markalarıdır.</span></div>
   </div>
-  <p class="foot__word" aria-hidden="true">duos</p>
+  <p class="foot__word" aria-hidden="true">coopy</p>
 </footer>
 
 </body>

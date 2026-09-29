@@ -1,4 +1,4 @@
-/* DUOS tanıtım sitesi: hareket ve etkileşimler.
+/* Coopy tanıtım sitesi: hareket ve etkileşimler.
    Lenis (yumuşak kaydırma) + GSAP / ScrollTrigger / SplitText. "Hareketi azalt" açıksa animasyonlar atlanır,
    etkileşimler (menü, anahtar, kasa, SSS) çalışmaya devam eder. */
 (() => {
@@ -482,7 +482,7 @@
   }
 
   // ------------------------------------------------------------------------------------------
-  // Hareket azaltılmış olsa da çalışan etkileşimler: Hazırım, kasa, Duos+ kartı, manyetik düğmeler
+  // Hareket azaltılmış olsa da çalışan etkileşimler: Hazırım, kasa, Coopy+ kartı, manyetik düğmeler
   function interactions(gsap, lenis) {
     const sw = $('#readySwitch');
     if (sw) sw.addEventListener('click', () => setReady(sw.getAttribute('aria-checked') !== 'true'));
@@ -510,7 +510,7 @@
     });
   }
 
-  // Duos+ kartı: fareye göre eğilir, folyo ve parlama ışığı takip eder
+  // Coopy+ kartı: fareye göre eğilir, folyo ve parlama ışığı takip eder
   function holo(gsap) {
     const stage = $('.plus__stage');
     const card = $('.holo__card');
