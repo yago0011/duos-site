@@ -1,6 +1,6 @@
 # Coopy tanıtım sitesi
 
-GitHub Pages: https://yago0011.github.io/duos-site/ (main dalı, kök klasör; derleme adımı yok, düz HTML/CSS/JS).
+Adres: https://coopy.tr (alan adı Turhost'ta, DNS: 4 A kaydı GitHub Pages + www CNAME; GitHub Pages, main dalı, kök klasör; derleme adımı yok, düz HTML/CSS/JS).
 Uygulamanın kendisi ayrı depoda: `yago0011/yago` (Expo / React Native). Uygulama hakkında ayrıntı gerekirse o deponun
 `docs/PROJE_DURUMU.md` dosyasına bak.
 

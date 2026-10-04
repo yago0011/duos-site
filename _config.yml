@@ -1,0 +1,6 @@
+# GitHub Pages (Jekyll) ayarı: geliştirme notları ve kaynak dosyalar sitede yayınlanmasın.
+# Nokta ile başlayan klasörler (.claude, .mcp.json) Jekyll'da zaten yayınlanmaz.
+exclude:
+  - CLAUDE.md
+  - docs/
+  - README.md
