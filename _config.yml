@@ -4,3 +4,6 @@ exclude:
   - CLAUDE.md
   - docs/
   - README.md
+# Uygulamanın web sürümü (app/): Jekyll alt çizgiyle başlayan "_expo" klasörünü normalde atlar
+include:
+  - _expo
