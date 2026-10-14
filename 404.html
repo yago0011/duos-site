@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Coopy · Sayfa bulunamadı</title>
+<meta name="description" content="Aradığınız sayfa bulunamadı. Coopy ana sayfasından devam edebilirsiniz.">
+<meta name="theme-color" content="#07060B">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+<!-- GitHub Pages bu sayfayı her bulunamayan adreste gösterir: tüm adresler kökten (/) başlar -->
+<link rel="stylesheet" href="/style.css">
+<style>
+  main { min-height: 100vh; display: flex; flex-direction: column; }
+  .nf { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 8px 0 40px; }
+  .nf__eyes { width: min(220px, 52vw); height: auto; display: block; margin-bottom: 28px; overflow: visible; }
+  .nf__pupil { animation: look 5.2s cubic-bezier(.45, 0, .2, 1) infinite; }
+  @keyframes look {
+    0%, 12% { transform: translate(36px, -30px); }
+    20%, 34% { transform: translate(-52px, 6px); }
+    42%, 56% { transform: translate(52px, 6px); }
+    64%, 78% { transform: translate(-4px, 50px); }
+    88%, 100% { transform: translate(36px, -30px); }
+  }
+  .nf__code { margin: 0 0 6px; font: 500 12px/1 var(--f-m); letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3); }
+  .nf h1 { margin: 0 0 14px; }
+  .nf p { max-width: 440px; margin: 0 auto 28px; color: var(--ink-2); }
+  .nf__go { display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 24px; border-radius: 999px; background: var(--ink); color: var(--bg); font: 600 15px/1 var(--f-b); text-decoration: none; transition: transform .25s; }
+  .nf__go:hover { transform: translateY(-1px); }
+  .nf__go svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .nf__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; margin-top: 26px; font-size: 15px; }
+  @media (prefers-reduced-motion: reduce) { .nf__pupil { animation: none; transform: translate(36px, -30px); } }
+</style>
+</head>
+<body>
+<main>
+  <header><a class="brand" href="/" aria-label="Coopy ana sayfa"><svg viewBox="0 0 1024 1024" aria-hidden="true"><defs><linearGradient id="g-bar" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#B69CFF"/><stop offset="1" stop-color="#7C3AED"/></linearGradient><linearGradient id="g-bowl" x1="0.6" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8FC8"/><stop offset="1" stop-color="#DB2777"/></linearGradient></defs><path fill="url(#g-bowl)" d="M525,512 a206,206 0 1,0 412,0 a206,206 0 1,0 -412,0 Z M619,512 a112,112 0 1,1 224,0 a112,112 0 1,1 -224,0 Z"/><path fill="url(#g-bar)" d="M87,512 a206,206 0 1,0 412,0 a206,206 0 1,0 -412,0 Z M181,512 a112,112 0 1,1 224,0 a112,112 0 1,1 -224,0 Z"/><circle cx="329" cy="482" r="54" fill="#fff"/><circle cx="767" cy="482" r="54" fill="#fff"/></svg><span>coopy</span></a><a class="back" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Ana sayfa</a></header>
+
+  <section class="nf">
+    <!-- Logodaki iki göz sayfayı arıyor -->
+    <svg class="nf__eyes" viewBox="60 280 904 464" aria-hidden="true">
+      <path fill="url(#g-bowl)" d="M525,512 a206,206 0 1,0 412,0 a206,206 0 1,0 -412,0 Z M619,512 a112,112 0 1,1 224,0 a112,112 0 1,1 -224,0 Z"/>
+      <path fill="url(#g-bar)" d="M87,512 a206,206 0 1,0 412,0 a206,206 0 1,0 -412,0 Z M181,512 a112,112 0 1,1 224,0 a112,112 0 1,1 -224,0 Z"/>
+      <g class="nf__pupil"><circle cx="293" cy="512" r="54" fill="#fff"/><circle cx="731" cy="512" r="54" fill="#fff"/></g>
+    </svg>
+    <p class="nf__code">Hata 404</p>
+    <h1>Bu sayfa bulunamadı</h1>
+    <p>Aradığınız sayfa taşınmış ya da hiç var olmamış olabilir. Ana sayfadan devam edebilirsiniz.</p>
+    <a class="nf__go" href="/">Ana sayfaya dön<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <nav class="nf__links" aria-label="Bağlantılar">
+      <a href="/#nasil">Nasıl çalışır</a>
+      <a href="/#sss">Sık sorulanlar</a>
+      <a href="mailto:kayabasiyagiz@gmail.com">Bize yazın</a>
+    </nav>
+  </section>
+
+  <footer><a href="/gizlilik.html">Gizlilik Politikası</a> · <a href="/kullanim-sartlari.html">Kullanım Şartları</a> · <a href="/hesap-silme.html">Hesabını sil</a></footer>
+</main>
+</body>
+</html>

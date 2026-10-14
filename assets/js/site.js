@@ -179,19 +179,46 @@
   // ------------------------------------------------------------------------------------------
   // Keşfet destesi: kendi kendine kayar, sürüklenebilir
   const PLAYERS = [
-    { n: 'Deniz', img: 'deniz', ban: 'arena', deco: 'gold-crown-anim', fit: 87, lfg: 'Valorant', t: ['t-fire', 'i-zap', 'Clutch Kralı'], meta: ['Türkiye', 'Discord', 'Rekabetçi'], r: '4,9', bio: 'Akşamları dereceli oynuyorum. Sakin iletişim, net bilgi.', common: ['İkinizin de favorisi Valorant', '2 ortak oyun', 'İkiniz de Discord'], g: ['VA', 'Valorant', 'FPS', '#E4474D'] },
-    { n: 'Kira', img: 'kira', ban: 'sehir', deco: 'night-wings', fit: 81, t: ['t-neon', 'i-moon', 'Gece Kuşu'], meta: ['Türkiye', 'Oyun içi sesli', 'Eğlencesine'], r: '4,8', bio: 'Gece yarısından sonra normal ve ARAM. Önce eğlence gelir.', common: ['3 ortak ilgi alanı', 'İkiniz de eğlencesine'], g: ['LoL', 'League of Legends', 'MOBA', '#2E7BC4'] },
-    { n: 'Emre', img: 'emre', ban: 'oda', deco: 'phoenix-plume', fit: 74, lfg: 'CS2', t: ['t-glitch', 'i-rocket', 'Carry Makinesi'], meta: ['Türkiye', 'Discord', 'Rekabetçi'], r: '4,7', bio: 'Premier oynuyorum, giriş rolündeyim. Takım oyununu bilirim.', common: ['2 ortak oyun', 'İkiniz de rekabetçi'], g: ['CS', 'Counter-Strike 2', 'FPS', '#D9912B'] },
-    { n: 'Zeynep', img: 'zeynep', ban: 'aurora', deco: 'fairy-wing', fit: 78, t: ['t-rainbow', 'i-star', 'Yaşayan Efsane'], meta: ['Almanya', 'Discord', 'Rekabetçi'], r: '5,0', bio: 'Hafta sonu turnuva provası yapıyoruz. İletişimi iyi bir duo arıyorum.', common: ['1 ortak oyun', 'İkiniz de Discord'], g: ['FN', 'Fortnite', 'Battle Royale', '#7B55D6'] },
+    { n: 'Deniz', img: 'deniz', ban: 'arena', deco: 'gold-crown-anim', fit: 87, lfg: 'Valorant', t: 'clutch', meta: ['Türkiye', 'Discord', 'Rekabetçi'], r: '4,9', bio: 'Akşamları dereceli oynuyorum. Sakin iletişim, net bilgi.', common: ['İkinizin de favorisi Valorant', '2 ortak oyun', 'İkiniz de Discord'], g: ['VA', 'Valorant', 'FPS', '#E4474D'] },
+    { n: 'Kira', img: 'kira', ban: 'sehir', deco: 'night-wings', fit: 81, t: 'gecekusu', meta: ['Türkiye', 'Oyun içi sesli', 'Eğlencesine'], r: '4,8', bio: 'Gece yarısından sonra normal ve ARAM. Önce eğlence gelir.', common: ['3 ortak ilgi alanı', 'İkiniz de eğlencesine'], g: ['LoL', 'League of Legends', 'MOBA', '#2E7BC4'] },
+    { n: 'Emre', img: 'emre', ban: 'oda', deco: 'phoenix-plume', fit: 74, lfg: 'CS2', t: 'carry', meta: ['Türkiye', 'Discord', 'Rekabetçi'], r: '4,7', bio: 'Premier oynuyorum, giriş rolündeyim. Takım oyununu bilirim.', common: ['2 ortak oyun', 'İkiniz de rekabetçi'], g: ['CS', 'Counter-Strike 2', 'FPS', '#D9912B'] },
+    { n: 'Zeynep', img: 'zeynep', ban: 'aurora', deco: 'fairy-wing', fit: 78, t: 'efsane', meta: ['Almanya', 'Discord', 'Rekabetçi'], r: '5,0', bio: 'Hafta sonu turnuva provası yapıyoruz. İletişimi iyi bir duo arıyorum.', common: ['1 ortak oyun', 'İkiniz de Discord'], g: ['FN', 'Fortnite', 'Battle Royale', '#7B55D6'] },
   ];
   const ic = id => `<svg><use href="#${id}"/></svg>`;
+  // Ünvanlar: uygulamadaki src/data/titles.ts ile aynı renk, simge ve seviye.
+  // [ad, renk, renk2, simge, seviye (base | glint | run | legend), nadirlik, yaldızlı yazı, açık ton]
+  const TITLES = {
+    efsane: ['Yaşayan Efsane', '#FFD36B', '#B07418', 'sparkles', 'legend', 'legendary', 'foil', null],
+    ejder: ['Ejderha', '#FF7A3D', '#C0161B', 'dragon', 'legend', 'legendary', 'ember', null],
+    anka: ['Anka', '#FFB347', '#E0303A', 'feather', 'legend', 'legendary', 'ember', null],
+    golge: ['Hayalet', '#C9B2FF', '#6A3FD0', 'ghost', 'run', 'epic', null, null],
+    firtina: ['Yıldırım', '#A9CBFF', '#3E6BFF', 'bolt-lightning', 'run', 'epic', null, null],
+    kozmik: ['Meteor', '#FFA477', '#B04BFF', 'meteor', 'run', 'epic', null, null],
+    kuzgun: ['Kuzgun', '#9AA6FF', '#2B2F6B', 'crow', 'run', 'epic', null, null],
+    sessiz: ['Tek Atar', '#5CFFB6', '#12A06A', 'crosshairs', 'glint', 'rare', null, null],
+    clutch: ['Clutch Kralı', '#FF9A4D', '#E2421C', 'crown', 'glint', 'rare', null, null],
+    carry: ['Kaptan', '#7CC2FF', '#2E6FD8', 'flag', 'glint', 'rare', null, null],
+    rank: ['Rank Avcısı', '#FFE06B', '#D08A1C', 'ranking-star', 'glint', 'rare', null, null],
+    gecekusu: ['Gece Kuşu', '#A99BFF', '#5B48D6', 'moon', 'base', 'common', null, null],
+    kanka: ['Kanka', '#6EF0C6', '#139C80', 'hand-fist', 'base', 'common', null, null],
+    taktik: ['Takımın Beyni', '#C9D4E3', '#6D7890', 'chess-knight', 'base', 'common', null, null],
+    mikrofon: ['Mikrofon Açık', '#FFB0D0', '#D64B8A', 'microphone', 'base', 'common', null, null],
+    sonmeyen: ['Sönmeyen Ateş', '#A6F2FF', '#5B6CFF', 'bonfire', 'run', null, 'ice', '#F2FEFF'],
+    duayen: ['Duayen', '#A6F2FF', '#5B6CFF', 'award', 'run', null, 'ice', '#F2FEFF'],
+    canciger: ['Can Ciğer', '#FFD36B', '#E0559E', 'user-group', 'legend', null, 'foil', null],
+    plus: ['Coopy+', '#C4A8FF', '#E0559E', 'coopy', 'glint', null, null, null],
+  };
+  const tb = (key, cls = '') => {
+    const [n, c, c2, g, tier, r, text, light] = TITLES[key];
+    return `<span class="tb tb--${tier}${text ? ` tb--${text}` : ''}${cls ? ` ${cls}` : ''}" style="--c:${c};--c2:${c2}${light ? `;--l:${light}` : ''}"><span class="tb__tile">${ic('g-' + g)}</span><span class="tb__name">${n}</span>${r ? `<i class="tb__r tb__r--${r}"></i>` : ''}</span>`;
+  };
   const cardHTML = p => `
     <div class="pc__banner"><img src="assets/img/banner/${p.ban}.webp" alt=""></div>
     <div class="pc__top"><span class="pill-glass">${ic('i-spark')}%${p.fit} uyum</span>${p.lfg ? `<span class="pill-lfg"><i></i>Şimdi oynamak istiyor · ${p.lfg}</span>` : ''}</div>
     <div class="pc__body">
       <div class="pc__id">
         <span class="ava"><img src="assets/img/oyuncu/${p.img}.webp" alt=""><img class="ava__deco" src="assets/img/sus/${p.deco}.webp" alt=""></span>
-        <span class="pc__name"><span class="pc__nm"><b>${p.n}</b><i class="online"></i></span><span class="title ${p.t[0]}">${ic(p.t[1])}${p.t[2]}</span></span>
+        <span class="pc__name"><span class="pc__nm"><b>${p.n}</b><i class="online"></i></span>${tb(p.t)}</span>
       </div>
       <p class="pc__meta">${p.meta.join('<i></i>')}<i></i>${ic('i-star')}${p.r}</p>
       <p class="pc__bio">${p.bio}</p>
@@ -531,41 +558,71 @@
   }
 
   // ------------------------------------------------------------------------------------------
-  // Kasa: uygulamadaki Çırak Sandığı ağırlıklarıyla (src/data/crates.ts) CS2 tarzı şerit
+  // Kasalar: uygulamadaki iki sandık (src/data/crates.ts) aynı içerik ve ağırlıklarla, CS2 tarzı şerit
   function crate(gsap) {
     const box = $('[data-crate]');
     if (!box) return;
     const RAR = {
-      common: { label: 'Sıradan', c: '#A7B0C0', p: 10 },
-      rare: { label: 'Nadir', c: '#4FA3FF', p: 25 },
-      epic: { label: 'Destansı', c: '#B36BFF', p: 60 },
-      legendary: { label: 'Efsanevi', c: '#FFC23D', p: 150 },
+      common: { label: 'Sıradan', c: '#B0C3D9', p: 10 },
+      rare: { label: 'Nadir', c: '#4B69FF', p: 25 },
+      epic: { label: 'Destansı', c: '#8847FF', p: 60 },
+      legendary: { label: 'Efsanevi', c: '#E4AE39', p: 150 },
     };
-    const DROPS = [
-      { n: 'Gece Kuşu', t: 't-neon', i: 'i-moon', r: 'common', w: 40 },
-      { n: 'Sessiz Nişancı', t: 't-ice', i: 'i-aim', r: 'common', w: 40 },
-      { n: 'Herkesin Kankası', t: 't-mint', i: 'i-smile', r: 'common', w: 40 },
-      { n: 'Clutch Kralı', t: 't-fire', i: 'i-zap', r: 'rare', w: 25 },
-      { n: 'Carry Makinesi', t: 't-glitch', i: 'i-rocket', r: 'rare', w: 25 },
-      { n: 'Uykucu Tekir', img: 'tekir', r: 'epic', w: 12 },
-      { n: 'Büyü Kitabı', img: 'kitap', r: 'epic', w: 10 },
-      { n: 'Bozkurt Yavrusu', img: 'kurt', r: 'legendary', w: 4 },
-      { n: 'Yaşayan Efsane', t: 't-rainbow', i: 'i-star', r: 'legendary', w: 4 },
-    ];
-    const total = DROPS.reduce((s, x) => s + x.w, 0);
-    const pick = () => { let r = Math.random() * total; for (const x of DROPS) { if ((r -= x.w) < 0) return x; } return DROPS[0]; };
+    const T = (key, w) => ({ key, n: TITLES[key][0], r: TITLES[key][5], w });
+    const P = (img, n, r, w) => ({ img, n, r, w });
+    const CRATES = {
+      unvan: {
+        name: 'Ünvan Sandığı', count: '15 hareketli ünvan', chest: ['unvan', 300, 231],
+        blurb: 'Adınızın altında duran hareketli ünvanlar. Nadir olanların kendine özel animasyonu var.',
+        drops: [T('gecekusu', 40), T('kanka', 40), T('taktik', 40), T('mikrofon', 40), T('sessiz', 22), T('clutch', 22), T('carry', 22), T('rank', 22),
+          T('golge', 10), T('firtina', 10), T('kozmik', 10), T('kuzgun', 10), T('efsane', 3), T('ejder', 3), T('anka', 3)],
+      },
+      pet: {
+        name: 'Pet Sandığı', count: '18 hareketli pet', chest: ['pet', 300, 268],
+        blurb: 'Bannerınızın kenarında yaşayan hareketli petler. Tekrar çıkan pet Kasa Puanı olur.',
+        drops: [P('slime', 'Jöle Slime', 'common', 30), P('kapibara', 'Kapibara', 'common', 30), P('hamster', 'Tombul Hamster', 'common', 30), P('kurbaga', 'Nilüfer Kurbağa', 'common', 30),
+          P('tilki', 'Tilki Yavrusu', 'rare', 20), P('panda', 'Kulaklıklı Panda', 'rare', 20), P('shiba', 'Oyuncu Shiba', 'rare', 20), P('aksolotl', 'Aksolotl', 'rare', 20), P('kizilpanda', 'Boba Panda', 'rare', 20),
+          P('baykus', 'Gece Baykuşu', 'epic', 9), P('penguen', 'Atkılı Penguen', 'epic', 9), P('ejder', 'Yavru Ejder', 'epic', 9), P('cadikedi', 'Cadı Kedisi', 'epic', 9),
+          P('tekir', 'Uykucu Tekir', 'epic', 7), P('kitap', 'Büyü Kitabı', 'epic', 7), P('anka', 'Yavru Anka', 'legendary', 3), P('kurt', 'Bozkurt Yavrusu', 'legendary', 3), P('balina', 'Yıldız Balinası', 'legendary', 3)],
+      },
+    };
     const track = $('.reel__track', box);
     const reel = $('.reel', box);
     const marker = $('.reel__marker', box);
     const btn = $('.crate__btn', box);
     const out = $('.crate__result', box);
+    const tabs = $$('[data-kind]', box);
     const N = 44, WIN = 36;
-    const item = x => `<div class="ri" style="--rc:${RAR[x.r].c}">${x.img ? `<img src="assets/img/pet/${x.img}.webp" alt="">` : `<span class="title ${x.t}">${ic(x.i)}${x.n}</span>`}<small>${x.img ? x.n : 'Ünvan'}</small></div>`;
+    let cur = CRATES.unvan;
+    const total = () => cur.drops.reduce((s, x) => s + x.w, 0);
+    const pick = () => { let r = Math.random() * total(); for (const x of cur.drops) { if ((r -= x.w) < 0) return x; } return cur.drops[0]; };
+    // Oranlar uygulamadaki gibi: %10'dan küçükse bir ondalık
+    const pct = v => '%' + (v < 10 ? v.toFixed(1).replace('.', ',') : Math.round(v));
+    const item = x => `<div class="ri" style="--rc:${RAR[x.r].c}">${x.img ? `<img src="assets/img/pet/${x.img}.webp" alt="">` : tb(x.key)}<small>${x.img ? x.n : 'Ünvan'}</small></div>`;
     const build = win => {
       const list = Array.from({ length: N }, pick);
       list[WIN] = win;
       track.innerHTML = list.map(item).join('');
       gsap.set(track, { x: 0 });
+    };
+    const show = kind => {
+      cur = CRATES[kind];
+      tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.kind === kind));
+      const [img, w, h] = cur.chest;
+      const chest = $('.crate__chest', box);
+      Object.assign(chest, { src: `assets/img/kasa/${img}.webp`, width: w, height: h, alt: cur.name });
+      $('.crate__name', box).textContent = cur.name;
+      $('.crate__count', box).textContent = cur.count;
+      $('.crate__blurb', box).textContent = cur.blurb;
+      const sum = total();
+      $('.rarity', box).innerHTML = ['common', 'rare', 'epic', 'legendary'].map(r => {
+        const v = cur.drops.filter(x => x.r === r).reduce((s, x) => s + x.w, 0) / sum * 100;
+        return `<li style="--rc:${RAR[r].c}">${RAR[r].label}<em>${pct(v)}</em></li>`;
+      }).join('');
+      out.style.removeProperty('--rc');
+      out.innerHTML = '<small>Kasadan çıkan</small><b>Sandığı açmak için düğmeye basın</b>';
+      build(pick());
+      if (!RM) gsap.fromTo(chest, { y: 10, scale: .92, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: .6, ease: 'back.out(2)' });
     };
     build(pick());
     let spinning = false;
@@ -573,9 +630,10 @@
       if (spinning) return;
       spinning = true;
       btn.disabled = true;
+      tabs.forEach(t => (t.disabled = true));
       const win = forced || pick();
       build(win);
-      out.innerHTML = '<small>Kasa açılıyor</small><b>…</b>';
+      out.innerHTML = '<small>Sandık açılıyor</small><b>…</b>';
       const first = track.children[0];
       const step = first.offsetWidth + 10;
       const center = reel.clientWidth / 2;
@@ -591,6 +649,7 @@
         if (!RM) gsap.fromTo(w, { scale: 1 }, { scale: 1.08, duration: .6, ease: 'back.out(3)' });
         spinning = false;
         btn.disabled = false;
+        tabs.forEach(t => (t.disabled = false));
       };
       if (RM) { gsap.set(track, { x: target }); done(); return; }
       gsap.to(track, {
@@ -602,9 +661,10 @@
         onComplete: done,
       });
     };
+    tabs.forEach(t => t.addEventListener('click', () => { if (!spinning && cur !== CRATES[t.dataset.kind]) show(t.dataset.kind); }));
     btn.addEventListener('click', () => spin());
-    // İlk gösterim: bölüm görününce bir kez kendiliğinden açılır
-    if (window.ScrollTrigger && !RM) window.ScrollTrigger.create({ trigger: box, start: 'top 65%', once: true, onEnter: () => spin(DROPS[5]) });
+    // İlk gösterim: bölüm görününce bir kez kendiliğinden açılır (destansı bir ünvan çıkar)
+    if (window.ScrollTrigger && !RM) window.ScrollTrigger.create({ trigger: box, start: 'top 65%', once: true, onEnter: () => spin(cur.drops[8]) });
   }
 
   // Başlat: dosyanın sonunda, yukarıdaki tüm tanımlar hazır olduktan sonra

@@ -67,7 +67,17 @@ gerekirse betiklerle yeniden çekilir ya da kullanıcı yükler.
   Başlıklar (`data-split`) ekrana yaklaşınca bölünür. Ekran dışındaki bölümlerde (`data-zone`) CSS animasyonları durur.
 - Görseller `assets/img/`: `oyuncu/` (Nano Banana portreleri, 256 px), `banner/` (kart bannerları 640 px, `bahce` 1200 px),
   `sus/` ve `pet/` (uygulama deposundaki süs ve pet çizimlerinden küçültüldü), `og.jpg` (paylaşım görseli, logo ve yazı kodla eklendi).
-- Kasa oranları uygulamadaki `src/data/crates.ts` ile aynı; değişirse `site.js` içindeki `DROPS` da güncellenmeli.
+- Kasalar uygulamadaki `src/data/crates.ts` ile aynı: iki sandık (Ünvan Sandığı, Pet Sandığı), aynı eşyalar ve ağırlıklar,
+  CS2 nadirlik renkleri. Değişirse `site.js` içindeki `CRATES` ve `index.html`'deki ilk oranlar (`.rarity`) güncellenmeli.
+  Sandık görselleri `assets/img/kasa/`, pet görselleri `assets/img/pet/` (uygulamadaki hareketli WebP'nin ilk karesi).
+- Ünvanlar uygulamadaki `TitleBadge` görünümünde (`.tb`: renkli karo + simge + ad + nadirlik elması; seviye base / glint /
+  run / legend). Renk, simge ve seviye `src/data/titles.ts` ile aynı; `site.js` içindeki `TITLES` ve `index.html`'deki
+  statik etiketler birlikte güncellenmeli. Simgeler `index.html` sprite'ında `g-*` (uygulamadaki Font Awesome 6 ve
+  Ionicons yazı tiplerinden SVG olarak çıkarıldı).
+- `404.html`: GitHub Pages her bulunamayan adreste gösterir; bu yüzden içindeki tüm adresler kökten (`/`) başlar.
+- Simgeler: `favicon.ico`, `favicon.svg`, `apple-touch-icon.png` (tüm sayfalar bunlara bağlı). Yasal sayfalarda da
+  paylaşım (Open Graph) etiketleri var. Sitede çerez, form ve ziyaretçi takibi yok; bu yüzden çerez bandı gerekmiyor
+  (gizlilik politikasında yazıyor). Takip eklenirse çerez onayı ve gizlilik metni de gerekir.
 - Ölçüm: yerelde gzip'li sunucuyla Lighthouse telefon 92-94, masaüstü 100 (erişilebilirlik, en iyi uygulamalar, SEO 100).
 - Hareket azaltma: `.rm` sınıfı ve `prefers-reduced-motion` ile tüm animasyonlar kapanır, içerik doğrudan görünür.
 - CSS ve betik adreslerinde `?v=` sürümü var: dosya değişince sürümü artır (GitHub Pages 10 dk önbellekte tutar).
