@@ -103,3 +103,9 @@ gerekirse betiklerle yeniden çekilir ya da kullanıcı yükler.
   `<use>` yerine satır içi çizildi ki göz bebekleri ayrı oynasın.
 - Denenip beğenilmeyen tam yeni tasarım (canlı deste, eşleşme anı, kasa şeridi) `yeni-tasarim` dalında, `/yeni/`
   klasöründe. Bu değişikliklerden önceki site `site-eski-aurora` dalında.
+- **Afiş tonları (19 Ekim, kullanıcının örnek afişi: kırmızı sahne ışığı, öznenin arkasında camgöbeği-beyaz dev yazı):**
+  arka plan ışıkları kırmızı/turuncu/bordo (`--t1..--t3`, `.atmos`), bölüme göre ton değişir (`tones()`, `TONES`:
+  Güvenlik camgöbeği, Coopy+ pembe…), üstünde yavaşça gezen yumuşak ışık (`.atmos__grid::after`). Kullanıcı
+  ızgara çizgilerini istemedi, kaldırıldı. Hero'da telefonun arkasında akan camgöbeği-beyaz "DUO" yazısı
+  (`.hero__giant`), "kaydırma" kelimesi ve alt bilgideki dev "coopy" aynı akışla parlar, düğmelerde arada parıltı geçer,
+  üstte kaydırma çubuğu (`.progress`). Giriş ekranı da kırmızı tonda.

@@ -27,7 +27,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css?v=20261019a">
+<link rel="stylesheet" href="assets/css/site.css?v=20261019c">
 <script>
   (function (d) {
     d.className = 'js';
@@ -45,7 +45,7 @@
 <script defer src="assets/vendor/ScrollTrigger.min.js"></script>
 <script defer src="assets/vendor/SplitText.min.js"></script>
 <script defer src="assets/vendor/lenis.min.js"></script>
-<script defer src="assets/js/site.js?v=20261019a"></script>
+<script defer src="assets/js/site.js?v=20261019b"></script>
 </head>
 <body>
 
@@ -118,11 +118,13 @@
 <!-- Giriş animasyonu (oturumda bir kez; dokununca geçilir) -->
 <div class="intro" aria-hidden="true"><span class="intro__glow"></span><svg class="intro__logo" viewBox="0 0 1024 1024"><path fill="url(#g-bowl)" d="M525,512 a206,206 0 1,0 412,0 a206,206 0 1,0 -412,0 Z M619,512 a112,112 0 1,1 224,0 a112,112 0 1,1 -224,0 Z"/><path fill="url(#g-bar)" d="M87,512 a206,206 0 1,0 412,0 a206,206 0 1,0 -412,0 Z M181,512 a112,112 0 1,1 224,0 a112,112 0 1,1 -224,0 Z"/><circle class="pup pup--l" cx="329" cy="482" r="54" fill="#fff"/><circle class="pup pup--r" cx="767" cy="482" r="54" fill="#fff"/></svg></div>
 
+<div class="progress" aria-hidden="true"></div>
 <a class="skip" href="#icerik">İçeriğe geç</a>
 
 <!-- Arka plan: aurora, imleç ışığı, film greni -->
 <div class="atmos" aria-hidden="true">
   <div class="aurora a1"></div><div class="aurora a2"></div><div class="aurora a3"></div>
+  <div class="atmos__grid"></div>
   <div class="cursor-light"></div>
   <div class="grain"></div>
 </div>
@@ -164,6 +166,7 @@
   <!-- ============ HERO ============ -->
   <section data-zone class="hero" id="top">
     <div class="hero__dots" aria-hidden="true"></div>
+    <p class="hero__giant" aria-hidden="true">DUO</p>
     <div class="wrap hero__in">
       <div class="hero__copy">
         <p class="status" data-intro style="--d:0"><i class="live"></i>Kapalı test açık <span>/</span> <b lang="en">Android</b></p>
@@ -441,7 +444,7 @@
 
       <!-- Süs vitrini: seçili süs sahnede canlanır, sahne süsün renginde yanar -->
       <div class="vitrin" data-vitrin>
-        <div class="vitrin__bg" aria-hidden="true"><i class="vb-spot"></i><i class="vb-spot vb-spot--2"></i><i class="vb-grid"></i><i class="vb-vig"></i></div>
+        <div class="vitrin__bg" aria-hidden="true"><i class="vb-spot"></i><i class="vb-spot vb-spot--2"></i><i class="vb-vig"></i></div>
         <canvas class="vitrin__fx" aria-hidden="true"></canvas>
         <p class="vitrin__word" aria-hidden="true"></p>
         <div class="vitrin__stage">

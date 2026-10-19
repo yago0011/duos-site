@@ -61,6 +61,7 @@
       () => features(gsap),
       () => vitrin(gsap),
       () => eyes(),
+      () => tones(gsap, ScrollTrigger),
       () => marquees(gsap, lenis),
       () => parallax(gsap),
       () => interactions(gsap, lenis),
@@ -612,6 +613,30 @@
       raf = requestAnimationFrame(tick);
     }
     return api;
+  }
+
+
+  // Arka plan tonu bölüme göre değişir (afiş ışığı); üstte kaydırma çubuğu
+  const TONES = {
+    top: ['#D3122F', '#FF4A26', '#6E0A3A'], oyunlar: ['#D3122F', '#FF4A26', '#6E0A3A'],
+    nasil: ['#B30F3C', '#FF6A3D', '#4A0E5C'], ozellikler: ['#A3165E', '#FF4A6A', '#3A0D52'],
+    magaza: ['#C2183A', '#FF7A2A', '#5A0A2A'], guvenlik: ['#0E6D7C', '#3FD3E0', '#0A2A44'],
+    plus: ['#B3127A', '#FF4FA0', '#4B0E66'], sss: ['#7A1030', '#D02A44', '#2A0A1C'], katil: ['#E0142F', '#FF5A2A', '#6A0A30'],
+  };
+  function tones(gsap, ScrollTrigger) {
+    const atmos = $('.atmos');
+    Object.entries(TONES).forEach(([id, [a, b, c]]) => {
+      const sec = d.getElementById(id);
+      if (!sec) return;
+      ScrollTrigger.create({ trigger: sec, start: 'top 55%', end: 'bottom 55%', onToggle: st => { if (st.isActive) { atmos.style.setProperty('--t1', a); atmos.style.setProperty('--t2', b); atmos.style.setProperty('--t3', c); } } });
+    });
+    gsap.to('.progress', { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: .3 } });
+    // dev hero yazısı fareyle ve kaydırmayla hafifçe kayar
+    const g = $('.hero__giant');
+    if (g) {
+      gsap.to(g, { yPercent: 18, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+      if (FINE) { const gx = gsap.quickTo(g, 'x', { duration: 1.6, ease: 'power3' }); $('.hero').addEventListener('pointermove', e => gx((e.clientX / innerWidth - .5) * -40)); }
+    }
   }
 
   // Coopy gözleri imleci izler ve arada kırpar (üst çubuk ve alt bilgi logosu)
