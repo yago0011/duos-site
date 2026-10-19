@@ -97,7 +97,7 @@ gerekirse betiklerle yeniden çekilir ya da kullanıcı yükler.
   sıradakine geçer, küçük resme dokununca o süs gelir, üstüne gelince durur. Görseller `assets/img/vitrin/`
   (`<ad>.webp` taban 340 px, `<ad>-fx.webp` yalnızca hareket eden katman 260 px, `<ad>-k.webp` küçük resim). Üretici:
   uygulama deposundaki `assets/decorations/` dosyalarından (taban + `-fx` + `-still`). Hareketli katman yalnızca o süs
-  gösterilince yüklenir. Kullanıcı arka planı kırmızı tonlu bir afişten (ışık, ince ızgara, öznenin arkasında dev yazı)
+  gösterilince yüklenir. Telefonda dev süs adı gösterilmez (avatarın arkasında kalıp okunmuyordu). Kullanıcı arka planı kırmızı tonlu bir afişten (ışık, ince ızgara, öznenin arkasında dev yazı)
   esinlenerek istedi.
 - **Coopy gözleri** üst çubukta ve alt bilgide imleci izler, birkaç saniyede bir kırpar (`eyes()`); logo bu iki yerde
   `<use>` yerine satır içi çizildi ki göz bebekleri ayrı oynasın.
@@ -106,6 +106,5 @@ gerekirse betiklerle yeniden çekilir ya da kullanıcı yükler.
 - **Afiş tonları (19 Ekim, kullanıcının örnek afişi: kırmızı sahne ışığı, öznenin arkasında camgöbeği-beyaz dev yazı):**
   arka plan ışıkları kırmızı/turuncu/bordo (`--t1..--t3`, `.atmos`), bölüme göre ton değişir (`tones()`, `TONES`:
   Güvenlik camgöbeği, Coopy+ pembe…), üstünde yavaşça gezen yumuşak ışık (`.atmos__grid::after`). Kullanıcı
-  ızgara çizgilerini istemedi, kaldırıldı. Hero'da telefonun arkasında akan camgöbeği-beyaz "DUO" yazısı
-  (`.hero__giant`, kullanıcı isteğiyle "DUO" değil "coopy"), "kaydırma" kelimesi ve alt bilgideki dev "coopy" aynı akışla parlar, düğmelerde arada parıltı geçer,
+  ızgara çizgilerini istemedi, kaldırıldı. Hero'daki dev yazı denendi, kullanıcı istemedi ve kaldırıldı. "Kaydırma" kelimesi ve alt bilgideki dev "coopy" aynı akışla parlar, düğmelerde arada parıltı geçer,
   üstte kaydırma çubuğu (`.progress`). Giriş ekranı da kırmızı tonda.

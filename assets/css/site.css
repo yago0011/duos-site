@@ -759,8 +759,11 @@ svg:not([viewBox]) { width: 1em; height: 1em; fill: none; stroke: currentColor; 
 @media (max-width: 900px) {
   .vitrin { grid-template-columns: 1fr; min-height: 0; padding: 22px 18px 26px; gap: 8px; }
   .vitrin__stage { width: min(100%, 380px); }
-  .vitrin__word { bottom: auto; top: 30%; font-size: clamp(54px, 17vw, 110px); }
-  .vitrin__thumbs { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .vitrin__word { display: none; }
+  .vitrin__thumbs { grid-template-columns: repeat(6, 1fr); gap: 6px; }
+  .vt-th { border-radius: 10px; }
+  .vitrin__stage { width: min(100%, 320px); margin-top: -10px; }
+  .vitrin__name { font-size: 30px; }
   .vitrin__desc { min-height: 4.6em; }
 }
 .rm .vb-spot { animation: none; }
@@ -781,14 +784,7 @@ svg:not([viewBox]) { width: 1em; height: 1em; fill: none; stroke: currentColor; 
 .atmos__grid::after { content: ""; position: absolute; inset: 0; background: radial-gradient(38vmax 30vmax at var(--gx) var(--gy), color-mix(in srgb, var(--t2) 40%, transparent), transparent 70%); opacity: .45; animation: gridsweep 16s ease-in-out infinite alternate; }
 @keyframes gridsweep { 0% { --gx: 12%; --gy: 22%; } 35% { --gx: 78%; --gy: 40%; } 70% { --gx: 40%; --gy: 85%; } 100% { --gx: 92%; --gy: 12%; } }
 
-/* hero: telefonun arkasında dev, akan camgöbeği-beyaz yazı (afişteki gibi özne yazının önünde) */
-.hero__giant { position: absolute; z-index: 0; right: 2vw; bottom: 1vh; margin: 0; font: 800 clamp(100px, 13vw, 214px)/.78 var(--f-d); font-stretch: 125%; letter-spacing: -.06em; padding-bottom: .12em; pointer-events: none; user-select: none;
-  background: linear-gradient(100deg, #5FE3F5 0%, #E9FDFF 26%, #FFFFFF 38%, #7BEAF7 55%, #2FC4E0 70%, #F1FEFF 86%, #5FE3F5 100%) 0 0 / 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; opacity: .92; animation: giantflow 10s linear infinite; }
-.hero__giant::after { content: ""; }
 @keyframes giantflow { to { background-position: 220% 0; } }
-.hero__in { z-index: 1; }
-.hero__title .w--swipe > span:first-child { background: linear-gradient(100deg, #7BEAF7, #FFFFFF 40%, #7BEAF7 60%, #FFFFFF) 0 0 / 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: rise 1.25s var(--ease) both, giantflow 6s linear 1.4s infinite; animation-delay: calc(.12s + var(--i) * .065s), 1.4s; }
-
 /* üstte kaydırma çubuğu */
 .progress { position: fixed; z-index: 70; left: 0; top: 0; height: 2px; width: 100%; transform-origin: left; transform: scaleX(0); background: linear-gradient(90deg, var(--t1, #D3122F), #FF4A26 45%, #5FE3F5); box-shadow: 0 0 12px rgba(255, 74, 38, .6); pointer-events: none; }
 
@@ -807,6 +803,5 @@ svg:not([viewBox]) { width: 1em; height: 1em; fill: none; stroke: currentColor; 
 .intro__glow { background: radial-gradient(closest-side, rgba(225, 20, 47, .38), rgba(255, 74, 38, .14) 50%, transparent); }
 
 @media (max-width: 900px) {
-  .hero__giant { right: 3vw; bottom: 2vh; font-size: 23vw; opacity: .8; }
 }
-.rm .hero__giant, .rm .foot__word, .rm .atmos__grid::after, .rm .btn--light::after, .rm .hero__title .w--swipe > span:first-child { animation: none !important; }
+.rm .rm .foot__word, .rm .atmos__grid::after, .rm .btn--light::after, .rm .hero__title .w--swipe > span:first-child { animation: none !important; }

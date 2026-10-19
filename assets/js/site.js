@@ -642,12 +642,6 @@
       ScrollTrigger.create({ trigger: sec, start: 'top 55%', end: 'bottom 55%', onToggle: st => { if (st.isActive) { atmos.style.setProperty('--t1', a); atmos.style.setProperty('--t2', b); atmos.style.setProperty('--t3', c); } } });
     });
     gsap.to('.progress', { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: .3 } });
-    // dev hero yazısı fareyle ve kaydırmayla hafifçe kayar
-    const g = $('.hero__giant');
-    if (g) {
-      gsap.to(g, { yPercent: 18, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-      if (FINE) { const gx = gsap.quickTo(g, 'x', { duration: 1.6, ease: 'power3' }); $('.hero').addEventListener('pointermove', e => gx((e.clientX / innerWidth - .5) * -40)); }
-    }
   }
 
   // Coopy gözleri imleci izler ve arada kırpar (üst çubuk ve alt bilgi logosu)
