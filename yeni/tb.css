@@ -1,0 +1,31 @@
+/* Ünvan etiketleri: eski sitedeki .tb (uygulamadaki TitleBadge) */
+@property --tba { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.tb { --l: color-mix(in srgb, var(--c) 50%, #fff); position: relative; display: inline-flex; align-items: center; gap: .6em; height: 2.22em; max-width: 100%; padding: 0 .9em 0 .2em; border: 1px solid transparent; border-radius: .74em; isolation: isolate; white-space: nowrap; font: 600 13.5px/1.2 var(--f-b); letter-spacing: -.01em; color: #F5F4F9;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--c) 22%, transparent), transparent 45%) padding-box, linear-gradient(180deg, #1A1922, #0F0E15) padding-box, linear-gradient(180deg, rgba(255, 255, 255, .17), color-mix(in srgb, var(--c) 32%, transparent)) border-box; }
+.tb__tile { position: relative; flex: none; display: grid; place-items: center; width: 1.78em; height: 1.78em; border-radius: .52em; overflow: hidden; color: rgba(11, 10, 16, .88); background: linear-gradient(135deg, var(--l, color-mix(in srgb, var(--c) 50%, #fff)), var(--c) 48%, var(--c2)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .55); }
+.tb__tile svg { position: relative; z-index: 1; width: 58%; height: 58%; fill: currentColor; stroke: none; }
+.tb__name { overflow: hidden; text-overflow: ellipsis; }
+.tb__r { flex: none; width: .44em; height: .44em; margin-left: -.1em; border-radius: 1px; background: var(--rc); box-shadow: 0 0 .45em var(--rc); transform: rotate(45deg); }
+.tb__r--common { --rc: #B0C3D9; }
+.tb__r--rare { --rc: #4B69FF; }
+.tb__r--epic { --rc: #8847FF; }
+.tb__r--legendary { --rc: #E4AE39; }
+.tb__r--epic, .tb__r--legendary { animation: tbr 2s ease-in-out infinite; }
+@keyframes tbr { 50% { transform: rotate(45deg) scale(1.3); } }
+/* karonun üstünden geçen ışık */
+.tb:not(.tb--base) .tb__tile::after { content: ""; position: absolute; top: -30%; bottom: -30%; left: 0; width: 34%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .85), transparent); transform: translateX(-160%) rotate(20deg); animation: tbglint 4s ease-in-out infinite; }
+@keyframes tbglint { 0%, 55% { transform: translateX(-160%) rotate(20deg); } 80%, 100% { transform: translateX(360%) rotate(20deg); } }
+/* kenarda dönen ışık ve nabız gibi dış ışık */
+.tb--run::before, .tb--legend::before { content: ""; position: absolute; inset: -1px; padding: 1px; border-radius: inherit; pointer-events: none; background: conic-gradient(from var(--tba), transparent 0 62%, var(--l) 80%, transparent 96%); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: tbspin 4s linear infinite; }
+@keyframes tbspin { to { --tba: 360deg; } }
+.tb--run::after, .tb--legend::after { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none; box-shadow: 0 0 1em .07em color-mix(in srgb, var(--c) 55%, transparent); opacity: .35; animation: tbpulse 4s ease-in-out infinite; }
+@keyframes tbpulse { 50% { opacity: .85; } }
+.tb--ember::before { background: conic-gradient(from var(--tba), transparent 0 45%, #FF6A2A 68%, #FFD36B 84%, transparent 100%); animation-duration: 2s; }
+.tb--ice::before { background: conic-gradient(from var(--tba), transparent 0 52%, #7CC2FF 68%, #F2FEFF 80%, #C9A2FF 90%, transparent 100%); }
+/* yaldızlı yazı */
+.tb--foil { --t1: #F2B436; --t2: #FFD86E; --t3: #FFF8E0; }
+.tb--ember { --t1: #FF6A2A; --t2: #FFC46B; --t3: #FFF1D0; }
+.tb--ice { --t1: #C9F6FF; --t2: #FFFFFF; --t3: #E4DCFF; }
+.tb--foil .tb__name, .tb--ember .tb__name, .tb--ice .tb__name { color: transparent; background: linear-gradient(90deg, var(--t1), var(--t2), var(--t3), var(--t2), var(--t1), var(--t2), var(--t3), var(--t2), var(--t1)) 0 0 / 200% 100%; -webkit-background-clip: text; background-clip: text; animation: tbtext 4s linear infinite; }
+@keyframes tbtext { to { background-position: 100% 0; } }
+.tb--lg { font-size: 19px; }
