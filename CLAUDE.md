@@ -83,3 +83,23 @@ gerekirse betiklerle yeniden çekilir ya da kullanıcı yükler.
 - CSS ve betik adreslerinde `?v=` sürümü var: dosya değişince sürümü artır (GitHub Pages 10 dk önbellekte tutar).
 - 3B parçacık sahnesi denendi, kullanıcı beğenmedi ve geri alındı; kodu `deneme-3b` dalında (`assets/js/evren.js`).
   3B'den önceki hâlin yedeği `tasarim-2d` dalında.
+
+## Ekim 2026 eklemeleri (19 Ekim)
+
+- **Giriş animasyonu:** sayfa açılınca koyu ekranda Coopy gözleri bulanıktan netleşir, kırpar, bebekler birbirine döner,
+  site pembe gözün içinden açılır (uygulamadaki açılışın aynısı; örnek alınan site 10alabs.com). Tamamen CSS
+  (`.intro`, `@property --ir` ile maske deliği); `<head>`teki satır içi betik oturumda bir kez `js-intro` ve `intro-on`
+  sınıflarını ekler, 1,7 sn'de `intro-on` (hero animasyonları bu sırada bekler), 2,7 sn'de `js-intro` kalkar. Dokununca
+  geçilir. Hareket azaltılmışsa hiç oynamaz. **Satır içi betik değişirse CSP'deki `sha256` yeniden hesaplanmalı**
+  (betiğin `<script>` ile `</script>` arasındaki metninin tamamı, baştaki satır sonu dahil).
+- **Süs vitrini** (`.vitrin`, `vitrin()` site.js): eski "profil kurucu" kartının yerine. Seçili süs avatarın üstünde
+  canlanır; panel, dev ad, ışık ve parçacıklar (kor, yıldız tozu, kabarcık, yaprak, kar) süsün renginde. 4,2 sn'de bir
+  sıradakine geçer, küçük resme dokununca o süs gelir, üstüne gelince durur. Görseller `assets/img/vitrin/`
+  (`<ad>.webp` taban 340 px, `<ad>-fx.webp` yalnızca hareket eden katman 260 px, `<ad>-k.webp` küçük resim). Üretici:
+  uygulama deposundaki `assets/decorations/` dosyalarından (taban + `-fx` + `-still`). Hareketli katman yalnızca o süs
+  gösterilince yüklenir. Kullanıcı arka planı kırmızı tonlu bir afişten (ışık, ince ızgara, öznenin arkasında dev yazı)
+  esinlenerek istedi.
+- **Coopy gözleri** üst çubukta ve alt bilgide imleci izler, birkaç saniyede bir kırpar (`eyes()`); logo bu iki yerde
+  `<use>` yerine satır içi çizildi ki göz bebekleri ayrı oynasın.
+- Denenip beğenilmeyen tam yeni tasarım (canlı deste, eşleşme anı, kasa şeridi) `yeni-tasarim` dalında, `/yeni/`
+  klasöründe. Bu değişikliklerden önceki site `site-eski-aurora` dalında.

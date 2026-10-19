@@ -30,8 +30,10 @@
     }
     window.__lenis = lenis;
     basics(lenis);
+    const intro = $('.intro');
+    if (intro) intro.addEventListener('click', () => root.classList.remove('intro-on', 'js-intro'));
 
-    if (RM) { showAll(); interactions(gsap, lenis); return; }
+    if (RM) { showAll(); interactions(gsap, lenis); vitrin(gsap); return; }
 
     // ---- İmleç ışığı ve hero nokta ızgarası ----
     if (FINE) {
@@ -57,7 +59,8 @@
       () => counters(gsap),
       () => story(gsap),
       () => features(gsap),
-      () => builder(gsap),
+      () => vitrin(gsap),
+      () => eyes(),
       () => marquees(gsap, lenis),
       () => parallax(gsap),
       () => interactions(gsap, lenis),
@@ -473,38 +476,169 @@
   }
 
   // ------------------------------------------------------------------------------------------
-  // Profil kurucu: süs, ünvan, pet ve efekt sırayla takılır; satırlara dokununca açılıp kapanır
-  function builder(gsap) {
-    const box = $('[data-builder]');
+  // Süs vitrini: seçili süs sahnede canlanır; sahne, dev ad ve parçacıklar süsün renginde
+  // [dosya, ad, koleksiyon, fiyat, Coopy+ fiyatı, renk, avatara oran, parçacık, açıklama]
+  const VITRIN = [
+    ['dragon-ember', 'Kor Ejderi', 'Kor Ejderi', '99,99', '79,99', '#FF7A1E', 1.43, 'ember', 'Rünlü halka ve iki yanında ejder kanatları. Kanatlar ağır ağır çırpar, alttaki ejder gözü arada kırpar.'],
+    ['cosmic-eye', 'Kozmik Göz', 'Kozmik Göz', '99,99', '79,99', '#9B7BFF', 1.56, 'dust', 'Dokunaçlar kıvrılır, kaya parçaları süzülür. Kristal göz galaksi gibi parlar ve arada kırpar.'],
+    ['abyss-lure', 'Derin Fener', 'Derin Deniz', '99,99', '79,99', '#2FC8F0', 1.66, 'bubble', 'Fener balığının ışığı sallanır, pullardaki noktalar yanıp söner, kabarcıklar yükselir.'],
+    ['crimson-oni', 'Kızıl Oni', 'Kızıl Oni', '99,99', '79,99', '#F0283F', 1.4, 'ember', 'Ağır zincir ve çatlak boynuzlu oni maskesi. Maskenin gözleri kızıl alevle tutuşur.'],
+    ['sakura-dream', 'Sakura Rüyası', 'Sakura Rüyası', '94,99', '75,99', '#FF7FB6', 1.4, 'petal', 'Sakura çelengi, dalda uyuyan minik kitsune ve rüzgârda sallanan kâğıt fener.'],
+    ['phoenix-plume', 'Anka Tüyü', 'Küllerden Doğan', '99,99', '79,99', '#FF8A2A', 1.4, 'ember', 'Alev renkli anka tüyleri kanat gibi açılır, tüylerin arasından korlar yükselir.'],
+    ['night-wings', 'Gece Kanatları', 'Gece Yarısı Balosu', '99,99', '79,99', '#A65CFF', 1.4, 'dust', 'Avatarınızın arkasından açılan yarasa kanatları, füme gümüş halka ve siyah güller.'],
+    ['frost-tiara', 'Buz Tacı', 'Ayaz Sarayı', '94,99', '75,99', '#6FCBFF', 1.4, 'snow', 'Gümüş mavi buz halkası, tepesinde kristal taç; çevresinde kar taneleri süzülür.'],
+    ['rune-ring', 'Rün Çemberi', 'Taşların Fısıltısı', '99,99', '79,99', '#2EE0F5', 1.4, 'dust', 'Avatarınızın çevresinde yüzen rün taşları. Işık halkada dolaştıkça rünler sırayla yanar.'],
+    ['gold-crown', 'Altın Taç', 'Taht ve Taç', '99,99', '79,99', '#FFB938', 1.4, 'dust', 'Altın barok halka, yan yatmış kraliyet tacı, kızıl güller ve yakutlar.'],
+    ['moon-rose', 'Ay Gülü', 'Ay Işığında Güller', '89,99', '71,99', '#B9AEFF', 1.4, 'dust', 'Fildişi güllerle sarılı gümüş filigran halka, tepesinde hilal ay.'],
+    ['flame-sword', 'Alev Kılıcı', 'Kordan Dövülmüş', '99,99', '79,99', '#FF6418', 1.4, 'ember', 'Avatarınızın çevresine kıvrılmış bir kılıç. Alevler kabzadan uca doğru akar.'],
+  ];
+  function vitrin(gsap) {
+    const box = $('[data-vitrin]');
     if (!box) return;
-    const parts = [$('.bc__deco', box), $('.bc__title', box), $('.bc__pet', box), $('.bc__fx', box)];
-    const rows = $$('.bl', box);
-    const state = [false, false, false, false];
-    const show = (i, on, instant) => {
-      state[i] = on;
-      rows[i].classList.toggle('is-on', on);
-      rows[i].setAttribute('aria-pressed', on);
-      const el = parts[i];
-      const dur = instant ? 0 : 1;
-      if (i === 0) gsap.to(el, on ? { scale: 1, opacity: 1, duration: dur, ease: 'back.out(1.8)' } : { scale: 1.5, opacity: 0, duration: dur * .4 });
-      if (i === 1) gsap.to(el, on ? { scale: 1, opacity: 1, duration: dur * .8, ease: 'back.out(2.2)' } : { scale: .6, opacity: 0, duration: dur * .3 });
-      if (i === 2) { if (on) swapAnim(el); gsap.to(el, on ? { y: 0, opacity: 1, duration: dur * 1.1, ease: 'bounce.out' } : { y: -120, opacity: 0, duration: dur * .4 }); }
-      if (i === 3) gsap.to(el, { opacity: on ? 1 : 0, duration: dur * .8 });
+    const V = 'assets/img/vitrin/';
+    const thumbs = $('.vitrin__thumbs', box), ava = $('.vt-ava', box), word = $('.vitrin__word', box);
+    const DUR = 4200;
+    thumbs.innerHTML = VITRIN.map(([id, n, , , , c], i) => `<button class="vt-th" type="button" style="--tc:${c}" data-i="${i}" aria-label="${n}"><img src="${V}${id}-k.webp" alt="" loading="lazy" width="180" height="180"><i></i></button>`).join('');
+    box.style.setProperty('--dur', DUR + 'ms');
+    const fx = vitrinFx(box);
+    let cur = -1, timer = 0, visible = false, hover = false;
+    const deco = ([id, , , , , , k]) => {
+      const el = d.createElement('span');
+      el.className = 'vt-deco'; el.style.setProperty('--k', k);
+      el.innerHTML = `<img src="${V}${id}.webp" alt=""><img src="${V}${id}-fx.webp" alt="">`;
+      return el;
     };
-    gsap.set(parts[0], { scale: 1.5, opacity: 0 });
-    gsap.set(parts[1], { scale: .6, opacity: 0 });
-    gsap.set(parts[2], { y: -120, opacity: 0 });
-    rows.forEach((b, i) => b.addEventListener('click', () => show(i, !state[i])));
-    window.ScrollTrigger.create({ trigger: box, start: 'top 60%', once: true, onEnter: () => {
-      [0, 1, 2, 3].forEach(i => setTimeout(() => show(i, true), 300 + i * 900));
-    } });
+    const setWord = text => {
+      const old = [...word.children];
+      if (old.length && !RM) gsap.to(old, { yPercent: -110, opacity: 0, duration: .45, ease: 'power3.in', stagger: .015, onComplete: () => old.forEach(e => e.remove()) });
+      else old.forEach(e => e.remove());
+      const line = d.createElement('span');
+      line.style.cssText = 'position:absolute;left:0;bottom:0';
+      line.innerHTML = [...text.toLocaleUpperCase('tr')].map(ch => `<span class="ch">${ch === ' ' ? '&nbsp;' : ch}</span>`).join('');
+      word.appendChild(line);
+      // uzun ad panele sığsın
+      const avail = box.clientWidth - 2 * parseFloat(getComputedStyle(word).left);
+      if (line.scrollWidth > avail) line.style.fontSize = (avail / line.scrollWidth).toFixed(3) + 'em';
+      if (!RM) gsap.from(line.children, { yPercent: 110, duration: .9, ease: 'power4.out', stagger: .03, delay: .2 });
+    };
+    const show = i => {
+      if (i === cur) return;
+      cur = i;
+      const it = VITRIN[i];
+      box.style.setProperty('--vc', it[5]);
+      const old = $('.vt-deco', ava);
+      const el = deco(it);
+      ava.appendChild(el);
+      if (old) gsap.to(old, { opacity: 0, scale: .86, rotation: -8, duration: .4, ease: 'power2.in', onComplete: () => old.remove() });
+      if (!RM) {
+        gsap.fromTo(el, { opacity: 0, scale: 1.25, rotation: 10 }, { opacity: 1, scale: 1, rotation: 0, duration: .9, ease: 'back.out(1.6)', delay: .1 });
+        gsap.fromTo($('.vt-ava__img', ava), { scale: .94 }, { scale: 1, duration: .8, ease: 'elastic.out(1, .5)' });
+      }
+      setWord(it[1]);
+      $('.vitrin__name', box).textContent = it[1];
+      $('.vitrin__coll', box).textContent = `${it[2]} koleksiyonu`;
+      $('.vitrin__desc', box).textContent = it[8];
+      $('.vitrin__price b', box).textContent = `${it[3]} ₺`;
+      $('.vitrin__price em', box).textContent = `${it[4]} ₺`;
+      $('.vitrin__idx b', box).textContent = String(i + 1).padStart(2, '0');
+      if (!RM) gsap.fromTo($$('.vitrin__name, .vitrin__coll, .vitrin__desc', box), { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: .55, ease: 'power3.out', stagger: .06 });
+      $$('.vt-th', thumbs).forEach((t, j) => t.classList.toggle('on', j === i));
+      fx.set(it[7], it[5]);
+      // sıradaki süsün hareketli katmanı önceden yüklensin
+      const nx = VITRIN[(i + 1) % VITRIN.length]; (new Image()).src = `${V}${nx[0]}-fx.webp`;
+      schedule();
+    };
+    const schedule = () => { clearTimeout(timer); box.classList.toggle('is-paused', hover || !visible); if (!RM && visible && !hover) timer = setTimeout(() => show((cur + 1) % VITRIN.length), DUR); };
+    thumbs.addEventListener('click', e => { const t = e.target.closest('.vt-th'); if (t) show(+t.dataset.i); });
+    thumbs.addEventListener('pointerenter', () => { hover = true; schedule(); });
+    thumbs.addEventListener('pointerleave', () => { hover = false; const on = $('.vt-th.on i', thumbs); if (on) { on.style.animation = 'none'; void on.offsetWidth; on.style.animation = ''; } schedule(); });
+    new IntersectionObserver(e => { visible = e[0].isIntersecting; fx.run(visible); if (visible && cur < 0) show(0); else schedule(); }, { threshold: .25 }).observe(box);
+    // sahne fareye göre hafifçe eğilir
+    if (FINE && !RM) {
+      const stage = $('.vitrin__stage', box);
+      const rx = gsap.quickTo(ava, 'rotationX', { duration: .9, ease: 'power3' }), ry = gsap.quickTo(ava, 'rotationY', { duration: .9, ease: 'power3' });
+      const sx = gsap.quickTo(word, 'x', { duration: 1.4, ease: 'power3' });
+      box.addEventListener('pointermove', e => { const r = stage.getBoundingClientRect(); const px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5; ry(px * 18); rx(-py * 14); sx(-px * 30); });
+      box.addEventListener('pointerleave', () => { rx(0); ry(0); sx(0); });
+    }
+  }
+
+  // Vitrin parçacıkları: süsün türüne göre kor, yıldız tozu, kabarcık, yaprak ya da kar
+  function vitrinFx(box) {
+    const cv = $('.vitrin__fx', box);
+    const api = { set() {}, run() {} };
+    if (!cv || RM) return api;
+    const ctx = cv.getContext('2d');
+    const dpr = Math.min(2, devicePixelRatio || 1);
+    let W = 0, H = 0, kind = 'ember', rgb = [255, 122, 30], on = false, raf = 0, last = 0;
+    const size = () => { W = cv.width = cv.offsetWidth * dpr; H = cv.height = cv.offsetHeight * dpr; };
+    size(); addEventListener('resize', size, { passive: true });
+    const N = innerWidth < 760 ? 22 : 40;
+    const ps = Array.from({ length: N }, () => ({ x: Math.random(), y: Math.random(), v: .4 + Math.random() * .8, r: .7 + Math.random() * 1.5, ph: Math.random() * 6.3, a: 0 }));
+    api.set = (k, hex) => { kind = k; rgb = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16)); ps.forEach(p => { p.a = 0; }); };
+    api.run = v => { on = v; if (v && !raf) { last = performance.now(); raf = requestAnimationFrame(tick); } };
+    function tick(now) {
+      raf = 0;
+      if (!on) return;
+      const dt = Math.min(.05, (now - last) / 1000); last = now;
+      ctx.clearRect(0, 0, W, H);
+      const [r, g, b] = rgb;
+      const fall = kind === 'snow' || kind === 'petal';
+      for (const p of ps) {
+        p.a = Math.min(1, p.a + dt * .7);
+        p.ph += dt * (kind === 'dust' ? 1.4 : 2.6);
+        const sp = kind === 'dust' ? .018 : kind === 'bubble' ? .05 : kind === 'ember' ? .075 : .04;
+        p.y += (fall ? 1 : -1) * dt * p.v * sp;
+        p.x += Math.sin(p.ph) * dt * (kind === 'petal' ? .03 : .008);
+        if (p.y < -.05) { p.y = 1.05; p.x = Math.random(); }
+        if (p.y > 1.05) { p.y = -.05; p.x = Math.random(); }
+        const x = p.x * W, y = p.y * H, s = p.r * dpr;
+        const edge = Math.min(1, p.y / .12, (1 - p.y) / .12);
+        const tw = kind === 'dust' ? .3 + .7 * Math.abs(Math.sin(p.ph * .8)) : kind === 'ember' ? .55 + .45 * Math.sin(p.ph * 2.2) : .85;
+        const al = Math.max(0, p.a * tw * edge);
+        if (kind === 'bubble') {
+          ctx.strokeStyle = `rgba(${r},${g},${b},${al * .75})`; ctx.lineWidth = dpr;
+          ctx.beginPath(); ctx.arc(x, y, s * 2.8, 0, 6.283); ctx.stroke();
+        } else if (kind === 'petal') {
+          ctx.save(); ctx.translate(x, y); ctx.rotate(p.ph); ctx.scale(1, .55 + .45 * Math.sin(p.ph * 1.7));
+          ctx.fillStyle = `rgba(${r},${g},${b},${al * .8})`; ctx.beginPath(); ctx.ellipse(0, 0, s * 3.2, s * 1.8, 0, 0, 6.283); ctx.fill(); ctx.restore();
+        } else {
+          const R = s * (kind === 'snow' ? 3 : 5);
+          const gr = ctx.createRadialGradient(x, y, 0, x, y, R);
+          gr.addColorStop(0, `rgba(255,255,255,${al})`); gr.addColorStop(.2, `rgba(${r},${g},${b},${al * .9})`); gr.addColorStop(1, `rgba(${r},${g},${b},0)`);
+          ctx.fillStyle = gr; ctx.beginPath(); ctx.arc(x, y, R, 0, 6.283); ctx.fill();
+        }
+      }
+      raf = requestAnimationFrame(tick);
+    }
+    return api;
+  }
+
+  // Coopy gözleri imleci izler ve arada kırpar (üst çubuk ve alt bilgi logosu)
+  function eyes() {
+    const marks = $$('.brand__mark');
+    if (!marks.length) return;
+    if (FINE) addEventListener('pointermove', e => {
+      marks.forEach(m => {
+        const r = m.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > innerHeight) return;
+        const dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
+        const k = Math.min(1, Math.hypot(dx, dy) / 300), a = Math.atan2(dy, dx);
+        // bebekler varsayılan olarak sağ üste bakar; imlece doğru en fazla ~5 birim kayar (viewBox 1024 ölçeğinde ~45)
+        $$('.pup', m).forEach(p => { p.style.translate = `${Math.cos(a) * 45 * k + 0}px ${Math.sin(a) * 40 * k + 30 * k}px`; });
+      });
+    }, { passive: true });
+    const blink = () => { marks.forEach(m => { m.classList.remove('is-blink'); void m.getBoundingClientRect(); m.classList.add('is-blink'); }); setTimeout(blink, 3500 + Math.random() * 4000); };
+    setTimeout(blink, 3000);
   }
 
   // ------------------------------------------------------------------------------------------
   function parallax(gsap) {
     gsap.to('.foot__word', { yPercent: -18, ease: 'none', scrollTrigger: { trigger: '.foot', start: 'top bottom', end: 'bottom bottom', scrub: true } });
     gsap.fromTo('.final__glow', { scale: .7, opacity: .4 }, { scale: 1.15, opacity: 1, ease: 'none', scrollTrigger: { trigger: '.final', start: 'top bottom', end: 'center center', scrub: true } });
-    gsap.from('.bc', { y: 80, rotation: -3, ease: 'none', scrollTrigger: { trigger: '.builder', start: 'top bottom', end: 'center center', scrub: true } });
+    // vitrin kaydırmayla açılır: panel hafifçe büyür, dev ad kayar
+    gsap.from('.vitrin', { scale: .94, borderRadius: 64, ease: 'none', scrollTrigger: { trigger: '.vitrin', start: 'top bottom', end: 'top 30%', scrub: true } });
+    gsap.fromTo('.vitrin__word', { xPercent: 3 }, { xPercent: -3, ease: 'none', scrollTrigger: { trigger: '.vitrin', start: 'top bottom', end: 'bottom top', scrub: true } });
     if (!FINE) gsap.fromTo('.holo__card', { '--ry': '-24deg', '--rx': '10deg' }, { '--ry': '14deg', '--rx': '-4deg', ease: 'none', scrollTrigger: { trigger: '.plus', start: 'top bottom', end: 'bottom top', scrub: true } });
   }
 
