@@ -307,7 +307,7 @@ svg:not([viewBox]) { width: 1em; height: 1em; fill: none; stroke: currentColor; 
 .story__words { display: grid; font: 800 clamp(56px, 9vw, 148px)/.98 var(--f-d); font-stretch: 125%; letter-spacing: -.04em; text-transform: uppercase; }
 .sw { position: relative; display: block; width: max-content; }
 .sw__o { color: transparent; -webkit-text-stroke: 1.5px rgba(255, 255, 255, .22); }
-.sw__f { position: absolute; left: 0; top: 0; background: linear-gradient(100deg, #fff 30%, #D8C8FF 60%, #F9A8D4); -webkit-background-clip: text; background-clip: text; color: transparent; clip-path: inset(-.2em 100% -.3em 0em); }
+.sw__f { position: absolute; left: 0; top: 0; padding-bottom: .3em; /* Ş, Ç kuyrukları da boyansın (background-clip yalnızca kutunun içini boyar) */ background: linear-gradient(100deg, #fff 30%, #D8C8FF 60%, #F9A8D4); -webkit-background-clip: text; background-clip: text; color: transparent; clip-path: inset(-.2em 100% -.3em 0em); }
 .story__steps { position: relative; min-height: 120px; max-width: 480px; }
 .st { position: absolute; inset: 0 auto auto 0; opacity: 0; visibility: hidden; }
 .st:first-child { opacity: 1; visibility: visible; }
@@ -702,8 +702,9 @@ svg:not([viewBox]) { width: 1em; height: 1em; fill: none; stroke: currentColor; 
 @keyframes vb-b { to { transform: translate3d(-18%, 22%, 0) scale(1.2); } }
 .vb-vig { inset: 0; background: radial-gradient(120% 90% at 40% 50%, transparent 45%, rgba(0, 0, 0, .65)); }
 .vitrin__fx { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-.vitrin__word { position: absolute; z-index: 0; left: clamp(16px, 3vw, 44px); bottom: -.14em; margin: 0; font: 800 clamp(64px, 11.5vw, 178px)/.86 var(--f-d); font-stretch: 122%; letter-spacing: -.05em; text-transform: uppercase; white-space: nowrap; color: color-mix(in srgb, var(--vc) 45%, #fff); opacity: .9; pointer-events: none; }
+.vitrin__word { position: absolute; z-index: 0; left: clamp(16px, 3vw, 44px); bottom: -.04em; margin: 0; font: 800 clamp(64px, 11.5vw, 178px)/.86 var(--f-d); font-stretch: 122%; letter-spacing: -.05em; text-transform: uppercase; white-space: nowrap; color: color-mix(in srgb, var(--vc) 45%, #fff); opacity: .9; pointer-events: none; }
 .vitrin__word .ch { display: inline-block; will-change: transform; }
+.vitrin__word > span { position: absolute; left: 0; bottom: 0; white-space: nowrap; line-height: 1.12; }
 .vitrin__word::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 55%, color-mix(in srgb, var(--vc) 13%, #050408)); }
 .vitrin__stage { position: relative; z-index: 1; display: grid; place-items: center; aspect-ratio: 1; width: min(100%, 520px); justify-self: center; perspective: 900px; }
 .vt-ava { position: relative; display: block; width: 50%; aspect-ratio: 1; transform-style: preserve-3d; }
@@ -781,7 +782,7 @@ svg:not([viewBox]) { width: 1em; height: 1em; fill: none; stroke: currentColor; 
 @keyframes gridsweep { 0% { --gx: 12%; --gy: 22%; } 35% { --gx: 78%; --gy: 40%; } 70% { --gx: 40%; --gy: 85%; } 100% { --gx: 92%; --gy: 12%; } }
 
 /* hero: telefonun arkasında dev, akan camgöbeği-beyaz yazı (afişteki gibi özne yazının önünde) */
-.hero__giant { position: absolute; z-index: 0; right: -1.5vw; bottom: 1vh; margin: 0; font: 800 clamp(150px, 20vw, 330px)/.78 var(--f-d); font-stretch: 125%; letter-spacing: -.06em; pointer-events: none; user-select: none;
+.hero__giant { position: absolute; z-index: 0; right: 2vw; bottom: 1vh; margin: 0; font: 800 clamp(100px, 13vw, 214px)/.78 var(--f-d); font-stretch: 125%; letter-spacing: -.06em; padding-bottom: .12em; pointer-events: none; user-select: none;
   background: linear-gradient(100deg, #5FE3F5 0%, #E9FDFF 26%, #FFFFFF 38%, #7BEAF7 55%, #2FC4E0 70%, #F1FEFF 86%, #5FE3F5 100%) 0 0 / 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; opacity: .92; animation: giantflow 10s linear infinite; }
 .hero__giant::after { content: ""; }
 @keyframes giantflow { to { background-position: 220% 0; } }
@@ -806,6 +807,6 @@ svg:not([viewBox]) { width: 1em; height: 1em; fill: none; stroke: currentColor; 
 .intro__glow { background: radial-gradient(closest-side, rgba(225, 20, 47, .38), rgba(255, 74, 38, .14) 50%, transparent); }
 
 @media (max-width: 900px) {
-  .hero__giant { right: -4vw; bottom: 2vh; font-size: 46vw; opacity: .8; }
+  .hero__giant { right: 3vw; bottom: 2vh; font-size: 23vw; opacity: .8; }
 }
 .rm .hero__giant, .rm .foot__word, .rm .atmos__grid::after, .rm .btn--light::after, .rm .hero__title .w--swipe > span:first-child { animation: none !important; }

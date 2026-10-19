@@ -509,17 +509,27 @@
       el.innerHTML = `<img src="${V}${id}.webp" alt=""><img src="${V}${id}-fx.webp" alt="">`;
       return el;
     };
+    // dev ad: hepsi aynı boyda; en uzun ad panele sığacak kadar
+    const fitWord = () => {
+      word.style.fontSize = '';
+      const probe = d.createElement('span');
+      probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap';
+      word.appendChild(probe);
+      let max = 0;
+      VITRIN.forEach(v => { probe.textContent = v[1].toLocaleUpperCase('tr'); max = Math.max(max, probe.scrollWidth); });
+      probe.remove();
+      const avail = box.clientWidth - 2 * parseFloat(getComputedStyle(word).left);
+      if (max > avail) word.style.fontSize = (parseFloat(getComputedStyle(word).fontSize) * avail / max).toFixed(1) + 'px';
+    };
+    fitWord();
+    addEventListener('resize', fitWord, { passive: true });
     const setWord = text => {
       const old = [...word.children];
-      if (old.length && !RM) gsap.to(old, { yPercent: -110, opacity: 0, duration: .45, ease: 'power3.in', stagger: .015, onComplete: () => old.forEach(e => e.remove()) });
+      if (old.length && !RM && !d.hidden) { gsap.to(old, { yPercent: -110, opacity: 0, duration: .45, ease: 'power3.in', stagger: .015 }); setTimeout(() => old.forEach(e => e.remove()), 600); }
       else old.forEach(e => e.remove());
       const line = d.createElement('span');
-      line.style.cssText = 'position:absolute;left:0;bottom:0';
       line.innerHTML = [...text.toLocaleUpperCase('tr')].map(ch => `<span class="ch">${ch === ' ' ? '&nbsp;' : ch}</span>`).join('');
       word.appendChild(line);
-      // uzun ad panele sığsın
-      const avail = box.clientWidth - 2 * parseFloat(getComputedStyle(word).left);
-      if (line.scrollWidth > avail) line.style.fontSize = (avail / line.scrollWidth).toFixed(3) + 'em';
       if (!RM) gsap.from(line.children, { yPercent: 110, duration: .9, ease: 'power4.out', stagger: .03, delay: .2 });
     };
     const show = i => {
@@ -527,10 +537,10 @@
       cur = i;
       const it = VITRIN[i];
       box.style.setProperty('--vc', it[5]);
-      const old = $('.vt-deco', ava);
+      // önceki süslerin hepsi (yarıda kalan geçişler dahil) kaldırılır; sekme arka plandayken bile üst üste binmez
+      $$('.vt-deco', ava).forEach(o => { gsap.killTweensOf(o); if (RM || d.hidden) { o.remove(); return; } o.classList.add('is-old'); gsap.to(o, { opacity: 0, scale: .86, rotation: -8, duration: .4, ease: 'power2.in', onComplete: () => o.remove() }); setTimeout(() => o.remove(), 700); });
       const el = deco(it);
       ava.appendChild(el);
-      if (old) gsap.to(old, { opacity: 0, scale: .86, rotation: -8, duration: .4, ease: 'power2.in', onComplete: () => old.remove() });
       if (!RM) {
         gsap.fromTo(el, { opacity: 0, scale: 1.25, rotation: 10 }, { opacity: 1, scale: 1, rotation: 0, duration: .9, ease: 'back.out(1.6)', delay: .1 });
         gsap.fromTo($('.vt-ava__img', ava), { scale: .94 }, { scale: 1, duration: .8, ease: 'elastic.out(1, .5)' });
@@ -549,7 +559,8 @@
       const nx = VITRIN[(i + 1) % VITRIN.length]; (new Image()).src = `${V}${nx[0]}-fx.webp`;
       schedule();
     };
-    const schedule = () => { clearTimeout(timer); box.classList.toggle('is-paused', hover || !visible); if (!RM && visible && !hover) timer = setTimeout(() => show((cur + 1) % VITRIN.length), DUR); };
+    d.addEventListener('visibilitychange', () => schedule());
+    const schedule = () => { clearTimeout(timer); box.classList.toggle('is-paused', hover || !visible || d.hidden); if (!RM && visible && !hover && !d.hidden) timer = setTimeout(() => show((cur + 1) % VITRIN.length), DUR); };
     thumbs.addEventListener('click', e => { const t = e.target.closest('.vt-th'); if (t) show(+t.dataset.i); });
     thumbs.addEventListener('pointerenter', () => { hover = true; schedule(); });
     thumbs.addEventListener('pointerleave', () => { hover = false; const on = $('.vt-th.on i', thumbs); if (on) { on.style.animation = 'none'; void on.offsetWidth; on.style.animation = ''; } schedule(); });
